@@ -859,7 +859,7 @@ MonoBehaviour:
   orientation: {fileID: 1808246772}
   character: {fileID: 470867191}
   characterModel: {fileID: 1182943460}
-  rotationSpeed: 7
+  rotationSpeed: 2
 --- !u!1 &1182943456
 GameObject:
   m_ObjectHideFlags: 0
