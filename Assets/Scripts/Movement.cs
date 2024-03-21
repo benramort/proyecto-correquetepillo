@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
    
     InputActionMap inputActionMap;
+    public GameObject cameraPosition;
     public float speed;
     //public GameObject camera;
     void Start()
