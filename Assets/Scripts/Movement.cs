@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,16 @@ public class Movement : MonoBehaviour
     InputActionMap inputActionMap;
     public GameObject camera;
     public float speed;
-    public Transform characterDirection;
+    public float rotationSpeed;
+    public float jumpForce;
+    private Rigidbody physics;
+    private bool grounded;
     //public GameObject camera;
     void Start()
     {
         inputActionMap = GetComponent<PlayerInput>().currentActionMap;
+        physics = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -29,8 +35,14 @@ public class Movement : MonoBehaviour
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.deltaTime * speed);
-        transform.Translate(step);
-        
+        this.transform.Translate(step);
+        if(step != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(step);
+            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.deltaTime);
+
+        }
+
     }
 
     private void manageCamera()
@@ -47,5 +59,29 @@ public class Movement : MonoBehaviour
         //    angle -= Mathf.PI;
         //}
         //transform.Rotate(Vector3.up, angle);
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if(grounded)
+            {
+                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        grounded = false;
     }
 }
