@@ -37,8 +37,8 @@ public class Movement : MonoBehaviour
     {
         Vector3 viewDirection = new Vector3(this.transform.position.x - camera.transform.position.x, 0, this.transform.position.z - camera.transform.position.z);
         viewDirection = viewDirection.normalized;
-        float angle2 = Mathf.Atan2(viewDirection.x, viewDirection.z) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.Euler(0, angle2, 0);
+        float angle = Mathf.Atan2(viewDirection.x, viewDirection.z) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.Euler(0, angle, 0);
         //float angle = Vector3.Angle(viewDirection, transform.forward);
         //Debug.Log(angle);
         //characterDirection.Rotate(Vector3.up, angle);

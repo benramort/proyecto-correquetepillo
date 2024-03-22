@@ -858,6 +858,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterModel: {fileID: 1182943456}
+  inputActionMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!1 &1182943456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1167778059}
   speed: 10
+  rotationSpeed: 30
   characterDirection: {fileID: 1341586910}
 --- !u!54 &1182943463
 Rigidbody:
