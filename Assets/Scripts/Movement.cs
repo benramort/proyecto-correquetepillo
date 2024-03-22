@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
    
     InputActionMap inputActionMap;
-    public GameObject cameraPosition;
+    public GameObject characterModel;
     public float speed;
     //public GameObject camera;
     void Start()
@@ -29,15 +29,11 @@ public class Movement : MonoBehaviour
         
     }
 
-    //private void manageCamera()
-    //{
-    //    Vector2 axis = inputActionMap.FindAction("Camera").ReadValue<Vector2>();
-    //    Debug.Log(axis);
-    //    camera.transform.RotateAround(this.transform.position, Vector3.up, axis.x * Time.deltaTime * cameraSensibility);
-    //    camera.transform.RotateAround(this.transform.position, Vector3.right, axis.y * Time.deltaTime * cameraSensibility);
-    //}
+    private void manageCamera()
+    {
+        Vector3 viewDirection = new Vector3(characterModel.transform.position.x - this.transform.position.x, 0, characterModel.transform.position.z - this.transform.position.z);
+        viewDirection = viewDirection.normalized;
+        float angle = Vector3.Angle(Vector3.forward, viewDirection);
 
-
-
-
+    }
 }
