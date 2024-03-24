@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 1182943461}
   - component: {fileID: 1182943462}
   - component: {fileID: 1182943463}
+  - component: {fileID: 1182943464}
   m_Layer: 0
   m_Name: CharacterModel
   m_TagString: Untagged
@@ -998,8 +999,8 @@ MonoBehaviour:
     m_ActionName: Player/HorizontalMovement[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1182943462}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+      - m_Target: {fileID: 1182943464}
+        m_TargetAssemblyTypeName: DoubleJump, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -1064,6 +1065,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1182943464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182943456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e7d87b5d4236f41b341eb3b4377fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 8
 --- !u!1 &1217909292
 GameObject:
   m_ObjectHideFlags: 3
