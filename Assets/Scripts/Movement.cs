@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
             physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.deltaTime);
 
         }
+      
 
     }
 
