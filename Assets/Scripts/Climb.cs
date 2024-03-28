@@ -11,7 +11,7 @@ public class Climb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputActionMap = GetComponent<PlayerInput>().currentActionMap;
+        inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Climb");
         physics = GetComponent<Rigidbody>();
     }
 
@@ -33,7 +33,7 @@ public class Climb : MonoBehaviour
         else
         {
             physics.useGravity = true;
-            
+            inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");   
         }
 
     }

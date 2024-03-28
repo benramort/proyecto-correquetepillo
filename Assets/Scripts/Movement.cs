@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     //public GameObject camera;
     void Start()
     {
-        inputActionMap = GetComponent<PlayerInput>().currentActionMap;
+        inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
 
     }
