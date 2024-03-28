@@ -28,7 +28,6 @@ public class Movement : MonoBehaviour
     {
         manageHorizontalMovement();
         manageCamera();
-        Debug.Log(transform.forward);
     }
 
     private void manageHorizontalMovement()
