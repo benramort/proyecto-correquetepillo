@@ -33,12 +33,12 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-        Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.deltaTime * speed);
+        Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
         this.transform.Translate(step);
         if(step != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(step);
-            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
         }
       
@@ -82,6 +82,10 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        grounded = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            grounded = false;
+        }
+            
     }
 }
