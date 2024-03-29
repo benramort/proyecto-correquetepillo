@@ -9,16 +9,18 @@ public class Climb : MonoBehaviour
     private Rigidbody physics;
     public float climbingSpeed;
     public GameObject raycastOrigin;
+    public float jumpForce;
     // Start is called before the first frame update
     void Start()
     {
         inputActionMap = GetComponent<PlayerInput>().currentActionMap;
+        physics = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        physics = GetComponent<Rigidbody>();
         MoveClimbing();
     }
 
@@ -26,11 +28,17 @@ public class Climb : MonoBehaviour
     {
         if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 1.0f))
         {
+            
             Debug.Log("Puedo escalar");
             physics.useGravity = false;
             Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
             Vector3 step = new Vector3(0.0f, axis.y * Time.deltaTime * climbingSpeed, 0.0f);
             this.transform.Translate(step);
+            if(Input.GetButtonDown("GamepadButtonSouth"))
+            {
+                Debug.Log("Salto pared");
+                physics.AddForce(new Vector3(-1, 1, 0) * jumpForce, ForceMode.Impulse);
+            }
         }
         else
         {
