@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
+        physics.freezeRotation = true;
         this.transform.Translate(step);
         if(step != Vector3.zero)
         {
