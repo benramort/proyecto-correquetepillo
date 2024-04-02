@@ -28,18 +28,17 @@ public class Climb : MonoBehaviour
     {
         if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 1.0f))
         {
-            
-            Debug.Log("Puedo escalar");
+            this.GetComponent<Climb>().enabled = true;
             this.GetComponent<Movement>().enabled = false;
             physics.useGravity = false;
             Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
             Vector3 step = new Vector3(0.0f, axis.y * Time.deltaTime * climbingSpeed, 0.0f);
             this.transform.Translate(step);
-            //if(Input.GetButtonDown("GamepadButtonSouth"))
-            //{
-            //    Debug.Log("Salto pared");
-            //    physics.AddForce(new Vector3(-1, 1, 0) * jumpForce, ForceMode.Impulse);
-            //}
+            if (Input.GetButtonDown("GamepadButtonSouth"))
+            {
+                this.GetComponent<Climb>().enabled = false;
+                physics.AddForce(new Vector3(-1, 1, 0) * jumpForce, ForceMode.Impulse);
+            }
         }
         else
         {
