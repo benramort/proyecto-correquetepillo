@@ -30,6 +30,7 @@ public class Climb : MonoBehaviour
         {
             
             Debug.Log("Puedo escalar");
+            this.GetComponent<Movement>().enabled = false;
             physics.useGravity = false;
             Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
             Vector3 step = new Vector3(0.0f, axis.y * Time.deltaTime * climbingSpeed, 0.0f);
@@ -43,6 +44,7 @@ public class Climb : MonoBehaviour
         else
         {
             physics.useGravity = true;
+            this.GetComponent<Movement>().enabled = true;
         }
 
     }
