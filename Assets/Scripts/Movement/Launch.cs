@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Launch : MonoBehaviour
 {
+    public GameObject pocket;
+
+    [Space(20)]
+
     public Vector3 launchDirection;
     public Transform launchpoint;
     public GameObject camera;
@@ -15,6 +19,8 @@ public class Launch : MonoBehaviour
     public float correctionMultiplier;
     public float verticalOffset;
     private float defaulHeight;
+
+    [Space(20)]
 
     public float projectedVelocity;
     public List<Vector3> puntosVector;
@@ -65,11 +71,12 @@ public class Launch : MonoBehaviour
 
     public void LaunchGrenade(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && pocket != null)
         {
-            GameObject go = Instantiate(grenade);
+            GameObject go = Instantiate(pocket);
+            pocket = null;
             go.transform.position = launchpoint.position;
-            go.GetComponent<Rigidbody>().AddForce(launchDirection * launchForce, ForceMode.Impulse);
+            go.GetComponent<Item>().Use(launchDirection, launchForce, this.gameObject);
         }
     }
 }
