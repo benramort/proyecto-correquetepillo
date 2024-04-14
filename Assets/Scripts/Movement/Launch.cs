@@ -35,7 +35,7 @@ public class Launch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         launchDirection = new Vector3(transform.position.x - camera.transform.position.x, transform.position.y - camera.transform.position.y, transform.position.z - camera.transform.position.z);
         float correction = correctionMultiplier * (launchDirection.y - defaulHeight);
@@ -67,16 +67,19 @@ public class Launch : MonoBehaviour
             GameObject puntoInstancia = Instantiate(punto, puntoVector, Quaternion.identity);
             puntosObjeto.Add(puntoInstancia);
         }
+
+        //Debug.Log("Launch: "+ launchDirection);
     }
 
     public void LaunchGrenade(InputAction.CallbackContext context)
     {
         if (context.performed && pocket != null)
         {
+            Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
-            pocket = null;
+            //pocket = null;
             go.transform.position = launchpoint.position;
-            go.GetComponent<Item>().Use(launchDirection, launchForce, this.gameObject);
+            go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
         }
     }
 }

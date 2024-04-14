@@ -62,7 +62,7 @@ public class PointManager : MonoBehaviour
     IEnumerator CatchCoroutine()
     {
         catchArea.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.1f);
         catchArea.SetActive(false);
         yield return new WaitForSeconds(0.01f);
         catchCoroutine = null;

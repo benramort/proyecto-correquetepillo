@@ -48,6 +48,10 @@ public class DoubleJump : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        grounded = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            grounded = false;
+        }
+        
     }
 }
