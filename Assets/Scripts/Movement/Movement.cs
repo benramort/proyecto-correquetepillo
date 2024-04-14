@@ -26,23 +26,24 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(grounded);
+        //Debug.Log(grounded);
         manageHorizontalMovement();
         manageCamera();
+        //transform.rotation = Quaternion.identity;
     }
 
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
-        physics.freezeRotation = true;
+        //physics.freezeRotation = true;
         this.transform.Translate(step);
-        if(step != Vector3.zero)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(step);
-            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
+        //if(step != Vector3.zero)
+        //{
+        //    Quaternion newRotation = Quaternion.LookRotation(step);
+        //    physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
-        }
+        //}
       
 
     }

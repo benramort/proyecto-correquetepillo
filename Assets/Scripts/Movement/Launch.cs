@@ -26,12 +26,18 @@ public class Launch : MonoBehaviour
     public List<Vector3> puntosVector;
     public List<GameObject> puntosObjeto;
 
+    [Space(20)]
+
+    public LineRenderer lineRenderer;
+    public float skew;
+    private GameObject puntazo;
+
     // Start is called before the first frame update
     void Start()
     {
         launchDirection = new Vector3(transform.position.x - camera.transform.position.x, transform.position.y - camera.transform.position.y, transform.position.z - camera.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas
-        Debug.Log(Physics.gravity);
+        //Debug.Log(Physics.gravity);
     }
 
     // Update is called once per frame
@@ -51,22 +57,47 @@ public class Launch : MonoBehaviour
 
         puntosVector.Clear();
 
-        for (float t = 0; t < 1; t+=0.05f) 
+        int segments = 0;
+        for (float t = 0; t < 3; t+=0.025f) 
         {
             float x = launchpoint.position.x + launchForce * launchDirection.x * t;
             float y = launchpoint.position.y + launchForce * launchDirection.y * t + 0.5f* Physics.gravity.y* t*t;
             float z = launchpoint.position.z + launchForce * launchDirection.z * t;
-            puntosVector.Add(new Vector3 (x, y, z));
+
+            RaycastHit hit;
+            Physics.Raycast(new Vector3(x, y, z), Vector3.down, out hit, 1000f);
+            Debug.DrawRay(new Vector3(x, y, z), Vector3.down, Color.green, Time.deltaTime);
+            //Debug.Log(hit.distance);
+            if (hit.distance < 0.01)
+            {
+                //Debug.Log("Suelo abajo");
+                break;
+            }
+            segments++;
+            puntosVector.Add(new Vector3(x, y, z));
         }
 
-        puntosObjeto.ForEach(punto => Destroy(punto));
-        puntosObjeto.Clear();
+        lineRenderer.positionCount = segments;
+        float skewUnit = skew /segments;
+        Debug.Log(skewUnit);
+        //Vector3 skewVector = transform.forward ;
 
-        foreach (Vector3 puntoVector in puntosVector)
+        for (int i = 0; i < segments; i++)
         {
-            GameObject puntoInstancia = Instantiate(punto, puntoVector, Quaternion.identity);
-            puntosObjeto.Add(puntoInstancia);
+            lineRenderer.SetPosition(i, new Vector3(puntosVector[i].x+skewUnit * (segments-i), puntosVector[i].y, puntosVector[i].z));
         }
+
+        Destroy(puntazo);
+        puntazo = Instantiate(punto, puntosVector[segments-1], Quaternion.identity);
+
+        //puntosObjeto.ForEach(punto => Destroy(punto));
+        //puntosObjeto.Clear();
+
+        //foreach (Vector3 puntoVector in puntosVector)
+        //{
+        //    GameObject puntoInstancia = Instantiate(punto, puntoVector, Quaternion.identity);
+        //    puntosObjeto.Add(puntoInstancia);
+        //}
 
         //Debug.Log("Launch: "+ launchDirection);
     }

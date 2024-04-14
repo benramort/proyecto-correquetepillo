@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
     protected GameObject thrower;
     public virtual void Use(Vector3 launchDirection, float launchForce, GameObject thrower)
     {
-        Debug.Log(launchDirection);
+        //Debug.Log(launchDirection);
         this.thrower = thrower;
         GetComponent<Rigidbody>().AddForce(launchDirection * launchForce, ForceMode.Impulse);
     }
