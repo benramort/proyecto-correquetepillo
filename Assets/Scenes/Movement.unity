@@ -1271,6 +1271,7 @@ GameObject:
   - component: {fileID: 1182943465}
   - component: {fileID: 1182943466}
   - component: {fileID: 1182943467}
+  - component: {fileID: 1182943468}
   m_Layer: 0
   m_Name: CharacterModel
   m_TagString: Player
@@ -1590,6 +1591,21 @@ MonoBehaviour:
   puntosObjeto: []
   lineRenderer: {fileID: 0}
   skew: 0
+--- !u!114 &1182943468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182943456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ce811a33338d64b8db7bc89f97603c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbingSpeed: 10
+  raycastOrigin: {fileID: 279727601}
+  jumpForce: 10
 --- !u!1 &1217909292
 GameObject:
   m_ObjectHideFlags: 3
