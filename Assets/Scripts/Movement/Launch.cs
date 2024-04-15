@@ -11,7 +11,7 @@ public class Launch : MonoBehaviour
 
     public Vector3 launchDirection;
     public Transform launchpoint;
-    public GameObject camera;
+    public GameObject cam;
     public GameObject grenade;
     public GameObject punto;
 
@@ -36,7 +36,7 @@ public class Launch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        launchDirection = new Vector3(transform.position.x - camera.transform.position.x, transform.position.y - camera.transform.position.y, transform.position.z - camera.transform.position.z);
+        launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas
         //Debug.Log(Physics.gravity);
     }
@@ -48,7 +48,7 @@ public class Launch : MonoBehaviour
         {
             return;
         }
-        launchDirection = new Vector3(transform.position.x - camera.transform.position.x, transform.position.y - camera.transform.position.y, transform.position.z - camera.transform.position.z);
+        launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         float correction = correctionMultiplier * (launchDirection.y - defaulHeight);
         launchDirection.y += correction;
         launchDirection.y += verticalOffset;

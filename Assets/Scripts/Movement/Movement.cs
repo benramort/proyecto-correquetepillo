@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
    
     InputActionMap inputActionMap;
-    public GameObject camera;
+    public GameObject cam;
     public float speed;
     public float rotationSpeed;
     public float jumpForce;
@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour
 
     private void manageCamera()
     {
-        Vector3 viewDirection = new Vector3(this.transform.position.x - camera.transform.position.x, 0, this.transform.position.z - camera.transform.position.z);
+        Vector3 viewDirection = new Vector3(this.transform.position.x - cam.transform.position.x, 0, this.transform.position.z - cam.transform.position.z);
         viewDirection = viewDirection.normalized;
         float angle = Mathf.Atan2(viewDirection.x, viewDirection.z) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, angle, 0);
