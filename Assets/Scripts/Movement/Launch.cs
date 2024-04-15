@@ -31,6 +31,7 @@ public class Launch : MonoBehaviour
     public LineRenderer lineRenderer;
     public float skew;
     private GameObject puntazo;
+    private bool showLine = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,10 @@ public class Launch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!showLine)
+        {
+            return;
+        }
         launchDirection = new Vector3(transform.position.x - camera.transform.position.x, transform.position.y - camera.transform.position.y, transform.position.z - camera.transform.position.z);
         float correction = correctionMultiplier * (launchDirection.y - defaulHeight);
         launchDirection.y += correction;
@@ -79,16 +84,19 @@ public class Launch : MonoBehaviour
 
         lineRenderer.positionCount = segments;
         float skewUnit = skew /segments;
-        Debug.Log(skewUnit);
+        Vector2 normalized = new Vector2(transform.forward.x, transform.forward.z).normalized;
+        Vector3 skewVector = new Vector3(skewUnit * normalized.y, 0, skewUnit*-normalized.x); //Más o menos
         //Vector3 skewVector = transform.forward ;
+        //Debug.Log("Direction: "+transform.forward);
+        //Debug.Log("Skew: "+skewVector);
 
         for (int i = 0; i < segments; i++)
         {
-            lineRenderer.SetPosition(i, new Vector3(puntosVector[i].x+skewUnit * (segments-i), puntosVector[i].y, puntosVector[i].z));
+            lineRenderer.SetPosition(i, new Vector3(puntosVector[i].x+skewVector.x * (segments-i), puntosVector[i].y, puntosVector[i].z + skewVector.z * (segments-i)));
         }
 
-        Destroy(puntazo);
-        puntazo = Instantiate(punto, puntosVector[segments-1], Quaternion.identity);
+        //Destroy(puntazo);
+        //puntazo = Instantiate(punto, puntosVector[segments - 1], Quaternion.identity);
 
         //puntosObjeto.ForEach(punto => Destroy(punto));
         //puntosObjeto.Clear();
@@ -104,8 +112,16 @@ public class Launch : MonoBehaviour
 
     public void LaunchGrenade(InputAction.CallbackContext context)
     {
-        if (context.performed && pocket != null)
+        if (context.started)
         {
+            lineRenderer.enabled = true;
+            showLine = true;
+        }
+
+        if (context.canceled && pocket != null)
+        {
+            lineRenderer.enabled = false;
+            showLine = false;
             Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
             //pocket = null;
