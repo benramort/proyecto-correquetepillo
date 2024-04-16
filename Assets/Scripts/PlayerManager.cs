@@ -31,6 +31,13 @@ public class PlayerManager : MonoBehaviour
         //Para controlar la cámara del jugador correspondiente
         playerParent.GetComponentInChildren<InputHandler>().horizontal = input.actions.FindAction("Camera");
 
+        //iniciarPartida();
 
     }
+
+    //public void iniciarPartida()
+    //{
+    //    int random = Random.Range(0, players.Count-1);
+    //    players[random].gameObject.GetComponent<PointManager>().isTarget = true;
+    //}
 }

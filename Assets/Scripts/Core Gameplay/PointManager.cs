@@ -9,8 +9,9 @@ public class PointManager : MonoBehaviour
     public int maxPoints = 100;
     public float tickTime; //Time to reduce 1 point in seconds
     public GameObject catchArea;
+    public GameObject labelHolder;
 
-    [SerializeField] public bool isTarget { get; set; }
+    [SerializeField] public bool isTarget { get {return isTarget;} set { isTarget = value; labelHolder.SetActive(value); } }
     [SerializeField] private int points;
     private float timePassed;
     private Coroutine catchCoroutine;
@@ -19,7 +20,7 @@ public class PointManager : MonoBehaviour
     void Start()
     {
         points = maxPoints;
-        isTarget = true;
+        //isTarget = true;
     }
 
     // Update is called once per frame
