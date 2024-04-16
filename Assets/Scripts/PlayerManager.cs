@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
+    public Canvas canvas;
+
     private List<PlayerInput> players = new List<PlayerInput>();
     private List<LayerMask> playerLayers;
 
@@ -33,11 +35,29 @@ public class PlayerManager : MonoBehaviour
 
         //iniciarPartida();
 
+        initializeCamera();
+
     }
 
-    //public void iniciarPartida()
+    //public void startGame()
     //{
     //    int random = Random.Range(0, players.Count-1);
     //    players[random].gameObject.GetComponent<PointManager>().isTarget = true;
     //}
+
+    private void initializeCamera()
+    {
+        Debug.Log("Initializing camera. Player conunt" + players.Count);
+        for (int i = 0; i < players.Count; i++)
+        {
+            for (int j = 0; j < players.Count; j++)
+            {
+                if (i == j) continue;
+                GameObject player = players[i].gameObject;
+                Canvas label = Instantiate(canvas, player.transform.Find("LabelHolder"));
+                Debug.Log(players[j].transform.parent.Find("Camera").gameObject);
+                label.GetComponent<LookAtCanvas>().player = players[j].transform.parent.Find("Camera").gameObject;
+            }
+        }
+    }
 }
