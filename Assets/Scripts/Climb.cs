@@ -36,7 +36,6 @@ public class Climb : MonoBehaviour
             this.transform.Translate(step);
             if (Input.GetButtonDown("GamepadButtonSouth"))
             {
-                this.GetComponent<Climb>().enabled = false;
                 physics.AddForce(new Vector3(-1, 1, 0) * jumpForce, ForceMode.Impulse);
             }
         }
