@@ -698,7 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2595318501814456965}
   - component: {fileID: 2959667959567266036}
-  - component: {fileID: 71164236306287518}
+  - component: {fileID: 4723821413695743734}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Player
@@ -829,7 +829,7 @@ MonoBehaviour:
   - {fileID: 623131421335125603}
   - {fileID: 3903309117315080433}
   - {fileID: 5673596115522694039}
---- !u!114 &71164236306287518
+--- !u!114 &4723821413695743734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,13 +838,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2803920659353053133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3343aad67533b38448d6e49d138348b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  AutoEnableInputs: 1
-  XYAxis: {fileID: -3924278498168093363, guid: 04c2a6fc3a2839843bcaced430a66e70, type: 3}
-  ZAxis: {fileID: 0}
+  horizontal:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 82dec264-32b8-44a8-83d5-124fe48e4035
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  vertical:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7e4cbbfa-074d-43aa-a1d1-27b7303df1ba
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &3331759717373875579
 GameObject:
   m_ObjectHideFlags: 0

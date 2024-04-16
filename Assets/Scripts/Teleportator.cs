@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleportator : Item
 {
-    public int verticalOffset;
+    public float verticalOffset;
 
     public override void OnCollisionEnter(Collision collision)
     {
