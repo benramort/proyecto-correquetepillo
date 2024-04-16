@@ -38,6 +38,10 @@ public class CoyoteTime : MonoBehaviour
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
+            if (Input.GetButtonUp("GamepadButtonSouth") && physics.velocity.y == 0)
+            {
+                coyoteTimeCounter = 0;
+            }
         }
         
     }
