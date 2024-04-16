@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456853888529769742}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015126799, y: -0.87563586, z: 0.47381964, w: -0.0923475}
+  m_LocalRotation: {x: 0.015126805, y: -0.87563586, z: 0.4738196, w: -0.09234754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 9181330507323294700}
   - component: {fileID: 6984775457577987564}
   - component: {fileID: 4185591989927114800}
-  - component: {fileID: 137384527557409187}
   - component: {fileID: 8179030148702446701}
   m_Layer: 0
   m_Name: CharacterModel
@@ -391,33 +390,8 @@ MonoBehaviour:
   maxPoints: 100
   tickTime: 1
   catchArea: {fileID: 8706555412905558997}
+  labelHolder: {fileID: 0}
   points: 0
---- !u!114 &137384527557409187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474267820086250463}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pocket: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
-  launchDirection: {x: 0, y: 0, z: 0}
-  launchpoint: {fileID: 3521631059005621946}
-  cam: {fileID: 0}
-  grenade: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
-  punto: {fileID: 6005917925289037003, guid: d2d2e1d1de1c1d14db47ac7e0b04cfa2, type: 3}
-  launchForce: 20
-  correctionMultiplier: 1
-  verticalOffset: 5
-  projectedVelocity: 3
-  puntosVector: []
-  puntosObjeto: []
-  lineRenderer: {fileID: 0}
-  skew: 0
 --- !u!114 &8179030148702446701
 MonoBehaviour:
   m_ObjectHideFlags: 0

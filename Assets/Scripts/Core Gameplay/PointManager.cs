@@ -11,7 +11,8 @@ public class PointManager : MonoBehaviour
     public GameObject catchArea;
     public GameObject labelHolder;
 
-    [SerializeField] public bool isTarget { get {return isTarget;} set { isTarget = value; labelHolder.SetActive(value); } }
+    [SerializeField] private bool _isTarget;
+    public bool isTarget { get {return _isTarget;} set { _isTarget = value; labelHolder.SetActive(value); } }
     [SerializeField] private int points;
     private float timePassed;
     private Coroutine catchCoroutine;
