@@ -26,7 +26,7 @@ public class Climb : MonoBehaviour
 
     public void MoveClimbing() 
     {
-        if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 1.0f))
+        if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.7f))
         {
             this.GetComponent<Climb>().enabled = true;
             this.GetComponent<Movement>().enabled = false;

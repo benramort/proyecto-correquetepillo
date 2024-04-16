@@ -8,6 +8,7 @@ public class CoyoteTime : MonoBehaviour
     public float jumpForce;
     public float coyoteTime;
     private float coyoteTimeCounter;
+    private bool canCoyoteTime;
     private Rigidbody physics;
     private bool grounded;
     // Start is called before the first frame update
@@ -19,29 +20,26 @@ public class CoyoteTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(canCoyoteTime && !grounded)
+        {
+            coyoteTimeCounter += Time.deltaTime;
+            if(coyoteTimeCounter > coyoteTime)
+            {
+                canCoyoteTime = false;
+            }
+        }
     }
 
     public void CoyoteJump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (grounded)
-            {
-                coyoteTimeCounter = coyoteTime;
-            }
-            else
-            {
-                coyoteTimeCounter -= Time.deltaTime;
-            }
-            if (Input.GetButtonDown("GamepadButtonSouth") && coyoteTimeCounter > 0)
+            if (grounded || canCoyoteTime)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                canCoyoteTime = false;
             }
-            if (Input.GetButtonUp("GamepadButtonSouth") && physics.velocity.y == 0)
-            {
-                coyoteTimeCounter = 0;
-            }
+            
         }
         
     }
@@ -51,11 +49,14 @@ public class CoyoteTime : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
+            canCoyoteTime = true;
+            coyoteTimeCounter = 0;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         grounded = false;
+        
     }
 }
