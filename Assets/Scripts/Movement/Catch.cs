@@ -10,10 +10,13 @@ public class Catch : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Catch");
-            other.GetComponent<PointManager>().isTarget = false;
-            other.transform.Find("LabelHolder").gameObject.SetActive(false);
-            transform.parent.Find("LabelHolder").gameObject.SetActive(true);
-            transform.parent.GetComponent<PointManager>().isTarget = true;
+            if (other.GetComponent<PointManager>().isTarget)
+            {
+                other.GetComponent<PointManager>().isTarget = false;
+                other.transform.Find("LabelHolder").gameObject.SetActive(false);
+                transform.parent.Find("LabelHolder").gameObject.SetActive(true);
+                transform.parent.GetComponent<PointManager>().isTarget = true;
+            }
         }
     }
 }

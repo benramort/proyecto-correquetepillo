@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PointManager : MonoBehaviour
 {
 
+    [HideInInspector] public GameManager gameManager { get; set;}
+
     public int maxPoints = 100;
     public float tickTime; //Time to reduce 1 point in seconds
     public GameObject catchArea;

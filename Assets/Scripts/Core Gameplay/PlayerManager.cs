@@ -7,8 +7,9 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     public Canvas canvas;
+    public GameManager gameManager;
 
-    private List<PlayerInput> players = new List<PlayerInput>();
+    public List<PlayerInput> players { get; } = new List<PlayerInput>();
     private List<LayerMask> playerLayers;
 
     private PlayerInputManager playerInputManager;
@@ -39,14 +40,9 @@ public class PlayerManager : MonoBehaviour
         //iniciarPartida();
 
         initializeCamera();
+        gameManager.UpdatePlayers();
 
     }
-
-    //public void startGame()
-    //{
-    //    int random = Random.Range(0, players.Count-1);
-    //    players[random].gameObject.GetComponent<PointManager>().isTarget = true;
-    //}
 
     private void initializeCamera()
     {
