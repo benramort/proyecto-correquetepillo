@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     public Canvas canvas;
     public GameManager gameManager;
+    public int numeroDeJugadores = 2; //temporal
 
     public List<PlayerInput> players { get; } = new List<PlayerInput>();
     private List<LayerMask> playerLayers;
@@ -37,10 +38,13 @@ public class PlayerManager : MonoBehaviour
         //int layerToAdd2 = 9 + players.Count;
         //playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd2;
 
-        //iniciarPartida();
-
         initializeCamera();
         gameManager.UpdatePlayers();
+
+        if (players.Count == numeroDeJugadores)
+        {
+            gameManager.StartGame();
+        }
 
     }
 

@@ -44,6 +44,10 @@ public class PointManager : MonoBehaviour
                 timePassed += Time.deltaTime;
             }
         }
+        if (points <= 0)
+        {
+            gameManager.EndGame(gameObject);
+        }
     }
 
     public void Catch(InputAction.CallbackContext context)

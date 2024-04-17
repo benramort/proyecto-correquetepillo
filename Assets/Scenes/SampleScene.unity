@@ -452,8 +452,9 @@ GameObject:
   - component: {fileID: 767010050}
   - component: {fileID: 767010052}
   - component: {fileID: 767010053}
+  - component: {fileID: 767010054}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Scripter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,6 +552,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5302049178228480899, guid: 2ff57eef94529524f92bf8f90c790de1, type: 3}
+  gameManager: {fileID: 767010054}
+  numeroDeJugadores: 2
+--- !u!114 &767010054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767010049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb93cfc06c26cb458ad3259667ce458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  playerManager: {fileID: 767010053}
+  gameTime: 300
 --- !u!1 &1227204109
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +629,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f5c725c9c56cdc44cb2a15dbb16f3b45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
