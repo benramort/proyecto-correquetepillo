@@ -33,6 +33,9 @@ public class PlayerManager : MonoBehaviour
         //Para controlar la cámara del jugador correspondiente
         playerParent.GetComponentInChildren<InputHandler>().horizontal = input.actions.FindAction("Camera");
 
+        //int layerToAdd2 = 9 + players.Count;
+        //playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd2;
+
         //iniciarPartida();
 
         initializeCamera();
@@ -55,6 +58,7 @@ public class PlayerManager : MonoBehaviour
                 if (i == j) continue;
                 GameObject player = players[i].gameObject;
                 Canvas label = Instantiate(canvas, player.transform.Find("LabelHolder"));
+                label.gameObject.layer = 6 + j;
                 Debug.Log(players[j].transform.parent.Find("Camera").gameObject);
                 label.GetComponent<LookAtCanvas>().player = players[j].transform.parent.Find("Camera").gameObject;
             }
