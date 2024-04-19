@@ -1070,6 +1070,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 16eb68c6-ca4e-4fc5-906f-f287ce5395c5
     m_ActionName: Climb/Jump[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c35a4fec-47a2-403a-a1e4-e388afe8acc3
+    m_ActionName: Player/Ability[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1159,7 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 8
-  coyoteTime: 0.1
+  coyoteTime: 1.3
 --- !u!1 &1217909292
 GameObject:
   m_ObjectHideFlags: 3

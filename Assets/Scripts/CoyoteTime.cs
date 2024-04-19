@@ -22,12 +22,17 @@ public class CoyoteTime : MonoBehaviour
     {
         if(canCoyoteTime && !grounded)
         {
+            physics.useGravity = false;
             coyoteTimeCounter += Time.deltaTime;
+            physics.velocity = new Vector3(physics.velocity.x, 0, physics.velocity.z);
             if(coyoteTimeCounter > coyoteTime)
             {
                 canCoyoteTime = false;
+                physics.useGravity = true;
             }
         }
+        Debug.Log(physics.velocity);
+        
     }
 
     public void CoyoteJump(InputAction.CallbackContext context)
@@ -38,6 +43,7 @@ public class CoyoteTime : MonoBehaviour
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 canCoyoteTime = false;
+                physics.useGravity = true;
             }
             
         }
