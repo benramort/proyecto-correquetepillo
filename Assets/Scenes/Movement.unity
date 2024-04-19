@@ -775,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167778059}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21169968, y: -0.000000034029355, z: 0.00000000737107, w: 0.9773348}
+  m_LocalRotation: {x: 0.21169971, y: 0.000000023306292, z: -0.0000000050483573, w: 0.9773348}
   m_LocalPosition: {x: 0, y: 2.5, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -905,6 +905,7 @@ GameObject:
   - component: {fileID: 1182943467}
   - component: {fileID: 1182943468}
   - component: {fileID: 1182943469}
+  - component: {fileID: 1182943470}
   m_Layer: 0
   m_Name: CharacterModel
   m_TagString: Untagged
@@ -1072,9 +1073,9 @@ MonoBehaviour:
     m_ActionName: Climb/Jump[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1182943467}
-        m_TargetAssemblyTypeName: Accelerate, Assembly-CSharp
-        m_MethodName: UseHability
+      - m_Target: {fileID: 1182943470}
+        m_TargetAssemblyTypeName: Dash, Assembly-CSharp
+        m_MethodName: UseAbility
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1160,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1167778059}
-  speed: 3
+  speed: 8
   rotationSpeed: 3
   jumpForce: 8
 --- !u!114 &1182943469
@@ -1178,6 +1179,21 @@ MonoBehaviour:
   climbingSpeed: 8
   raycastOrigin: {fileID: 279727601}
   jumpForce: 8
+--- !u!114 &1182943470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182943456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37d08ea349bb674b936faa9a20fb29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {fileID: 1182943460}
+  dashImpulse: 15
+  cooldownTime: 10
 --- !u!1 &1217909292
 GameObject:
   m_ObjectHideFlags: 3
@@ -1566,7 +1582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748719758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010818187, y: -0.8526666, z: 0.5140067, w: -0.092950806}
+  m_LocalRotation: {x: 0.010818182, y: -0.8526666, z: 0.51400673, w: -0.09295077}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
