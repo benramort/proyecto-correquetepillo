@@ -775,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167778059}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21169968, y: -0.000000034029355, z: 0.00000000737107, w: 0.9773348}
+  m_LocalRotation: {x: 0.21169971, y: 0.000000023306292, z: -0.0000000050483573, w: 0.9773348}
   m_LocalPosition: {x: 0, y: 2.5, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -905,6 +905,7 @@ GameObject:
   - component: {fileID: 1182943464}
   - component: {fileID: 1182943465}
   - component: {fileID: 1182943466}
+  - component: {fileID: 1182943467}
   m_Layer: 0
   m_Name: CharacterModel
   m_TagString: Untagged
@@ -1071,7 +1072,19 @@ MonoBehaviour:
     m_ActionId: 16eb68c6-ca4e-4fc5-906f-f287ce5395c5
     m_ActionName: Climb/Jump[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182943467}
+        m_TargetAssemblyTypeName: Accelerate, Assembly-CSharp
+        m_MethodName: UseHability
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c35a4fec-47a2-403a-a1e4-e388afe8acc3
     m_ActionName: Player/Ability[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1164,6 +1177,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 8
   coyoteTime: 1.3
+--- !u!114 &1182943467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182943456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab829df1cb7ff8b4a86cdaf8a18ca661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplier: 6
+  abilityTime: 2
+  cooldownTime: 10
 --- !u!1 &1217909292
 GameObject:
   m_ObjectHideFlags: 3
@@ -1552,7 +1580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748719758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010818187, y: -0.8526666, z: 0.5140067, w: -0.092950806}
+  m_LocalRotation: {x: 0.010818182, y: -0.8526666, z: 0.51400673, w: -0.09295077}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1631,7 +1659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066576190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015126805, y: -0.87563586, z: 0.4738196, w: -0.09234754}
+  m_LocalRotation: {x: 0.015126799, y: -0.87563586, z: 0.47381964, w: -0.0923475}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
