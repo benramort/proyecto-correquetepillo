@@ -24,7 +24,7 @@ public class Climb : MonoBehaviour
         MoveClimbing();
     }
 
-    public void MoveClimbing() 
+    public void MoveClimbing()
     {
         if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.7f))
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DoubleJump : MonoBehaviour
+public class DobleJump : MonoBehaviour
 {
     private Rigidbody physics;
     private bool grounded;
@@ -23,24 +23,25 @@ public class DoubleJump : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-        if (grounded)
+            if (grounded)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 canDoubleJump = true;
-            
-            } else if(canDoubleJump)
+
+            }
+            else if (canDoubleJump)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 canDoubleJump = false;
             }
-        } 
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
         }

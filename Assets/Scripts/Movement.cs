@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-   
     InputActionMap inputActionMap;
     public GameObject camera;
     public float speed;
@@ -35,13 +32,13 @@ public class Movement : MonoBehaviour
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
         this.transform.Translate(step);
-        if(step != Vector3.zero)
+        if (step != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(step);
             physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
         }
-      
+
 
     }
 
@@ -63,9 +60,9 @@ public class Movement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-            if(grounded)
+            if (grounded)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
@@ -74,7 +71,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
         }
@@ -86,6 +83,6 @@ public class Movement : MonoBehaviour
         {
             grounded = false;
         }
-            
+
     }
 }
