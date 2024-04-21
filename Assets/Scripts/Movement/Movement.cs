@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     InputActionMap inputActionMap;
-    public GameObject camera;
+    public GameObject cam;
     public float speed;
     public float rotationSpeed;
     public float jumpForce;
@@ -23,28 +23,31 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(grounded);
         manageHorizontalMovement();
         manageCamera();
+        //transform.rotation = Quaternion.identity;
     }
 
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
+        //physics.freezeRotation = true;
         this.transform.Translate(step);
-        if (step != Vector3.zero)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(step);
-            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
+        //if(step != Vector3.zero)
+        //{
+        //    Quaternion newRotation = Quaternion.LookRotation(step);
+        //    physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
-        }
-
+        //}
+      
 
     }
 
     private void manageCamera()
     {
-        Vector3 viewDirection = new Vector3(this.transform.position.x - camera.transform.position.x, 0, this.transform.position.z - camera.transform.position.z);
+        Vector3 viewDirection = new Vector3(this.transform.position.x - cam.transform.position.x, 0, this.transform.position.z - cam.transform.position.z);
         viewDirection = viewDirection.normalized;
         float angle = Mathf.Atan2(viewDirection.x, viewDirection.z) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, angle, 0);

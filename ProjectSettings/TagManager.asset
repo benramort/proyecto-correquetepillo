@@ -11,14 +11,14 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Player1visible
+  - Player2visible
+  - Player3visible
+  - Player4visible
   - 
   - 
   - 
