@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 3521631059005621946}
   - component: {fileID: 2805178611402350093}
   - component: {fileID: 7096013621359584937}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Launchpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,13 +878,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
+  pocket: {fileID: 0}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 3521631059005621946}
   cam: {fileID: 2104768944024665290}
-  grenade: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
   punto: {fileID: 6005917925289037003, guid: d2d2e1d1de1c1d14db47ac7e0b04cfa2, type: 3}
-  launchForce: 20
+  launchForce: 15
   correctionMultiplier: 1
   verticalOffset: 5
   projectedVelocity: 3

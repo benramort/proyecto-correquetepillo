@@ -38,6 +38,8 @@ public class PlayerManager : MonoBehaviour
         //int layerToAdd2 = 9 + players.Count;
         //playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd2;
 
+        playerParent.transform.Find("CharacterModel").Find("Launchpoint").gameObject.layer = layerToAdd;
+
         initializeCamera();
         gameManager.UpdatePlayers();
 

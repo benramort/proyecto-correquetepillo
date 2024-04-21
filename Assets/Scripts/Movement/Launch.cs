@@ -12,7 +12,7 @@ public class Launch : MonoBehaviour
     public Vector3 launchDirection;
     public Transform launchpoint;
     public GameObject cam;
-    public GameObject grenade;
+    //public GameObject grenade;
     public GameObject punto;
 
     public float launchForce;
@@ -30,7 +30,7 @@ public class Launch : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public float skew;
-    private GameObject puntazo;
+    //private GameObject puntazo;
     private bool showLine = false;
 
     // Start is called before the first frame update
@@ -70,10 +70,10 @@ public class Launch : MonoBehaviour
             float z = launchpoint.position.z + launchForce * launchDirection.z * t;
 
             RaycastHit hit;
-            Physics.Raycast(new Vector3(x, y, z), Vector3.down, out hit, 1000f);
+            bool boolHit = Physics.Raycast(new Vector3(x, y, z), Vector3.down, out hit, 1000f);
             Debug.DrawRay(new Vector3(x, y, z), Vector3.down, Color.green, Time.deltaTime);
             //Debug.Log(hit.distance);
-            if (hit.distance < 0.01)
+            if (hit.distance < 0.01 && boolHit)
             {
                 //Debug.Log("Suelo abajo");
                 break;
@@ -112,7 +112,7 @@ public class Launch : MonoBehaviour
 
     public void LaunchGrenade(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && pocket != null)
         {
             lineRenderer.enabled = true;
             showLine = true;
@@ -124,7 +124,7 @@ public class Launch : MonoBehaviour
             showLine = false;
             Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
-            //pocket = null;
+            pocket = null;
             go.transform.position = launchpoint.position;
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
         }

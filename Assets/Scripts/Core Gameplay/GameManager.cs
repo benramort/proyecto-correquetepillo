@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             GameObject player = playerInput.gameObject;
             players.Add(player);
-            DontDestroyOnLoad(player.transform.parent.gameObject); //Para quitar
+            DontDestroyOnLoad(player.transform.parent.gameObject);
             player.GetComponent<PointManager>().gameManager = this;
         }
     }
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         chrono = 0;
         Debug.Log("The game is over");
+        //Poner los jugadores a 100 puntos
         SceneManager.LoadScene("Movement");
         Debug.Log(playerManager.players.Count);   
     }

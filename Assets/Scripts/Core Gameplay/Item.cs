@@ -10,10 +10,17 @@ public class Item : MonoBehaviour
         //Debug.Log(launchDirection);
         this.thrower = thrower;
         GetComponent<Rigidbody>().AddForce(launchDirection * launchForce, ForceMode.Impulse);
+        StartCoroutine(ProgrammedDestruction());
     }
 
     public virtual void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Item collided with " + collision.gameObject.name);
+    }
+
+    private IEnumerator ProgrammedDestruction()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(this.gameObject);
     }
 }
