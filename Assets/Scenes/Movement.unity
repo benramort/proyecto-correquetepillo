@@ -540,7 +540,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754406583}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ef19b5c99a2dc8d4b892852644223bae, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1033,9 +1033,21 @@ MonoBehaviour:
     m_ActionName: Player/HorizontalMovement[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1182943466}
-        m_TargetAssemblyTypeName: CoyoteTime, Assembly-CSharp
-        m_MethodName: CoyoteJump
+      - m_Target: {fileID: 1182943468}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1182943469}
+        m_TargetAssemblyTypeName: Climb, Assembly-CSharp
+        m_MethodName: ClimbEvent
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1051,26 +1063,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2b1b0412-ad82-44d9-b7eb-95aebf666832
     m_ActionName: Player/Camera[/XInputControllerWindows/rightStick]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Climb, Assembly-CSharp
-        m_MethodName: MoveClimbing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 7e9481c3-2758-4485-ae05-56a1164f4cbe
-    m_ActionName: Climb/MovementClimbing[/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 16eb68c6-ca4e-4fc5-906f-f287ce5395c5
-    m_ActionName: Climb/Jump[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1182943470}
@@ -1101,7 +1093,7 @@ Rigidbody:
   m_GameObject: {fileID: 1182943456}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1126,7 +1118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182943456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fd652190b696f49a9fb1b07fce050d, type: 3}
   m_Name: 
@@ -1192,7 +1184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {fileID: 1182943460}
-  dashImpulse: 15
+  dashImpulse: 25
   cooldownTime: 10
 --- !u!1 &1217909292
 GameObject:
@@ -1661,7 +1653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066576190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015126805, y: -0.87563586, z: 0.4738196, w: -0.09234754}
+  m_LocalRotation: {x: 0.015126799, y: -0.87563586, z: 0.47381964, w: -0.0923475}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

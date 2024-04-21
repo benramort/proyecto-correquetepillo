@@ -10,6 +10,7 @@ public class Climb : MonoBehaviour
     public float climbingSpeed;
     public GameObject raycastOrigin;
     public float jumpForce;
+    private bool climb;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class Climb : MonoBehaviour
 
     public void MoveClimbing()
     {
-        if (Input.GetButton("GamepadButtonEast") && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.7f))
+        if (climb && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.7f))
         {
             this.GetComponent<Climb>().enabled = true;
             this.GetComponent<Movement>().enabled = false;
@@ -34,10 +35,6 @@ public class Climb : MonoBehaviour
             Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
             Vector3 step = new Vector3(0.0f, axis.y * Time.deltaTime * climbingSpeed, 0.0f);
             this.transform.Translate(step);
-            if (Input.GetButtonDown("GamepadButtonSouth"))
-            {
-                physics.AddForce(new Vector3(-1, 1, 0) * jumpForce, ForceMode.Impulse);
-            }
         }
         else
         {
@@ -45,6 +42,18 @@ public class Climb : MonoBehaviour
             this.GetComponent<Movement>().enabled = true;
         }
 
+    }
+
+    public void ClimbEvent(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            climb = true;
+        }
+        else if(context.canceled)
+        {
+            climb = false;
+        }
     }
 
 }

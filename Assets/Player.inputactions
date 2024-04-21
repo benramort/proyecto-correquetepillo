@@ -88,54 +88,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "Climb",
-            "id": "1cf6a44a-f191-4ad6-966f-c20717a6173c",
-            "actions": [
-                {
-                    "name": "MovementClimbing",
-                    "type": "Value",
-                    "id": "7e9481c3-2758-4485-ae05-56a1164f4cbe",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "JumpClimbing",
-                    "type": "Button",
-                    "id": "16eb68c6-ca4e-4fc5-906f-f287ce5395c5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "73b64ef0-63d1-43e7-be07-55131b9370a3",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MovementClimbing",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "96b00ab3-b03c-454a-af27-76c6837a2900",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "JumpClimbing",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": []
