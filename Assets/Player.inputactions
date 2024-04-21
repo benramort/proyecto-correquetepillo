@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Hability",
+                    "type": "Button",
+                    "id": "4903af16-6630-467e-b1f9-9cf3ed7c2eb0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -187,59 +196,22 @@
                 {
                     "name": "",
                     "id": "43740bc4-9d27-441e-9daf-97f23a0a0de0",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Launch",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Climb",
-            "id": "1cf6a44a-f191-4ad6-966f-c20717a6173c",
-            "actions": [
-                {
-                    "name": "MovementClimbing",
-                    "type": "Value",
-                    "id": "7e9481c3-2758-4485-ae05-56a1164f4cbe",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "JumpClimbing",
-                    "type": "Button",
-                    "id": "16eb68c6-ca4e-4fc5-906f-f287ce5395c5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "73b64ef0-63d1-43e7-be07-55131b9370a3",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MovementClimbing",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "9d2fa5cf-57ea-4101-aa7e-6e27bca12b96",
+                    "id": "a1ff90a6-02fc-486f-a6a4-479bba8ddc79",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability",
+                    "action": "Hability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   playerManager: {fileID: 767010053}
-  gameTime: 10
+  gameTime: 300
 --- !u!1 &1227204109
 GameObject:
   m_ObjectHideFlags: 0
