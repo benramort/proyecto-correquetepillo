@@ -74,6 +74,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
+            speed *= 5;
         }
     }
 
@@ -82,6 +83,7 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = false;
+            speed /= 5;
         }
 
     }
