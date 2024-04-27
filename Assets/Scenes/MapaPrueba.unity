@@ -403,7 +403,6 @@ GameObject:
   - component: {fileID: 312470618}
   - component: {fileID: 312470617}
   - component: {fileID: 312470616}
-  - component: {fileID: 312470621}
   m_Layer: 0
   m_Name: Scripter
   m_TagString: Untagged
@@ -423,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb93cfc06c26cb458ad3259667ce458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  desiredFramerate: 60
   players: []
   playerManager: {fileID: 312470617}
   gameTime: 300
@@ -520,18 +520,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &312470621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312470615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324fcc7bf8ee01040a4bd2b9ecda1dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &471002160
 GameObject:
   m_ObjectHideFlags: 0

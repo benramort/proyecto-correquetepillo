@@ -17,7 +17,6 @@ public class Movement : MonoBehaviour
     {
         inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
-
     }
 
     // Update is called once per frame

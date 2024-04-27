@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public int desiredFramerate;
+
+    [Space(20)]
     private static GameManager us;
     
     public List<GameObject> players;
@@ -25,6 +28,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        Application.targetFrameRate = desiredFramerate; //Igual sólo hay que usar uno de los dos
+        QualitySettings.vSyncCount = 1; 
     }
 
     private void Update()
