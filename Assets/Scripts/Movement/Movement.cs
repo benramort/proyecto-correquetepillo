@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum FreezeType { FALLFREEZE, CATCHFREEZE };
+
 public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,6 +17,8 @@ public class Movement : MonoBehaviour
     public float jumpForce;
     private Rigidbody physics;
     private bool grounded;
+
+    private bool freeze;
     //public GameObject camera;
     void Start()
     {
@@ -27,7 +31,8 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         //Debug.Log(grounded);
-        manageHorizontalMovement();
+        if (!freeze)
+            manageHorizontalMovement();
         manageCamera();
         //transform.rotation = Quaternion.identity;
     }
@@ -62,6 +67,25 @@ public class Movement : MonoBehaviour
         //    angle -= Mathf.PI;
         //}
         //transform.Rotate(Vector3.up, angle);
+    }
+
+    public void Freeze(FreezeType type)
+    {
+        switch (type)
+        {
+            case FreezeType.CATCHFREEZE:
+                StartCoroutine(FreezeCoroutine(5));
+                break;
+            default: 
+                break;
+        }
+    }
+
+    private IEnumerator FreezeCoroutine(int time)
+    {
+        freeze = true;
+        yield return new WaitForSeconds(time);
+        freeze = false;
     }
 
     public void Jump(InputAction.CallbackContext context)
