@@ -83,8 +83,17 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = false;
-            speed = 2;
+            StartCoroutine(MovementInAirCoroutine());
         }
 
+    }
+
+    IEnumerator MovementInAirCoroutine()
+    {
+        while (speed >= 2 && !grounded)
+        {
+            speed -= 0.8f;
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }
