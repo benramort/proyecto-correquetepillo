@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
     public float jumpForce;
     private Rigidbody physics;
     private bool grounded;
+
+    private Vector2 jumpDirectionInput = new Vector2 (0,0);
+    private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
     //public GameObject camera;
     void Start()
     {
@@ -23,6 +26,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(Vector3.Angle(jumpDirection, transform.forward));
         manageHorizontalMovement();
         manageCamera();
     }
@@ -30,8 +34,30 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-        Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
+
+        //Debug.Log(Vector3.Angle(new Vector2(jumpDirection.x, jumpDirection.y), axis));
+        //Debug.DrawRay(transform.position, new Vector2(jumpDirection.x, jumpDirection.z));
+        //Debug.DrawRay(transform.position, axis);
+        Debug.Log(Vector3.Angle(jumpDirectionForward, transform.forward));
+        //Debug.Log(transform.forward);
+
+        float temporalSpeed = speed;
+        if (!grounded)
+        {
+            //Debug.Log("Hola1");
+            if (Vector3.Angle(jumpDirectionInput, axis) > 45 || Vector3.Angle(jumpDirectionForward, transform.forward) > 45)
+            {
+                temporalSpeed *= 0.4f;
+                //Debug.Log("Hola2");
+            }
+        }
+        Debug.Log(temporalSpeed);
+
+
+        Vector3 step = new Vector3(axis.x * Time.deltaTime * temporalSpeed, 0.0f, axis.y * Time.fixedDeltaTime * temporalSpeed);
         this.transform.Translate(step);
+        //this.transform.position += step;
+
         if (step != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(step);
@@ -65,6 +91,8 @@ public class Movement : MonoBehaviour
             if (grounded)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                jumpDirectionInput = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
+                jumpDirectionForward = transform.forward;
             }
         }
     }
@@ -83,17 +111,17 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = false;
-            StartCoroutine(MovementInAirCoroutine());
+            //StartCoroutine(MovementInAirCoroutine());
         }
 
     }
 
     IEnumerator MovementInAirCoroutine()
     {
-        while (speed >= 2 && !grounded)
+        while (speed >= 4 && !grounded)
         {
-            speed -= 0.8f;
-            yield return new WaitForSeconds(0.2f);
+            speed -= 0.1f;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
