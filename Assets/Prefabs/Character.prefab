@@ -205,8 +205,8 @@ MonoBehaviour:
     m_ActionName: Player/HorizontalMovement[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 782087945570134164}
-        m_TargetAssemblyTypeName: DobleJump, Assembly-CSharp
+      - m_Target: {fileID: 7409290799294458606}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -341,7 +341,8 @@ MonoBehaviour:
   cam: {fileID: 2104768944024665290}
   speed: 6
   rotationSpeed: 1000
-  jumpForce: 1
+  jumpForce: 6
+  canJump: 0
 --- !u!114 &4185591989927114800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835f9ccbeb43f0a419dfcfcbfffd4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 1
   jumpForce: 7.5
 --- !u!114 &5710880313235875676
 MonoBehaviour:

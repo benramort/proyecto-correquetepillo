@@ -5,16 +5,28 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public delegate void JumpDel();
+
     InputActionMap inputActionMap;
     public GameObject cam;
     public float speed;
     public float rotationSpeed;
     public float jumpForce;
+    //public bool canJump;
+
+    public JumpDel jump;
+
     private Rigidbody physics;
     private bool grounded;
+
+    private int slowed = 0;
+    private float orignalSpeed;
     //public GameObject camera;
     void Start()
     {
+        //canJump = true;
+        if (GetComponent<DobleJump>() == null)
+            jump = BasicJump;
         inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
     }
@@ -62,12 +74,36 @@ public class Movement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && slowed == 0)
         {
-            if (grounded)
-            {
-                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            jump();
+        }
+    }
+
+    private void BasicJump()
+    {
+        if (grounded)
+        {
+            physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void Slow()
+    {
+        slowed++;
+        if (slowed == 1)
+        {
+            orignalSpeed = speed;
+            speed *= 0.2f;
+        }
+    }
+
+    public void UnSlow()
+    {
+        slowed--;
+        if (slowed <= 0)
+        {
+            speed = orignalSpeed;
         }
     }
 

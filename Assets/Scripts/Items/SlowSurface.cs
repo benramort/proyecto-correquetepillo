@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class SlowSurface : MonoBehaviour
 {
+    [SerializeField] private float timeToDissapear;
     [SerializeField] private float multiplier;
-    private float originalSpeed;
+    //private float originalSpeed;
+    [SerializeField] private List<Movement> playersInside = new List<Movement>();
+
+    private void Start()
+    {
+        StartCoroutine(DissapearCoroutine());
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             Movement movement = other.gameObject.GetComponent<Movement>();
-            originalSpeed = movement.speed;
-            movement.speed *= multiplier;
+            playersInside.Add(movement);
+            movement.Slow();
+            
         }
     }
 
@@ -22,8 +30,22 @@ public class SlowSurface : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Movement movement = other.gameObject.GetComponent<Movement>();
-            movement.speed = originalSpeed;
+            movement.UnSlow();
+            playersInside.Remove(movement);
         }
+    }
+
+    private IEnumerator DissapearCoroutine()
+    {
+        yield return new WaitForSeconds(timeToDissapear);
+        foreach (Movement movement in playersInside)
+        {
+            movement.UnSlow();
+        }
+        playersInside.Clear();
+
+        //playersInside.Clear();
+        Destroy(gameObject);
     }
 
     //Qué hacer cuando desaparece?

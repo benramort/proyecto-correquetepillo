@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class DobleJump : MonoBehaviour
 {
+
+    //public bool canJump = true;
+
     private Rigidbody physics;
     private bool grounded;
     private bool canDoubleJump;
@@ -12,6 +16,8 @@ public class DobleJump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Movement>().jump = DoubleJump;
+        //canJump = true;
         physics = this.GetComponent<Rigidbody>();
     }
 
@@ -21,21 +27,18 @@ public class DobleJump : MonoBehaviour
 
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void DoubleJump()
     {
-        if (context.performed)
+        if (grounded)
         {
-            if (grounded)
-            {
-                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                canDoubleJump = true;
+           physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+           canDoubleJump = true;
 
-            }
-            else if (canDoubleJump)
-            {
-                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                canDoubleJump = false;
-            }
+        }
+        else if (canDoubleJump)
+        {
+            physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            canDoubleJump = false;
         }
     }
 
