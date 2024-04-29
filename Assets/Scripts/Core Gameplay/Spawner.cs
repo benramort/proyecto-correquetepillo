@@ -28,7 +28,8 @@ public class Spawner : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && spawnedItemModel != null)
         {
-            other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
+            if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == null)
+                other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
             Destroy(spawnedItemModel);
             spawnedItemModel = null;
             //SelectRandomItem();
