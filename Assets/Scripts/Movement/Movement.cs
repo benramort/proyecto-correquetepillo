@@ -18,6 +18,12 @@ public class Movement : MonoBehaviour
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
     private bool freeze;
+    
+    private Vector3 velocity;
+    private Vector3 previousPosition = new Vector3(0,0,0);
+
+    [Header("Aerial Movement")]
+    [SerializeField] private float lerpPercentage;
     //public GameObject camera;
     void Start()
     {
@@ -32,6 +38,7 @@ public class Movement : MonoBehaviour
         if (!freeze)
             manageHorizontalMovement();
         manageCamera();
+        CalculateVelocity();
         //transform.rotation = Quaternion.identity;
     }
 
@@ -42,25 +49,31 @@ public class Movement : MonoBehaviour
         //Debug.Log(Vector3.Angle(new Vector2(jumpDirection.x, jumpDirection.y), axis));
         //Debug.DrawRay(transform.position, new Vector2(jumpDirection.x, jumpDirection.z));
         //Debug.DrawRay(transform.position, axis);
-        Debug.Log(Vector3.Angle(jumpDirectionForward, transform.forward));
+        //Debug.Log(Vector3.Angle(jumpDirectionForward, transform.forward));
         //Debug.Log(transform.forward);
 
-        float temporalSpeed = speed;
+        Vector2 temporalSpeed = new Vector3(axis.x * speed, axis.y * speed);
+        
         if (!grounded)
         {
-            //Debug.Log("Hola1");
-            if (Vector3.Angle(jumpDirectionInput, axis) > 45 || Vector3.Angle(jumpDirectionForward, transform.forward) > 45)
-            {
-                temporalSpeed *= 0.4f;
-                //Debug.Log("Hola2");
-            }
+            Vector3 localVelocity = transform.InverseTransformDirection(velocity); //Pasar la velocidad a coordenadas locales
+            Vector2 targetSpeed = temporalSpeed;
+            Debug.DrawRay(transform.position, new Vector3(localVelocity.x, 0, localVelocity.z), Color.red);
+
+            Debug.DrawRay(transform.position, new Vector3(targetSpeed.x, 0, targetSpeed.y), Color.blue);
+            //temporalSpeed = Vector3.Lerp(speed, new Vector3)
+            temporalSpeed = Vector2.Lerp(targetSpeed, new Vector2(localVelocity.x, localVelocity.z), lerpPercentage);
+            Debug.DrawRay(transform.position, new Vector3(temporalSpeed.x, 0, temporalSpeed.y));
+
         }
         Debug.Log(temporalSpeed);
+        //Debug.Log(temporalSpeed);
 
 
-        Vector3 step = new Vector3(axis.x * Time.deltaTime * temporalSpeed, 0.0f, axis.y * Time.fixedDeltaTime * temporalSpeed);
+        Vector3 step = new Vector3(Time.deltaTime * temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
         this.transform.Translate(step);
-        //this.transform.position += step;
+        //this.transform.Translate()
+        //this.transform.localPosition += transform.TransformDirection(step);
 
         if (step != Vector3.zero)
         {
@@ -68,14 +81,13 @@ public class Movement : MonoBehaviour
             physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
         }
-
-        //}
       
 
     }
 
     private void manageCamera()
     {
+        //Debug.Log("asfdaf");
         Vector3 viewDirection = new Vector3(this.transform.position.x - cam.transform.position.x, 0, this.transform.position.z - cam.transform.position.z);
         viewDirection = viewDirection.normalized;
         float angle = Mathf.Atan2(viewDirection.x, viewDirection.z) * Mathf.Rad2Deg;
@@ -88,6 +100,14 @@ public class Movement : MonoBehaviour
         //    angle -= Mathf.PI;
         //}
         //transform.Rotate(Vector3.up, angle);
+    }
+
+    private void CalculateVelocity()
+    {
+        velocity = (transform.localPosition - previousPosition) / Time.fixedDeltaTime;
+        previousPosition = transform.position;
+        //Debug.Log(velocity);
+        //Debug.Log(physics.velocity);
     }
 
     public void Freeze(FreezeType type)
