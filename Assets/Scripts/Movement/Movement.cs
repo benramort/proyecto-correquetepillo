@@ -18,6 +18,9 @@ public class Movement : MonoBehaviour
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
     private bool freeze;
+
+    public bool Grounded { get => grounded; set => grounded = value; }
+
     //public GameObject camera;
     void Start()
     {
@@ -46,7 +49,7 @@ public class Movement : MonoBehaviour
         //Debug.Log(transform.forward);
 
         float temporalSpeed = speed;
-        if (!grounded)
+        if (!Grounded)
         {
             //Debug.Log("Hola1");
             if (Vector3.Angle(jumpDirectionInput, axis) > 45 || Vector3.Angle(jumpDirectionForward, transform.forward) > 45)
@@ -113,7 +116,7 @@ public class Movement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (grounded)
+            if (Grounded)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 jumpDirectionInput = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
@@ -126,7 +129,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = true;
+            Grounded = true;
             speed = 8;
         }
     }
@@ -135,7 +138,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = false;
+            Grounded = false;
             //StartCoroutine(MovementInAirCoroutine());
         }
 
@@ -143,7 +146,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator MovementInAirCoroutine()
     {
-        while (speed >= 4 && !grounded)
+        while (speed >= 4 && !Grounded)
         {
             speed -= 0.1f;
             yield return new WaitForFixedUpdate();
