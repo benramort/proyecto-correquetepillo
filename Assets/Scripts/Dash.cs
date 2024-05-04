@@ -26,8 +26,9 @@ public class Dash : MonoBehaviour
     IEnumerator DashCoroutine()
     {
         physics.AddForce(position.forward * dashImpulse, ForceMode.Impulse);
-        //yield return new WaitForSeconds(0.4f);
-        //physics.velocity = new Vector3(0, physics.velocity.y, 0);
+        physics.drag = 3;
+        yield return new WaitForSeconds(1);
+        physics.drag = 0;
         yield return new WaitForSeconds(cooldownTime);
         coroutine = null;
     }
