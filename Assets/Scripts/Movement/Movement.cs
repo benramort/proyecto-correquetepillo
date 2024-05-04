@@ -24,6 +24,9 @@ public class Movement : MonoBehaviour
 
     [Header("Aerial Movement")]
     [SerializeField] private float lerpPercentage;
+
+    public bool Grounded { get => grounded; set => grounded = value; }
+
     //public GameObject camera;
     void Start()
     {
@@ -133,7 +136,7 @@ public class Movement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (grounded)
+            if (Grounded)
             {
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 jumpDirectionInput = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
@@ -146,7 +149,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = true;
+            Grounded = true;
             speed = 8;
         }
     }
@@ -155,7 +158,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = false;
+            Grounded = false;
             //StartCoroutine(MovementInAirCoroutine());
         }
 
@@ -163,7 +166,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator MovementInAirCoroutine()
     {
-        while (speed >= 4 && !grounded)
+        while (speed >= 4 && !Grounded)
         {
             speed -= 0.1f;
             yield return new WaitForFixedUpdate();
