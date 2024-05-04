@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1064,21 +1064,17 @@ MonoBehaviour:
     m_ActionId: 2b1b0412-ad82-44d9-b7eb-95aebf666832
     m_ActionName: Player/Camera[/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1182943470}
-        m_TargetAssemblyTypeName: Dash, Assembly-CSharp
-        m_MethodName: UseAbility
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c35a4fec-47a2-403a-a1e4-e388afe8acc3
-    m_ActionName: Player/Ability[/XInputControllerWindows/rightShoulder]
+      m_Calls: []
+    m_ActionId: d9a53c99-ef34-423c-b555-3757ddbd7695
+    m_ActionName: Player/Catch[/Mouse/rightButton,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0403851c-a9ba-4cc3-83ce-33708c15e09c
+    m_ActionName: Player/Launch[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4903af16-6630-467e-b1f9-9cf3ed7c2eb0
+    m_ActionName: Player/Hability[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1137,9 +1133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab829df1cb7ff8b4a86cdaf8a18ca661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 6
-  abilityTime: 2
-  cooldownTime: 10
 --- !u!114 &1182943468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,7 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5620425846f7e94e89f0dea50bb9d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1167778059}
+  cam: {fileID: 1167778059}
   speed: 8
   rotationSpeed: 3
   jumpForce: 8
@@ -1653,7 +1646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066576190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015126799, y: -0.87563586, z: 0.47381964, w: -0.0923475}
+  m_LocalRotation: {x: 0.015126805, y: -0.87563586, z: 0.4738196, w: -0.09234754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowSurface : MonoBehaviour
+public class IceSurface : MonoBehaviour
 {
     [SerializeField] private float timeToDissapear;
     //private float originalSpeed;
@@ -19,7 +19,7 @@ public class SlowSurface : MonoBehaviour
         {
             Movement movement = other.gameObject.GetComponent<Movement>();
             playersInside.Add(movement);
-            movement.Slow();
+            movement.OnIce = true;
             
         }
     }
@@ -29,7 +29,7 @@ public class SlowSurface : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Movement movement = other.gameObject.GetComponent<Movement>();
-            movement.UnSlow();
+            movement.OnIce = false;
             playersInside.Remove(movement);
         }
     }
@@ -39,7 +39,7 @@ public class SlowSurface : MonoBehaviour
         yield return new WaitForSeconds(timeToDissapear);
         foreach (Movement movement in playersInside)
         {
-            movement.UnSlow();
+            movement.OnIce = false;
         }
         playersInside.Clear();
 

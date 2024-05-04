@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowGrenade : Item
+public class SurfaceGrenade : Item
 {
     public GameObject surface;
 

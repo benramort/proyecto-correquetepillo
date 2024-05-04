@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb93cfc06c26cb458ad3259667ce458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  desiredFramerate: 0
   players: []
   playerManager: {fileID: 767010053}
   gameTime: 300

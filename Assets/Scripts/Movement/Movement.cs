@@ -19,8 +19,14 @@ public class Movement : MonoBehaviour
     private Rigidbody physics;
     private bool grounded;
 
+    //For slow surface
     private int slowed = 0;
     private float orignalSpeed;
+
+    //For ice
+    private bool _onIce = false;
+    private Vector3 iceDircetion;
+    public bool OnIce { get => _onIce; set { _onIce = value; iceDircetion = physics.velocity;} }
     //public GameObject camera;
     void Start()
     {
@@ -34,8 +40,15 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(physics.velocity);
         //Debug.Log(grounded);
-        manageHorizontalMovement();
+        if (!_onIce)
+        {
+            manageHorizontalMovement();
+        } else if (_onIce)
+        {
+            MoveForwardIce();
+        }
         manageCamera();
         //transform.rotation = Quaternion.identity;
     }
@@ -43,16 +56,17 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-        Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
+        Vector3 step = new Vector3(axis.x * speed, 0.0f, axis.y * speed);
         //physics.freezeRotation = true;
-        this.transform.Translate(step);
+        //this.transform.Translate(step);
         //if(step != Vector3.zero)
         //{
         //    Quaternion newRotation = Quaternion.LookRotation(step);
         //    physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
 
         //}
-      
+        physics.AddForce(step, ForceMode.Acceleration);
+
 
     }
 
@@ -74,7 +88,7 @@ public class Movement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && slowed == 0)
+        if (context.performed && slowed == 0 && !_onIce)
         {
             jump();
         }
@@ -105,6 +119,15 @@ public class Movement : MonoBehaviour
         {
             speed = orignalSpeed;
         }
+    }
+
+    private void MoveForwardIce()
+    {
+        Vector3 axis = new Vector3(iceDircetion.x, 0, iceDircetion.z);
+        axis.Normalize();
+        Vector3 step = new Vector3(axis.x * Time.deltaTime * speed * 3, 0.0f, axis.z * Time.fixedDeltaTime * speed * 3);
+        //physics.freezeRotation = true;
+        this.transform.Translate(step);
     }
 
     private void OnCollisionEnter(Collision collision)
