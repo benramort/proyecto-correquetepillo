@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum FreezeType { FALLFREEZE, CATCHFREEZE };
+
 public class Movement : MonoBehaviour
 {
     InputActionMap inputActionMap;
@@ -15,6 +17,7 @@ public class Movement : MonoBehaviour
 
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
+    private bool freeze;
     //public GameObject camera;
     void Start()
     {
@@ -25,8 +28,9 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(Vector3.Angle(jumpDirection, transform.forward));
-        manageHorizontalMovement();
+        //Debug.Log(grounded);
+        if (!freeze)
+            manageHorizontalMovement();
         manageCamera();
         //transform.rotation = Quaternion.identity;
     }
@@ -84,6 +88,25 @@ public class Movement : MonoBehaviour
         //    angle -= Mathf.PI;
         //}
         //transform.Rotate(Vector3.up, angle);
+    }
+
+    public void Freeze(FreezeType type)
+    {
+        switch (type)
+        {
+            case FreezeType.CATCHFREEZE:
+                StartCoroutine(FreezeCoroutine(5));
+                break;
+            default: 
+                break;
+        }
+    }
+
+    private IEnumerator FreezeCoroutine(int time)
+    {
+        freeze = true;
+        yield return new WaitForSeconds(time);
+        freeze = false;
     }
 
     public void Jump(InputAction.CallbackContext context)
