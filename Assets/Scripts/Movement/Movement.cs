@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public float jumpForce;
+    public Animator animator;
+
     private Rigidbody physics;
     private bool grounded;
     //public GameObject camera;
@@ -31,6 +33,13 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
+        if (axis.magnitude > 0.1)
+        {
+            animator.SetTrigger("running");
+        } else
+        {
+            animator.ResetTrigger("running");
+        }
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
         //physics.freezeRotation = true;
         this.transform.Translate(step);
@@ -66,6 +75,8 @@ public class Movement : MonoBehaviour
         {
             if (grounded)
             {
+                animator.SetTrigger("jump");
+                animator.ResetTrigger("landing");
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
@@ -75,6 +86,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            if (!grounded) animator.SetTrigger("landing");
             grounded = true;
         }
     }
@@ -83,6 +95,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            
             grounded = false;
         }
 
