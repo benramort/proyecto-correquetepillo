@@ -75,8 +75,9 @@ public class Movement : MonoBehaviour
         {
             if (grounded)
             {
+                animator.ResetTrigger("grounded");
                 animator.SetTrigger("jump");
-                animator.ResetTrigger("landing");
+                //animator.ResetTrigger("landing");
                 physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
@@ -86,7 +87,8 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            if (!grounded) animator.SetTrigger("landing");
+            //if (!grounded) animator.SetTrigger("landing");
+            animator.SetTrigger("grounded");
             grounded = true;
         }
     }
