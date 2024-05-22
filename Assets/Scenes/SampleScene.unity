@@ -812,6 +812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3031056416296093487, guid: f24bc7927809ef44790efded8a93028b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3220683756192155835, guid: f24bc7927809ef44790efded8a93028b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -864,6 +868,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1756726943}
+    - target: {fileID: 5548990062158262282, guid: f24bc7927809ef44790efded8a93028b, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5548990062158262282, guid: f24bc7927809ef44790efded8a93028b, type: 3}
       propertyPath: runAnimation
       value: a_Running
