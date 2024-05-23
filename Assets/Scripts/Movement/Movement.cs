@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            
+            animator.ResetTrigger("grounded");
             grounded = false;
         }
 

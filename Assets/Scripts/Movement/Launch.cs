@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Launch : MonoBehaviour
 {
     public GameObject pocket;
+    public Animator animator;
 
     [Space(20)]
 
@@ -126,6 +127,7 @@ public class Launch : MonoBehaviour
             GameObject go = Instantiate(pocket);
             pocket = null;
             go.transform.position = launchpoint.position;
+            animator.SetTrigger("launch");
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
         }
     }
