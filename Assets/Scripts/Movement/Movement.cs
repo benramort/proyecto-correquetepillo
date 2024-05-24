@@ -33,11 +33,19 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-        if (axis.magnitude > 0.1)
+        Debug.Log(axis.y);
+        if (axis.y > 0.1)
         {
+            animator.ResetTrigger("walkingBackwards");
             animator.SetTrigger("running");
-        } else
+        } else if(axis.y < -0.1)
         {
+            animator.ResetTrigger("running");
+            animator.SetTrigger("walkingBackwards");
+        }
+        else if(axis.y == 0f)
+        {
+            animator.ResetTrigger("walkingBackwards");
             animator.ResetTrigger("running");
         }
         Vector3 step = new Vector3(axis.x * Time.deltaTime * speed, 0.0f, axis.y * Time.fixedDeltaTime * speed);
