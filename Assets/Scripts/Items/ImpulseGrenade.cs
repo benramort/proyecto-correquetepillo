@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ImpulseGrenade : Item
 {
-    public float explosionForce = 1000f; // Fuerza de la explosión
-    public float explosionRadius = 10f; // Radio de la explosión
+    public float explosionForce = 1000f; // Fuerza de la explosion
+    public float explosionRadius = 10f; // Radio de la explosion
     public float upwardModifier = 1f; // Modificador de la fuerza hacia arriba
-    public LayerMask affectedLayers; // Capas afectadas por la explosión
+    public List<string> affectedTags; // Lista de etiquetas afectadas por la explosion
 
     public override void OnCollisionEnter(Collision collision)
     {
@@ -16,24 +16,28 @@ public class ImpulseGrenade : Item
 
     void Explode()
     {
-        // Encuentra todos los objetos en el radio de la explosión
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, affectedLayers);
+        // Encuentra todos los objetos en el radio de la explosion
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
+            // Comprueba si el objeto tiene una de las etiquetas afectadas
+            if (affectedTags.Contains(hit.tag))
             {
-                // Aplica la fuerza de explosión
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardModifier, ForceMode.Impulse);
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                {
+                    // Aplica la fuerza de explosión
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, upwardModifier, ForceMode.Impulse);
+                }
             }
         }
 
         // Efectos visuales y sonoros aquí
 
-        // Destruye la granada después de la explosión
-        Destroy(this);
+        // Destruye la granada después de la explosion
+        Destroy(this.gameObject);
     }
 }
 
