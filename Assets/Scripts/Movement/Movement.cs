@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
         Debug.Log(axis.y);
-        if (axis.y > 0.1)
+        if (axis.y > 0.1 || axis.x > 0.1 || axis.x < -0.1)
         {
             animator.ResetTrigger("walkingBackwards");
             animator.SetTrigger("running");
