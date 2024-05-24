@@ -687,6 +687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
     - target: {fileID: 8867703334101784361, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.534298
