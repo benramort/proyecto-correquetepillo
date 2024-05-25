@@ -7,28 +7,28 @@ AvatarMask:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: monsterThrow
-  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Mask: 00000000010000000000000000000000000000000000000001000000000000000100000000000000000000000000000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: Bodies
     m_Weight: 1
   - m_Path: Bodies/MainBody01
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bodies/MainBody03
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bodyparts
     m_Weight: 1
   - m_Path: Bodyparts/Bodypart05
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bodyparts/Bodypart08
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Eyes
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Eyes/Eye04
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Eyes/Eye11
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Gloves
     m_Weight: 1
   - m_Path: Gloves/Glove01
@@ -36,27 +36,27 @@ AvatarMask:
   - m_Path: Gloves/Glove04
     m_Weight: 1
   - m_Path: Headparts
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Headparts/Ear01
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Headparts/Hat16
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: MouthandNoses
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: MouthandNoses/Mouth05
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: MouthandNoses/Nose13
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root
     m_Weight: 1
   - m_Path: root/pelvis
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/pelvis/spine_01
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/pelvis/spine_01/FrontBelly
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/pelvis/spine_01/spine_02
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/pelvis/spine_01/spine_02/spine_03
     m_Weight: 1
   - m_Path: root/pelvis/spine_01/spine_02/spine_03/clavicle_l
