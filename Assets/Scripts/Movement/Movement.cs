@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
 
             Debug.DrawRay(transform.position, new Vector3(targetSpeed.x, 0, targetSpeed.y), Color.blue);
             //temporalSpeed = Vector3.Lerp(speed, new Vector3)
-            temporalSpeed = Vector2.Lerp(targetSpeed, new Vector2(localVelocity.x, localVelocity.z), lerpPercentage);
+            temporalSpeed = Vector2.Lerp(targetSpeed, new Vector2(localVelocity.x, localVelocity.z), lerpPercentage); //Esto puede interactuar raro con el framerate
             Debug.DrawRay(transform.position, new Vector3(temporalSpeed.x, 0, temporalSpeed.y));
 
         }
@@ -73,8 +73,9 @@ public class Movement : MonoBehaviour
         //Debug.Log(temporalSpeed);
 
 
-        Vector3 step = new Vector3(Time.deltaTime * temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
-        this.transform.Translate(step);
+        Vector3 step = new Vector3(Time.fixedDeltaTime* temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
+        //this.transform.Translate(step);
+        physics.MovePosition(physics.position + step);
         //this.transform.Translate()
         //this.transform.localPosition += transform.TransformDirection(step);
 
