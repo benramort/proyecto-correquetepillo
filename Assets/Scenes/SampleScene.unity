@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb93cfc06c26cb458ad3259667ce458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  desiredFramerate: 0
   players: []
   playerManager: {fileID: 767010053}
   gameTime: 300
@@ -686,6 +687,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableModels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableModels.Array.data[0]
+      value: 
+      objectReference: {fileID: 8163477543479095905, guid: de3366f85e0f50e438d9a9ead8277ccf, type: 3}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableModels.Array.data[1]
+      value: 
+      objectReference: {fileID: 8163477543479095905, guid: de3366f85e0f50e438d9a9ead8277ccf, type: 3}
     - target: {fileID: 8867703334101784361, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.534298

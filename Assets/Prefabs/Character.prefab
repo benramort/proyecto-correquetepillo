@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4185591989927114800}
   - component: {fileID: 782087945570134164}
   - component: {fileID: 5710880313235875676}
+  - component: {fileID: 499929155266139186}
   m_Layer: 0
   m_Name: CharacterModel
   m_TagString: Player
@@ -205,8 +206,8 @@ MonoBehaviour:
     m_ActionName: Player/HorizontalMovement[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 782087945570134164}
-        m_TargetAssemblyTypeName: DobleJump, Assembly-CSharp
+      - m_Target: {fileID: 7409290799294458606}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -257,9 +258,9 @@ MonoBehaviour:
     m_ActionName: Player/Launch[/Mouse/leftButton,/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5710880313235875676}
-        m_TargetAssemblyTypeName: Accelerate, Assembly-CSharp
-        m_MethodName: UseHability
+      - m_Target: {fileID: 499929155266139186}
+        m_TargetAssemblyTypeName: Dash, Assembly-CSharp
+        m_MethodName: UseAbility
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -381,13 +382,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474267820086250463}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c43b8d3cf210a545bb8744096cb56ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 6
   abilityTime: 2
+  cooldownTime: 10
+--- !u!114 &499929155266139186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474267820086250463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37d08ea349bb674b936faa9a20fb29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {fileID: 4369134310934110399}
+  dashImpulse: 50
   cooldownTime: 10
 --- !u!1 &2104768944024665290
 GameObject:
@@ -859,7 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 0}
+  pocket: {fileID: 5646796320435257514, guid: ff46b10f1bcf5394c89fa618b3bc6a51, type: 3}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 3521631059005621946}
   cam: {fileID: 2104768944024665290}

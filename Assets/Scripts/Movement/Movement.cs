@@ -7,11 +7,18 @@ public enum FreezeType { FALLFREEZE, CATCHFREEZE };
 
 public class Movement : MonoBehaviour
 {
+    public delegate void JumpDel();
+
     InputActionMap inputActionMap;
     public GameObject cam;
     public float speed;
     public float rotationSpeed;
+    [Space(20)]
     public float jumpForce;
+    //public bool canJump;
+
+    public JumpDel jump;
+
     private Rigidbody physics;
     private bool grounded;
 
@@ -27,9 +34,21 @@ public class Movement : MonoBehaviour
 
     public bool Grounded { get => grounded; set => grounded = value; }
 
+    [Space(20)]
+    private Vector3 velocity;
+    private Vector3 previousPosition;
+    //For slow surface
+    private int slowed = 0;
+    private float orignalSpeed;
+
+    //For ice
+    public int onIce { get; set; } = 0;
     //public GameObject camera;
     void Start()
     {
+        //canJump = true;
+        if (GetComponent<DobleJump>() == null)
+            jump = BasicJump;
         inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
     }
@@ -37,11 +56,20 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(physics.velocity);
         //Debug.Log(grounded);
-        if (!freeze)
-            manageHorizontalMovement();
+        if (onIce == 0)
+        {
+            if (!freeze)
+                manageHorizontalMovement();
+        } else
+        {
+            MoveForwardIce();
+        }
         manageCamera();
+        
         CalculateVelocity();
+        //Debug.Log("Velocity: " + velocity);
         //transform.rotation = Quaternion.identity;
     }
 
@@ -135,15 +163,55 @@ public class Movement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && slowed == 0 && onIce == 0)
         {
-            if (Grounded)
-            {
-                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                jumpDirectionInput = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-                jumpDirectionForward = transform.forward;
-            }
+            jump();
         }
+    }
+
+    private void BasicJump()
+    {
+        if (grounded)
+        {
+            physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    public void Slow()
+    {
+        slowed++;
+        if (slowed == 1)
+        {
+            orignalSpeed = speed;
+            speed *= 0.2f;
+        }
+    }
+
+    public void UnSlow()
+    {
+        slowed--;
+        if (slowed <= 0)
+        {
+            speed = orignalSpeed;
+        }
+    }
+
+    private void MoveForwardIce()
+    {
+        
+        if (velocity.magnitude > 0.1 || velocity.magnitude < -0.1)
+        {
+            velocity = transform.InverseTransformDirection(velocity.x, 0, velocity.z);
+            Vector3 axis = new Vector3(velocity.x, 0, velocity.z);
+            axis.Normalize();
+            Vector3 step = new Vector3(axis.x * Time.deltaTime * speed * 3, 0.0f, axis.z * Time.fixedDeltaTime * speed * 3);
+            //physics.freezeRotation = true;
+            this.transform.Translate(step);
+        } else
+        {
+            manageHorizontalMovement();
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)

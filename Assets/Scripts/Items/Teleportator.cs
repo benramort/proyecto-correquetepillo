@@ -12,8 +12,7 @@ public class Teleportator : Item
         {
             thrower.transform.position = new Vector3(collision.GetContact(0).point.x, collision.GetContact(0).point.y + verticalOffset, collision.GetContact(0).point.z);
             Destroy(gameObject);
-        }
-        
+        }   
     }
 
 

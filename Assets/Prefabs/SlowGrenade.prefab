@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8226142547086656843}
   - component: {fileID: 8619089898368092836}
   - component: {fileID: 322532910321674656}
-  - component: {fileID: 3905226995448930818}
+  - component: {fileID: 6333089793890039991}
+  - component: {fileID: -8458450948812776227}
   m_Layer: 0
-  m_Name: Teleportator
+  m_Name: SlowGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f5c725c9c56cdc44cb2a15dbb16f3b45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134,7 +135,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3905226995448930818
+--- !u!114 &6333089793890039991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903710437651274417}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832f347f18d07504194a7b5fbc1764d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8458450948812776227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5903710437651274417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73f5741dbd1963478fec11fce88bdfb, type: 3}
+  m_Script: {fileID: 11500000, guid: cd7be81b992417e4ebc8f700037b478b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalOffset: 0.7
+  surface: {fileID: 3947004116096394707, guid: de5044446dda4f649b35713482fc5197, type: 3}

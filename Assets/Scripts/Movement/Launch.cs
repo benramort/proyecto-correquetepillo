@@ -42,7 +42,7 @@ public class Launch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!showLine)
         {
@@ -122,7 +122,7 @@ public class Launch : MonoBehaviour
         {
             lineRenderer.enabled = false;
             showLine = false;
-            Debug.Log(launchDirection);
+            //Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
             pocket = null;
             go.transform.position = launchpoint.position;
