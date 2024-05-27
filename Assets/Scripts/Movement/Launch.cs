@@ -124,7 +124,7 @@ public class Launch : MonoBehaviour
             showLine = false;
             //Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
-            //pocket = null;
+            pocket = null;
             go.transform.position = launchpoint.position;
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
         }

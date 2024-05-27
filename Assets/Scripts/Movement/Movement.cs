@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
         manageCamera();
         
         CalculateVelocity();
-        Debug.Log("Velocity: " + velocity);
+        //Debug.Log("Velocity: " + velocity);
         //transform.rotation = Quaternion.identity;
     }
 
