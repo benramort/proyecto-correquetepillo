@@ -35,8 +35,6 @@ public class Movement : MonoBehaviour
     public bool Grounded { get => grounded; set => grounded = value; }
 
     [Space(20)]
-    private Vector3 velocity;
-    private Vector3 previousPosition;
     //For slow surface
     private int slowed = 0;
     private float orignalSpeed;
@@ -136,7 +134,7 @@ public class Movement : MonoBehaviour
 
     private void CalculateVelocity()
     {
-        velocity = (transform.localPosition - previousPosition) / Time.fixedDeltaTime;
+        velocity = (transform.position - previousPosition) / Time.fixedDeltaTime;
         previousPosition = transform.position;
         //Debug.Log(velocity);
         //Debug.Log(physics.velocity);
