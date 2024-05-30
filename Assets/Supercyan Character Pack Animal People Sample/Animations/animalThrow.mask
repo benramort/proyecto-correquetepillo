@@ -36,12 +36,12 @@ AvatarMask:
       R Foot/basic_rig R Toe0
     m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1
     m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       L Clavicle
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       L Clavicle/basic_rig L UpperArm
     m_Weight: 1
@@ -65,16 +65,16 @@ AvatarMask:
     m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       L Clavicle/basic_rig L UpperArm/basic_rig L Forearm/basic_rig L Hand/L_hand_grap_point
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       Neck
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       Neck/basic_rig Head
     m_Weight: 1
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       R Clavicle
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig
       R Clavicle/basic_rig UpperArm
     m_Weight: 1
