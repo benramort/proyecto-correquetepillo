@@ -688,9 +688,21 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       propertyPath: spawnableModels.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 5646796320435257514, guid: ff46b10f1bcf5394c89fa618b3bc6a51, type: 3}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: spawnableItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
     - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       propertyPath: spawnableModels.Array.data[0]
       value: 

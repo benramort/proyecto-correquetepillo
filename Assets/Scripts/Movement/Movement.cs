@@ -95,7 +95,6 @@ public class Movement : MonoBehaviour
             Debug.DrawRay(transform.position, new Vector3(temporalSpeed.x, 0, temporalSpeed.y));
 
         }
-        Debug.Log(temporalSpeed);
         //Debug.Log(temporalSpeed);
 
 

@@ -26,6 +26,7 @@ public class Spawner : MonoBehaviour
         if (spawnedRigidbody != null)
         {
             spawnedRigidbody.isKinematic = true;
+            spawnedItemModel.GetComponent<Collider>().enabled = false;
         }
     }
 
