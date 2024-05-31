@@ -8,6 +8,7 @@ public enum FreezeType { FALLFREEZE, CATCHFREEZE };
 public class Movement : MonoBehaviour
 {
     public delegate void JumpDel();
+    private Animator animator;
 
     InputActionMap inputActionMap;
     public GameObject cam;
@@ -45,6 +46,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         //canJump = true;
+        animator = gameObject.GetComponentInChildren<Animator>();
         if (GetComponent<DobleJump>() == null)
             jump = BasicJump;
         inputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
@@ -74,7 +76,21 @@ public class Movement : MonoBehaviour
     private void manageHorizontalMovement()
     {
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-
+        if (axis.y > 0.1 || axis.x > 0.1 || axis.x < -0.1)
+        {
+            animator.ResetTrigger("walkingBackwards");
+            animator.SetTrigger("running");
+        }
+        else if (axis.y < -0.1)
+        {
+            animator.ResetTrigger("running");
+            animator.SetTrigger("walkingBackwards");
+        }
+        else if (axis.y == 0f)
+        {
+            animator.ResetTrigger("walkingBackwards");
+            animator.ResetTrigger("running");
+        }
         //Debug.Log(Vector3.Angle(new Vector2(jumpDirection.x, jumpDirection.y), axis));
         //Debug.DrawRay(transform.position, new Vector2(jumpDirection.x, jumpDirection.z));
         //Debug.DrawRay(transform.position, axis);
@@ -172,6 +188,8 @@ public class Movement : MonoBehaviour
     {
         if (grounded)
         {
+            animator.ResetTrigger("grounded");
+            animator.SetTrigger("jump");
             physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
@@ -217,6 +235,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            animator.SetTrigger("grounded");
             Grounded = true;
             speed = 8;
         }
@@ -226,6 +245,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            animator.ResetTrigger("grounded");
             Grounded = false;
             //StartCoroutine(MovementInAirCoroutine());
         }
