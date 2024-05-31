@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Launch : MonoBehaviour
 {
@@ -31,12 +32,18 @@ public class Launch : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public float skew;
+
+    [Space(20)]
+
+    public Texture noObjectTexture;
     //private GameObject puntazo;
     private bool showLine = false;
+    private GameObject objectImage;
 
     // Start is called before the first frame update
     void Start()
     {
+        objectImage = GameObject.Find("Object");
         launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas
         //Debug.Log(Physics.gravity);
@@ -132,6 +139,8 @@ public class Launch : MonoBehaviour
             go.transform.position = launchpoint.position;
             animator.SetTrigger("throw");
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+            objectImage.GetComponent<RawImage>().texture = noObjectTexture;
+
            
         }
     }

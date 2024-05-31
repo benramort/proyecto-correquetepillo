@@ -782,7 +782,7 @@ MonoBehaviour:
   speed: 7
   rotationSpeed: 1000
   jumpForce: 10
-  animator: {fileID: 6200242876533531529}
+  lerpPercentage: 0
 --- !u!114 &2852604407637639348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840262451718557584}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2116997, y: 3.4319293e-15, z: -6.840734e-16, w: 0.9773348}
+  m_LocalRotation: {x: 0.21169968, y: -0.000000014563422, z: 0.0000000031545706, w: 0.9773348}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1345,6 +1345,7 @@ MonoBehaviour:
   puntosObjeto: []
   lineRenderer: {fileID: 7660884143217441464}
   skew: 0.2
+  noObjectTexture: {fileID: 2800000, guid: 62fd0e0f54244974e8c8dc84293127c3, type: 3}
 --- !u!120 &7660884143217441464
 LineRenderer:
   serializedVersion: 2

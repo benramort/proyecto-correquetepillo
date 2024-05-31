@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PointManager : MonoBehaviour
 {
@@ -19,16 +21,24 @@ public class PointManager : MonoBehaviour
     [SerializeField] private int points;
     private float timePassed;
     private Coroutine catchCoroutine;
+    private GameObject pointsText;
 
     // Start is called before the first frame update
     void Start()
     {
+        pointsText = GameObject.Find("Points");
         points = maxPoints;
         //isTarget = true;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        pointsText.GetComponent<TextMeshProUGUI>().text = points.ToString();
+        ReducePoints();
+    }
+
+    private void ReducePoints()
     {
         if (isTarget)
         {
@@ -44,6 +54,8 @@ public class PointManager : MonoBehaviour
             {
                 timePassed += Time.deltaTime;
             }
+            
+
         }
         if (points <= 0)
         {
