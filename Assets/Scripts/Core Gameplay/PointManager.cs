@@ -12,6 +12,7 @@ public class PointManager : MonoBehaviour
     public float tickTime; //Time to reduce 1 point in seconds
     public GameObject catchArea;
     public GameObject labelHolder;
+    public Animator animator;
 
     [SerializeField] private bool _isTarget;
     public bool isTarget { get {return _isTarget;} set { _isTarget = value; labelHolder.SetActive(value); } }
@@ -54,10 +55,10 @@ public class PointManager : MonoBehaviour
     {
         if (context.performed)
         {
-            //Debug.Log("hola");
+            
             if (catchCoroutine == null)
             {
-                Debug.Log("Catching");
+                animator.SetTrigger("attack");
                 catchCoroutine = StartCoroutine(CatchCoroutine());
             } else
             {
