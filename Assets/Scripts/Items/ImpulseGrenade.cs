@@ -46,7 +46,7 @@ public class ImpulseGrenade : Item
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
         yield return new WaitForSeconds(1.5f);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
 

@@ -98,9 +98,11 @@ public class Movement : MonoBehaviour
         //Debug.Log(temporalSpeed);
 
 
-        Vector3 step = new Vector3(Time.fixedDeltaTime* temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
-        //this.transform.Translate(step);
-        physics.MovePosition(physics.position + step);
+        Vector3 step = new Vector3(Time.fixedDeltaTime * temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
+        this.transform.Translate(step);
+        //Debug.Log(step);
+        //physics.velocity = new Vector3(temporalSpeed.x, physics.velocity.y, temporalSpeed.y);
+        //physics.MovePosition(physics.position + step);
         //this.transform.Translate()
         //this.transform.localPosition += transform.TransformDirection(step);
 
