@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ImpulseGrenade : Item
 {
+    private AudioSource sound;
     public ParticleSystem explosion;
     public float explosionForce = 1000f; // Fuerza de la explosion
     public float explosionRadius = 10f; // Radio de la explosion
@@ -13,16 +14,18 @@ public class ImpulseGrenade : Item
     public override void OnCollisionEnter(Collision collision)
     {
         Debug.Log(thrower.gameObject + " " +collision.gameObject);
+        sound = this.GetComponent<AudioSource>();
         if (collision.gameObject != thrower.gameObject)
         {
             Debug.Log("He chocado");
-            explosion.Play();
             StartCoroutine(Explode());
         }
     }
 
     IEnumerator Explode()
     {
+        sound.Play(); 
+        explosion.Play();
         // Encuentra todos los objetos en el radio de la explosion
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider hit in colliders)
@@ -45,6 +48,7 @@ public class ImpulseGrenade : Item
         // Destruye la granada después de la explosion
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
+
         yield return new WaitForSeconds(1.5f);
         //Destroy(this.gameObject);
     }

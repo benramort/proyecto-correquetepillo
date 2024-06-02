@@ -5,11 +5,10 @@ using UnityEngine;
 public class SurfaceGrenade : Item
 {
     public GameObject surface;
-
     public override void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player") //Esto igual hacerlo ==map?
-        { 
+        {
             ContactPoint cp = collision.GetContact(0);
             if (cp.normal.y > 0.9)
             {
