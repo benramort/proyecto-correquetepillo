@@ -5,9 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Dash : MonoBehaviour
+public class Dash : MonoBehaviour, Ability
 {
-    public Transform position;
     private Rigidbody physics;
     Coroutine coroutine;
     public float dashImpulse;
@@ -27,16 +26,10 @@ public class Dash : MonoBehaviour
         rawimage.color = readyColor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator DashCoroutine()
     {
         
-        physics.AddForce(position.forward * dashImpulse, ForceMode.Impulse);
+        physics.AddForce(this.transform.forward * dashImpulse, ForceMode.Impulse);
         physics.drag = 3;
         yield return new WaitForSeconds(1);
         physics.drag = 0;

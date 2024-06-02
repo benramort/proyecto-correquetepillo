@@ -61,6 +61,7 @@ public class PlayerManager1 : MonoBehaviour
             input.actions.FindAction("Catch").performed += player.GetComponentInChildren<PointManager>().Catch;
             input.actions.FindAction("Launch").started += player.GetComponentInChildren<Launch>().LauchGrenadeStart;
             input.actions.FindAction("Launch").canceled += player.GetComponentInChildren<Launch>().LaunchGrenadeEnd;
+            input.actions.FindAction("Hability").performed += player.GetComponentInChildren<Ability>().UseAbility;
         }
     }
 
