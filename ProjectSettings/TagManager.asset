@@ -9,6 +9,8 @@ TagManager:
   - SlowGrenade
   - IceGrenade
   - ImpulseGrenade
+  - PlayerEyes
+  - DeathZone
   layers:
   - Default
   - TransparentFX

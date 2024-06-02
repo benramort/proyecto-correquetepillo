@@ -14,7 +14,7 @@ public class Climb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputActionMap = GetComponent<PlayerInput>().currentActionMap;
+        inputActionMap = GetComponentInParent<PlayerInput>().currentActionMap;
         physics = GetComponent<Rigidbody>();
 
     }

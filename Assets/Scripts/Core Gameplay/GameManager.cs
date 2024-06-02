@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
         if (instance == null)
         {
             instance = this;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        timeGui = GameObject.Find("TimeInterface/RemainingTime");
+        //timeGui = GameObject.Find("TimeInterface/RemainingTime");
         chrono += Time.deltaTime;
         if (chrono >= gameTime)
         {
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             player.transform.Find("UIControl").gameObject.SetActive(false);
 
         }
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Map");
         timeGui = GameObject.Find("TimeInterface/RemainingTime");
         onGame = true;
         chrono = 0;
@@ -120,6 +121,20 @@ public class GameManager : MonoBehaviour
         //{
         //    player.GetComponent<Movement>().transform.position = new Vector3(0, 10, 0);
         //}
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "Map")
+        {
+            timeGui = GameObject.Find("TimeInterface/RemainingTime");
+            GameObject spawners = GameObject.Find("SpawnPoints");
+            for (int i = 0; i < players.Count; i++)
+            {
+                players[i].transform.position = spawners.transform.GetChild(i).position;
+                players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
+            }
+        }
     }
 
     public void AddInterface()

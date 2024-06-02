@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8577686034097615915}
   - component: {fileID: 9066996949593652954}
   - component: {fileID: 6007510419125851720}
+  - component: {fileID: 5759186530695856722}
   m_Layer: 0
   m_Name: Roboto
   m_TagString: Player
@@ -108,7 +109,6 @@ MonoBehaviour:
   labelHolder: {fileID: 3888938742519621686}
   animator: {fileID: 0}
   _isTarget: 0
-  points: 0
 --- !u!136 &4850842824118483207
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashImpulse: 100
-  cooldownTime: 3
+  cooldownTime: 12
   rawimage: {fileID: 0}
   texture: {fileID: 2800000, guid: 5d1ee9d23462d8847a6d732f74d89b25, type: 3}
   readyColor: {r: 1, g: 0, b: 0, a: 1}
@@ -190,8 +190,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
-  coyoteTime: 3
-  animator: {fileID: 5295558332366142251}
+  coyoteTime: 2
+--- !u!114 &5759186530695856722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095306963811510114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc6d397e193926419471d69abebbb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2531694086874666724
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class PointManager : MonoBehaviour
 
     [SerializeField] private bool _isTarget;
     public bool isTarget { get {return _isTarget;} set { _isTarget = value; labelHolder.SetActive(value); } }
-    [SerializeField] private int points;
+    public int points { get; set; }
     private float timePassed;
     private Coroutine catchCoroutine;
     private TextMeshProUGUI pointsText;

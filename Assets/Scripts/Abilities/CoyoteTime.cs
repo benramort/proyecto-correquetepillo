@@ -32,7 +32,7 @@ public class CoyoteTime : MonoBehaviour
                 physics.useGravity = true;
             }
         }
-        Debug.Log(physics.velocity);
+        
         
     }
 
