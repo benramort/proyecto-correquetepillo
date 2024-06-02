@@ -38,6 +38,9 @@ public class CoyoteTime : MonoBehaviour
 
     public void CoyoteJump()
     {
+        Debug.Log("Salto");
+        Debug.Log("Grounded: " + grounded);
+        Debug.Log("CoyoteTime: " + canCoyoteTime);
         if (grounded || canCoyoteTime)
         {
             physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -58,7 +61,10 @@ public class CoyoteTime : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        grounded = false;
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            grounded = false;
+        }
         
     }
 }
