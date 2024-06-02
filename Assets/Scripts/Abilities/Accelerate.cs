@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Accelerate : MonoBehaviour
+public class Accelerate : MonoBehaviour, Ability
 {
     Movement movement;
     Coroutine coroutine;
@@ -32,7 +32,7 @@ public class Accelerate : MonoBehaviour
         coroutine = null;
     }
 
-    public void UseHability(InputAction.CallbackContext context)
+    public void UseAbility(InputAction.CallbackContext context)
     {
         if(coroutine == null)
         {

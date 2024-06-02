@@ -138,6 +138,9 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
+            Debug.Log(players[i].GetComponentInChildren<UIControl>().selectedCharacter);
+            Debug.Log(players[i].transform.Find("Character"));
+
             GameObject instance = Instantiate(players[i].GetComponentInChildren<UIControl>().selectedCharacter, players[i].transform.Find("Character"));
             //Transform target = players[i].transform.Find("Character/YellowBoxer(Clone)");
             players[i].GetComponentInChildren<CinemachineFreeLook>().Follow = instance.transform;
