@@ -7,9 +7,11 @@ public class IceSurface : MonoBehaviour
     [SerializeField] private float timeToDissapear;
     //private float originalSpeed;
     [SerializeField] private List<Movement> playersInside = new List<Movement>();
-
+    private AudioSource sound;
     private void Start()
     {
+        sound = this.GetComponent<AudioSource>();
+        sound.Play();
         StartCoroutine(DissapearCoroutine());
     }
 
