@@ -143,7 +143,9 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < players.Count; i++)
             {
                 players[i].transform.position = spawners.transform.GetChild(i).position;
+                players[i].GetComponentInChildren<Movement>().transform.position = spawners.transform.GetChild(i).position;
                 players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
+                players[i].GetComponentInChildren<Movement>().transform.rotation = spawners.transform.GetChild(i).rotation;
             }
         }
     }
