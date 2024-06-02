@@ -14,6 +14,7 @@ public class CoyoteTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Movement>().jump = CoyoteJump;
         physics = this.GetComponent<Rigidbody>();
     }
 
@@ -35,19 +36,14 @@ public class CoyoteTime : MonoBehaviour
         
     }
 
-    public void CoyoteJump(InputAction.CallbackContext context)
+    public void CoyoteJump()
     {
-        if (context.performed)
+        if (grounded || canCoyoteTime)
         {
-            if (grounded || canCoyoteTime)
-            {
-                physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                canCoyoteTime = false;
-                physics.useGravity = true;
-            }
-            
+            physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            canCoyoteTime = false;
+            physics.useGravity = true;
         }
-        
     }
 
     private void OnCollisionEnter(Collision collision)

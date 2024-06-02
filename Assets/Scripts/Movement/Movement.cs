@@ -48,8 +48,11 @@ public class Movement : MonoBehaviour
         //canJump = true;
         cam = transform.parent.Find("Camera").gameObject;
         animator = gameObject.GetComponentInChildren<Animator>();
-        if (GetComponent<DobleJump>() == null)
+        if (GetComponent<DobleJump>() == null && GetComponent<CoyoteTime>() == null)
+        {
             jump = BasicJump;
+        }
+        
         inputActionMap = transform.parent.parent.GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
     }
