@@ -138,7 +138,13 @@ public class GameManager : MonoBehaviour
         }
         if(scene.name == "Podium")
         {
-            players.Sort();
+            players.Sort((p1, p2) => p1.GetComponentInChildren<PointManager>().points - p2.GetComponentInChildren<PointManager>().points);
+            GameObject spawners = GameObject.Find("Positions");
+            for (int i = 0; i < players.Count; i++)
+            {
+                players[i].transform.position = spawners.transform.GetChild(i).position;
+                players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
+            }
         }
     }
 
