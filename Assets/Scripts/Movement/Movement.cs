@@ -117,19 +117,19 @@ public class Movement : MonoBehaviour
 
         Vector3 step = new Vector3(Time.fixedDeltaTime * temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
         this.transform.Translate(step);
+        //transform.position += transform.forward;
         //Debug.Log(step);
         //physics.velocity = new Vector3(temporalSpeed.x, physics.velocity.y, temporalSpeed.y);
         //physics.MovePosition(physics.position + step);
         //this.transform.Translate()
         //this.transform.localPosition += transform.TransformDirection(step);
 
-        if (step != Vector3.zero)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(step);
-            physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
+        //if (step.magnitude > 0.1)
+        //{
+        //    Quaternion newRotation = Quaternion.LookRotation(step);
+        //    physics.rotation = Quaternion.Slerp(physics.rotation, newRotation, rotationSpeed * Time.fixedDeltaTime);
+        //}
 
-        }
-      
 
     }
 
