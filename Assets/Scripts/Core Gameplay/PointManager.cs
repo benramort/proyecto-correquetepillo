@@ -10,7 +10,7 @@ public class PointManager : MonoBehaviour
 
     [HideInInspector] public GameManager gameManager { get; set;}
 
-    public int maxPoints = 100;
+    public int maxPoints = 3;
     public float tickTime; //Time to reduce 1 point in seconds
     public GameObject catchArea;
     public GameObject labelHolder;
@@ -26,6 +26,7 @@ public class PointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Scripter").GetComponent<GameManager>();
         pointsText = transform.parent.parent.Find("Interface(Clone)").GetComponentInChildren<TextMeshProUGUI>();
         points = maxPoints;
         animator = GetComponentInChildren<Animator>();
