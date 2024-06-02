@@ -12,10 +12,9 @@ public class Spawner : MonoBehaviour
     public GameObject spawnedItem;
     public Transform spawnPoint;
 
-    public Texture teleporterTexture;
-    public Texture iceGrenadeTexture;
-    public Texture slowGrenadeTexture;
-    public Texture impulseGrenadeTexture;
+    public Texture[] objectRenders;
+    private Texture spawnedTexture;
+
     private void Start()
     {
         SelectRandomItem();
@@ -34,6 +33,7 @@ public class Spawner : MonoBehaviour
             spawnedRigidbody.isKinematic = true;
             spawnedItemModel.GetComponent<Collider>().enabled = false;
         }
+        spawnedTexture = objectRenders[randomNumber];
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,29 +44,9 @@ public class Spawner : MonoBehaviour
             {
                 other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
             }
-            if (spawnedItem.tag == "Teleportator")
-            {
-                GameObject.Find("Object").GetComponent<RawImage>().texture = teleporterTexture;
+            other.transform.parent.parent.Find("Interface(Clone)/Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
+            
 
-            }
-            else if(spawnedItem.tag == "IceGrenade")
-            {
-                GameObject.Find("Object").GetComponent<RawImage>().texture = iceGrenadeTexture;
-
-
-            }
-            else if (spawnedItem.tag == "SlowGrenade")
-            {
-                GameObject.Find("Object").GetComponent<RawImage>().texture = slowGrenadeTexture;
-
-
-            }
-            else if (spawnedItem.tag == "ImpulseGrenade")
-            {
-                GameObject.Find("Object").GetComponent<RawImage>().texture = impulseGrenadeTexture;
-
-
-            }
             Destroy(spawnedItemModel);
             spawnedItemModel = null;
             //SelectRandomItem();

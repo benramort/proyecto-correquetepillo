@@ -127,10 +127,11 @@ MonoBehaviour:
   - {fileID: 5903710437651274417, guid: c47f5919dbf332249a2c3bc79e23374a, type: 3}
   spawnedItem: {fileID: 0}
   spawnPoint: {fileID: 5543105883129522232}
-  teleporterTexture: {fileID: 2800000, guid: 622ec84f6b568964a8f79bb003e84234, type: 3}
-  iceGrenadeTexture: {fileID: 2800000, guid: 8accfe8428ca63e439b3520ffb585377, type: 3}
-  slowGrenadeTexture: {fileID: 2800000, guid: 3ead78c5ec728b244bcd84db974fae19, type: 3}
-  impulseGrenadeTexture: {fileID: 2800000, guid: 3b063dfd42f158443a40e75a0a7b8351, type: 3}
+  objectRenders:
+  - {fileID: 2800000, guid: 622ec84f6b568964a8f79bb003e84234, type: 3}
+  - {fileID: 2800000, guid: 3b063dfd42f158443a40e75a0a7b8351, type: 3}
+  - {fileID: 2800000, guid: 3ead78c5ec728b244bcd84db974fae19, type: 3}
+  - {fileID: 2800000, guid: 8accfe8428ca63e439b3520ffb585377, type: 3}
 --- !u!1 &6752803831025852007
 GameObject:
   m_ObjectHideFlags: 0

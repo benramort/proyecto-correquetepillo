@@ -21,21 +21,23 @@ public class PointManager : MonoBehaviour
     [SerializeField] private int points;
     private float timePassed;
     private Coroutine catchCoroutine;
-    private GameObject pointsText;
+    private TextMeshProUGUI pointsText;
 
     // Start is called before the first frame update
     void Start()
     {
-        pointsText = GameObject.Find("Points");
+        pointsText = transform.parent.parent.Find("Interface(Clone)").GetComponentInChildren<TextMeshProUGUI>();
         points = maxPoints;
+        animator = GetComponentInChildren<Animator>();
+        
         //isTarget = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        pointsText.GetComponent<TextMeshProUGUI>().text = points.ToString();
         ReducePoints();
+        pointsText.text = points.ToString();
     }
 
     private void ReducePoints()

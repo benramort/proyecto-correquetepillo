@@ -43,7 +43,9 @@ public class Launch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectImage = GameObject.Find("Object");
+        cam = transform.parent.parent.Find("Camera").gameObject;
+        objectImage = transform.parent.parent.parent.Find("Interface(Clone)/Panel/Object").gameObject;
+        Debug.Log("Foto: " + objectImage);
         launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas
         //Debug.Log(Physics.gravity);
@@ -93,7 +95,7 @@ public class Launch : MonoBehaviour
         lineRenderer.positionCount = segments;
         float skewUnit = skew /segments;
         Vector2 normalized = new Vector2(transform.forward.x, transform.forward.z).normalized;
-        Vector3 skewVector = new Vector3(skewUnit * normalized.y, 0, skewUnit*-normalized.x); //Más o menos
+        Vector3 skewVector = new Vector3(skewUnit * normalized.y, 0, skewUnit*-normalized.x); //Mï¿½s o menos
         //Vector3 skewVector = transform.forward ;
         //Debug.Log("Direction: "+transform.forward);
         //Debug.Log("Skew: "+skewVector);
@@ -118,30 +120,55 @@ public class Launch : MonoBehaviour
         //Debug.Log("Launch: "+ launchDirection);
     }
 
-    public void LaunchGrenade(InputAction.CallbackContext context)
+    //public void LaunchGrenade(InputAction.CallbackContext context) //Cambiar esto a dos funciones
+    //{
+    //    if (context.started && pocket != null)
+    //    {
+    //        animator.SetTrigger("aiming");
+    //        lineRenderer.enabled = true;
+    //        showLine = true;
+
+    //    }
+
+    //    if (context.canceled && pocket != null)
+    //    {
+    //        animator.ResetTrigger("aiming");
+    //        lineRenderer.enabled = false;
+    //        showLine = false;
+    //        //Debug.Log(launchDirection);
+    //        GameObject go = Instantiate(pocket);
+    //        pocket = null;
+    //        go.transform.position = launchpoint.position;
+    //        animator.SetTrigger("throw");
+    //        go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+    //        objectImage.GetComponent<RawImage>().texture = noObjectTexture;
+    //    }
+    //}
+
+    public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
-        if (context.started && pocket != null)
+        if (pocket != null)
         {
             animator.SetTrigger("aiming");
             lineRenderer.enabled = true;
             showLine = true;
-
         }
+    }
 
-        if (context.canceled && pocket != null)
+    public void LaunchGrenadeEnd(InputAction.CallbackContext context)
+    {
+        if (pocket != null)
         {
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
             showLine = false;
-            //Debug.Log(launchDirection);
+            Debug.Log(launchDirection);
             GameObject go = Instantiate(pocket);
             pocket = null;
             go.transform.position = launchpoint.position;
             animator.SetTrigger("throw");
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
             objectImage.GetComponent<RawImage>().texture = noObjectTexture;
-
-           
         }
     }
 }
