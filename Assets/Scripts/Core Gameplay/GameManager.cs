@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -135,6 +136,10 @@ public class GameManager : MonoBehaviour
                 players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
             }
         }
+        if(scene.name == "Podium")
+        {
+            players.Sort();
+        }
     }
 
     public void AddInterface()
@@ -173,7 +178,18 @@ public class GameManager : MonoBehaviour
         chrono = 0;
         Debug.Log("The game is over");
         //Poner los jugadores a 100 puntos
-        SceneManager.LoadScene("Movement");
+        SceneManager.LoadScene("Podium");
+        onGame = false;
+        foreach(GameObject player in players) 
+        {
+            player.GetComponentInChildren<Movement>().enabled = false;
+            player.GetComponentInChildren<PointManager>().enabled = false;
+            player.GetComponentInChildren<Launch>().enabled = false;
+            player.GetComponentInChildren<Camera>().gameObject.SetActive(false);
+            player.GetComponentInChildren<CinemachineFreeLook>().gameObject.SetActive(false);
+            player.GetComponentInChildren<PlayerInput>().enabled = false;
+
+        }
         Debug.Log(playerManager.players.Count);   
     }
 }
