@@ -1,35 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
-    private Vector3 respawnPosition;
-
+    private GameObject respawns;
+    public int pointsAdded;
     // Start is called before the first frame update
     void Start()
     {
-
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
+        Debug.Log("Respawns: " + respawns);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Grounded: " + this.GetComponent<Movement>().Grounded);
-        if (this.GetComponent<Movement>().Grounded == true)
+          
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "Map")
         {
-            respawnPosition = this.transform.position;
+            respawns = GameObject.Find("Respawners");
+
         }
     }
 
 
-
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Debo respawnear");
         if(other.gameObject.tag == "DeathZone")
         {
-            this.transform.position = respawnPosition;
-            this.GetComponent<PointManager>().points += 20;
+            this.GetComponent<Movement>().lerping = false;   
+            int randomRespawn = Random.Range(0, 3);
+            this.transform.position = respawns.transform.GetChild(randomRespawn).position;
+            this.GetComponent<PointManager>().points += pointsAdded;
         }
     }
 }

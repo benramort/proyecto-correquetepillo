@@ -352,6 +352,7 @@ MonoBehaviour:
   rotationSpeed: 1000
   jumpForce: 10
   lerpPercentage: 0.9
+  lerping: 1
 --- !u!114 &5290292453210588087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc6d397e193926419471d69abebbb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsAdded: 20
 --- !u!114 &-4443503146524201672
 MonoBehaviour:
   m_ObjectHideFlags: 0
