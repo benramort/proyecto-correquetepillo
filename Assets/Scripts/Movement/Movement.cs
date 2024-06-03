@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody physics;
     private bool grounded;
-    private bool correctCollision = false;
+    private List<Collider> correctColliders = new List<Collider>();
 
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
@@ -243,6 +243,7 @@ public class Movement : MonoBehaviour
         {
             if(collision.GetContact(0).normal.y > 0.9f)
             {
+                correctColliders.Add(collision.collider);
                 animator.SetTrigger("grounded");
                 Grounded = true;
             }
@@ -252,8 +253,9 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && Grounded)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && correctColliders.Contains(collision.collider))
         {
+            correctColliders.Remove(collision.collider);
             animator.ResetTrigger("grounded");
             Grounded = false;
         }
