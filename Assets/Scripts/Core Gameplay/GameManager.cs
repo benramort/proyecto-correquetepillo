@@ -146,6 +146,14 @@ public class GameManager : MonoBehaviour
                 players[i].GetComponentInChildren<Movement>().transform.position = spawners.transform.GetChild(i).position;
                 players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
                 players[i].GetComponentInChildren<Movement>().transform.rotation = spawners.transform.GetChild(i).rotation;
+                players[i].GetComponentInChildren<Rigidbody>().isKinematic = true;
+                Animator animator = players[i].GetComponentInChildren<Animator>();
+                animator.ResetTrigger("running");
+                animator.SetTrigger("grounded");
+                animator.ResetTrigger("aiming");
+                animator.ResetTrigger("throw");
+                animator.ResetTrigger("walkingBackwards");
+                animator.ResetTrigger("attack");
             }
         }
     }
