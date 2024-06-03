@@ -162,6 +162,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dad13dd6-a5d1-4ea8-b8a0-07e39511ccab",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d8b9c768-b74e-41ed-bccc-bbf9e2977229",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -208,6 +219,17 @@
                     "name": "",
                     "id": "a1ff90a6-02fc-486f-a6a4-479bba8ddc79",
                     "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "754d7d85-ca36-4111-830c-ac2d1acb4e61",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

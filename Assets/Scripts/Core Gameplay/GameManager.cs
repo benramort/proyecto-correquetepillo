@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
         if (instance == null)
         {
             instance = this;
@@ -41,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(gameObject);
 
         Application.targetFrameRate = desiredFramerate; //Igual sólo hay que usar uno de los dos
