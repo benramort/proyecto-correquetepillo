@@ -175,7 +175,7 @@ MonoBehaviour:
   cards:
   - {fileID: 2800000, guid: ead6ef37234005b40a5f5e775cd23524, type: 3}
   - {fileID: 2800000, guid: 7fa31df2de5842643afa7c2a375889ec, type: 3}
-  - {fileID: 2800000, guid: 7fa31df2de5842643afa7c2a375889ec, type: 3}
+  - {fileID: 2800000, guid: a4c30208e723d4c459bf60ffa77eeeb9, type: 3}
   deactivatedCard: {fileID: 0}
 --- !u!1 &66276200
 GameObject:
