@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
                 animator.ResetTrigger("throw");
                 animator.ResetTrigger("walkingBackwards");
                 animator.ResetTrigger("attack");
+                StartCoroutine(RestartGame());
             }
         }
     }
@@ -207,5 +208,16 @@ public class GameManager : MonoBehaviour
 
         }
         Debug.Log(playerManager.players.Count);   
+    }
+
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(10);
+        foreach(GameObject player in players)
+        {
+            Destroy(player);
+        }
+        SceneManager.LoadScene("MainMenu");
+        Destroy(this.gameObject);
     }
 }
