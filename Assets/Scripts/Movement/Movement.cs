@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
     private bool freeze;
     
-    private Vector3 velocity;
+    private Vector3 velocity = new Vector3(1f, 1f, 1f);
     private Vector3 previousPosition = new Vector3(0,0,0);
 
     [Header("Aerial Movement")]
