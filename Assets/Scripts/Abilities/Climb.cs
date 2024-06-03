@@ -15,6 +15,8 @@ public class Climb : MonoBehaviour
     void Start()
     {
         inputActionMap = GetComponentInParent<PlayerInput>().currentActionMap;
+        inputActionMap.FindAction("Jump").started += startClimbing;
+        inputActionMap.FindAction("Jump").canceled += endClimbing;
         physics = GetComponent<Rigidbody>();
 
     }
@@ -27,13 +29,13 @@ public class Climb : MonoBehaviour
 
     public void MoveClimbing()
     {
-        if (climb && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.7f))
+        if (climb && Physics.Raycast(raycastOrigin.transform.position, this.transform.forward, 0.9f))
         {
-            this.GetComponent<Climb>().enabled = true;
+            Debug.Log("Escalar");
             this.GetComponent<Movement>().enabled = false;
             physics.useGravity = false;
             Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-            Vector3 step = new Vector3(0.0f, axis.y * Time.deltaTime * climbingSpeed, 0.0f);
+            Vector3 step = new Vector3(0.0f, axis.y * Time.fixedDeltaTime * climbingSpeed, 0.0f);
             this.transform.Translate(step);
         }
         else
@@ -44,16 +46,26 @@ public class Climb : MonoBehaviour
 
     }
 
-    public void ClimbEvent(InputAction.CallbackContext context)
+    public void startClimbing(InputAction.CallbackContext context)
     {
-        if(context.started)
-        {
-            climb = true;
-        }
-        else if(context.canceled)
-        {
-            climb = false;
-        }
+        climb = true;
     }
+
+    public void endClimbing(InputAction.CallbackContext context)
+    {
+        climb = false;
+    }
+
+    //public void ClimbEvent(InputAction.CallbackContext context)
+    //{
+    //    if(context.started)
+    //    {
+    //        climb = true;
+    //    }
+    //    else if(context.canceled)
+    //    {
+    //        climb = false;
+    //    }
+    //}
 
 }
