@@ -7,7 +7,7 @@ public class RotationOfObjects : MonoBehaviour
     [SerializeField]
     private int rotationY = 1;
     [SerializeField]
-    private float speed = 150;
+    private float speed = 100;
     // Start is called before the first frame update
     void Start()
     {
