@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
                 animator.ResetTrigger("throw");
                 animator.ResetTrigger("walkingBackwards");
                 animator.ResetTrigger("attack");
-                StartCoroutine(RestartGame());
+                //StartCoroutine(RestartGame());
             }
         }
     }
@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
+        Debug.Log("Cerrar aplicación");
         Application.Quit();
     }
 }

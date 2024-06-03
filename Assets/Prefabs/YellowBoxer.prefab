@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3778d706e05a43b3824072142b7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPoints: 10
+  maxPoints: 100
   tickTime: 1
   catchArea: {fileID: 7898317610913861685}
   labelHolder: {fileID: 2725163003383658374}
