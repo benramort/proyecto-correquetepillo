@@ -162,6 +162,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cb4137a8-48bf-4bc5-8d84-0252da5b06bc",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d8b9c768-b74e-41ed-bccc-bbf9e2977229",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
