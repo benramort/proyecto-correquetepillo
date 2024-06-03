@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     public JumpDel jump;
 
     private Rigidbody physics;
-    private bool grounded;
+    private bool grounded = true;
     private List<Collider> correctColliders = new List<Collider>();
 
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour
 
     [Header("Aerial Movement")]
     [SerializeField] private float lerpPercentage;
+    public bool lerping = true;
 
     public bool Grounded { get => grounded; set => grounded = value; }
 
@@ -105,7 +106,7 @@ public class Movement : MonoBehaviour
 
         Vector2 temporalSpeed = new Vector3(axis.x * speed, axis.y * speed);
         
-        if (!grounded)
+        if (!grounded && lerping)
         {
             Vector3 localVelocity = transform.InverseTransformDirection(velocity); //Pasar la velocidad a coordenadas locales
             Vector2 targetSpeed = temporalSpeed;
@@ -243,6 +244,7 @@ public class Movement : MonoBehaviour
         {
             if(collision.GetContact(0).normal.y > 0.9f)
             {
+                lerping = true;
                 correctColliders.Add(collision.collider);
                 animator.SetTrigger("grounded");
                 Grounded = true;

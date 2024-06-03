@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Dash : MonoBehaviour, Ability
 {
+    private Movement movement;
     private Rigidbody physics;
     Coroutine coroutine;
     public float dashImpulse;
@@ -20,6 +21,7 @@ public class Dash : MonoBehaviour, Ability
     // Start is called before the first frame update
     void Start()
     {
+        movement = GetComponent<Movement>();
         physics = GetComponent<Rigidbody>();
         rawimage = transform.parent.parent.Find("Interface(Clone)/Panel/Ability").GetComponent<RawImage>();
         rawimage.texture = texture;
@@ -28,7 +30,7 @@ public class Dash : MonoBehaviour, Ability
 
     IEnumerator DashCoroutine()
     {
-        
+        movement.lerping = false;
         physics.AddForce(this.transform.forward * dashImpulse, ForceMode.Impulse);
         physics.drag = 3;
         yield return new WaitForSeconds(1);

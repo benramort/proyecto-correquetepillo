@@ -351,7 +351,7 @@ MonoBehaviour:
   speed: 7
   rotationSpeed: 1000
   jumpForce: 10
-  lerpPercentage: 0
+  lerpPercentage: 0.9
 --- !u!114 &5290292453210588087
 MonoBehaviour:
   m_ObjectHideFlags: 0

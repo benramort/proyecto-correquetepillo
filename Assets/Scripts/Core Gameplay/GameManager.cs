@@ -221,4 +221,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Destroy(this.gameObject);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
