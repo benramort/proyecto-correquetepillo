@@ -350,8 +350,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   speed: 7
   rotationSpeed: 1000
-  jumpForce: 10
+  jumpForce: 8
   lerpPercentage: 0.9
+  lerping: 1
 --- !u!114 &5853603116491375825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,8 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c43b8d3cf210a545bb8744096cb56ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 6
-  abilityTime: 0.8
+  multiplier: 3
+  abilityTime: 2
   cooldownTime: 20
   rawimage: {fileID: 0}
   texture: {fileID: 2800000, guid: 2ad4b6e3a9d7c23428c4616ee3dd9acd, type: 3}
@@ -463,7 +464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835f9ccbeb43f0a419dfcfcbfffd4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10
+  jumpForce: 8
+  movement: {fileID: 0}
 --- !u!1001 &1864007185766211251
 PrefabInstance:
   m_ObjectHideFlags: 0

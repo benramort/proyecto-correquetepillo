@@ -89,8 +89,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   speed: 7
   rotationSpeed: 1000
-  jumpForce: 10
+  jumpForce: 8
   lerpPercentage: 0.9
+  lerping: 1
 --- !u!114 &8590644077150835746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fd652190b696f49a9fb1b07fce050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10
+  jumpForce: 8
   coyoteTime: 2
 --- !u!114 &5759186530695856722
 MonoBehaviour:

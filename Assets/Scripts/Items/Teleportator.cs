@@ -14,6 +14,8 @@ public class Teleportator : Item
             sound = this.GetComponent<AudioSource>();
             sound.Play();
             thrower.transform.position = new Vector3(collision.GetContact(0).point.x, collision.GetContact(0).point.y + verticalOffset, collision.GetContact(0).point.z);
+            //thrower.GetComponent<Movement>().Grounded = true;
+            thrower.GetComponent<Movement>().lerping = false;
             StartCoroutine(DissapearCoroutine());
         }   
     }

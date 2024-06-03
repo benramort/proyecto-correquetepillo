@@ -350,8 +350,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   speed: 7
   rotationSpeed: 1000
-  jumpForce: 10
+  jumpForce: 8
   lerpPercentage: 0.9
+  lerping: 1
 --- !u!114 &5290292453210588087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3778d706e05a43b3824072142b7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPoints: 100
+  maxPoints: 10
   tickTime: 1
   catchArea: {fileID: 7898317610913861685}
   labelHolder: {fileID: 2725163003383658374}
@@ -444,8 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c43b8d3cf210a545bb8744096cb56ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 6
-  abilityTime: 0.8
+  multiplier: 3
+  abilityTime: 2
   cooldownTime: 20
   rawimage: {fileID: 0}
   texture: {fileID: 2800000, guid: 2ad4b6e3a9d7c23428c4616ee3dd9acd, type: 3}
@@ -465,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   climbingSpeed: 8
   raycastOrigin: {fileID: 1229283272981021920}
-  jumpForce: 10
+  jumpForce: 6
 --- !u!1001 &4693443659264454017
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,10 +10,11 @@ public class CoyoteTime : MonoBehaviour
     private float coyoteTimeCounter;
     private bool canCoyoteTime;
     private Rigidbody physics;
-    private bool grounded;
+    private Movement movement;
     // Start is called before the first frame update
     void Start()
     {
+        movement = GetComponent<Movement>();
         GetComponent<Movement>().jump = CoyoteJump;
         physics = this.GetComponent<Rigidbody>();
     }
@@ -21,7 +22,7 @@ public class CoyoteTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canCoyoteTime && !grounded)
+        if(canCoyoteTime && !movement.Grounded)
         {
             physics.useGravity = false;
             coyoteTimeCounter += Time.deltaTime;
@@ -38,10 +39,10 @@ public class CoyoteTime : MonoBehaviour
 
     public void CoyoteJump()
     {
-        Debug.Log("Salto");
-        Debug.Log("Grounded: " + grounded);
-        Debug.Log("CoyoteTime: " + canCoyoteTime);
-        if (grounded || canCoyoteTime)
+        //Debug.Log("Salto");
+        //Debug.Log("Grounded: " + grounded);
+        //Debug.Log("CoyoteTime: " + canCoyoteTime);
+        if (movement.Grounded || canCoyoteTime)
         {
             physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canCoyoteTime = false;
@@ -53,18 +54,11 @@ public class CoyoteTime : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            grounded = true;
-            canCoyoteTime = true;
-            coyoteTimeCounter = 0;
+            if (collision.GetContact(0).normal.y > 0.9)
+            {
+                canCoyoteTime = true;
+                coyoteTimeCounter = 0;
+            }
         }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            grounded = false;
-        }
-        
     }
 }
