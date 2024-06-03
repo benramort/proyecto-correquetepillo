@@ -217,6 +217,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player);
         }
+        players.Clear();
         SceneManager.LoadScene("MainMenu");
         Destroy(this.gameObject);
     }
