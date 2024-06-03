@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody physics;
     private bool grounded;
+    private bool correctCollision = false;
 
     private Vector2 jumpDirectionInput = new Vector2 (0,0);
     private Vector3 jumpDirectionForward = new Vector3 (0,0,0);
@@ -75,6 +76,7 @@ public class Movement : MonoBehaviour
         CalculateVelocity();
         //Debug.Log("Velocity: " + velocity);
         //transform.rotation = Quaternion.identity;
+        Debug.Log("Grounded: " + grounded);
     }
 
     private void manageHorizontalMovement()
@@ -239,19 +241,21 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            animator.SetTrigger("grounded");
-            Grounded = true;
-            speed = 8;
+            if(collision.GetContact(0).normal.y > 0.9f)
+            {
+                animator.SetTrigger("grounded");
+                Grounded = true;
+            }
+            
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && Grounded)
         {
             animator.ResetTrigger("grounded");
             Grounded = false;
-            //StartCoroutine(MovementInAirCoroutine());
         }
 
     }
