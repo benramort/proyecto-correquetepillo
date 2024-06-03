@@ -10,12 +10,13 @@ public class DobleJump : MonoBehaviour
     //public bool canJump = true;
 
     private Rigidbody physics;
-    private bool grounded;
     private bool canDoubleJump;
     public float jumpForce;
+    public Movement movement;
     // Start is called before the first frame update
     void Start()
     {
+        movement = GetComponent<Movement>();
         GetComponent<Movement>().jump = DoubleJump;
         //canJump = true;
         physics = this.GetComponent<Rigidbody>();
@@ -29,7 +30,7 @@ public class DobleJump : MonoBehaviour
 
     public void DoubleJump()
     {
-        if (grounded)
+        if (movement.Grounded)
         {
            physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
            canDoubleJump = true;
@@ -40,22 +41,5 @@ public class DobleJump : MonoBehaviour
             physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canDoubleJump = false;
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            grounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            grounded = false;
-        }
-        
     }
 }

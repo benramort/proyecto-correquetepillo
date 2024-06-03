@@ -142,11 +142,11 @@ public class GameManager : MonoBehaviour
             GameObject spawners = GameObject.Find("Positions");
             for (int i = 0; i < players.Count; i++)
             {
+                players[i].GetComponentInChildren<Rigidbody>().isKinematic = true;
                 players[i].transform.position = spawners.transform.GetChild(i).position;
                 players[i].GetComponentInChildren<Movement>().transform.position = spawners.transform.GetChild(i).position;
                 players[i].transform.rotation = spawners.transform.GetChild(i).rotation;
                 players[i].GetComponentInChildren<Movement>().transform.rotation = spawners.transform.GetChild(i).rotation;
-                players[i].GetComponentInChildren<Rigidbody>().isKinematic = true;
                 Animator animator = players[i].GetComponentInChildren<Animator>();
                 animator.ResetTrigger("running");
                 animator.SetTrigger("grounded");
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
                 animator.ResetTrigger("throw");
                 animator.ResetTrigger("walkingBackwards");
                 animator.ResetTrigger("attack");
-                StartCoroutine(RestartGame());
+                //StartCoroutine(RestartGame());
             }
         }
     }
@@ -199,11 +199,11 @@ public class GameManager : MonoBehaviour
         onGame = false;
         foreach(GameObject player in players) 
         {
+            player.GetComponentInChildren<Camera>().gameObject.SetActive(false);
+            player.GetComponentInChildren<CinemachineFreeLook>().gameObject.SetActive(false);
             player.GetComponentInChildren<Movement>().enabled = false;
             player.GetComponentInChildren<PointManager>().enabled = false;
             player.GetComponentInChildren<Launch>().enabled = false;
-            player.GetComponentInChildren<Camera>().gameObject.SetActive(false);
-            player.GetComponentInChildren<CinemachineFreeLook>().gameObject.SetActive(false);
             player.GetComponentInChildren<PlayerInput>().enabled = false;
 
         }
@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
+        Debug.Log("Cerrar aplicación");
         Application.Quit();
     }
 }
