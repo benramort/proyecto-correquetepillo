@@ -23,7 +23,7 @@ public class Dash : MonoBehaviour, Ability
     {
         movement = GetComponent<Movement>();
         physics = GetComponent<Rigidbody>();
-        rawimage = transform.parent.parent.Find("Interface(Clone)/Panel/Ability").GetComponent<RawImage>();
+        rawimage = transform.parent.parent.GetComponentInChildren<Canvas>().transform.Find("Panel/Ability").GetComponent<RawImage>();
         rawimage.texture = texture;
         rawimage.color = readyColor;
     }

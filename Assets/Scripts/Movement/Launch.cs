@@ -44,7 +44,7 @@ public class Launch : MonoBehaviour
     void Start()
     {
         cam = transform.parent.parent.Find("Camera").gameObject;
-        objectImage = transform.parent.parent.parent.Find("Interface(Clone)/Panel/Object").gameObject;
+        objectImage = transform.parent.parent.parent.GetComponentInChildren<Canvas>().gameObject;
         Debug.Log("Foto: " + objectImage);
         launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas

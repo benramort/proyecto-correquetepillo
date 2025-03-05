@@ -26,8 +26,10 @@ public class PointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Scripter").GetComponent<GameManager>();
-        pointsText = transform.parent.parent.Find("Interface(Clone)").GetComponentInChildren<TextMeshProUGUI>();
+        Debug.Log("hola");
+        //gameManager = GameObject.Find("Scripter").GetComponent<GameManager>(); Reactivar esto
+        pointsText = transform.parent.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
+        Debug.Log("pointsText: " + pointsText);
         points = maxPoints;
         animator = GetComponentInChildren<Animator>();
         
@@ -62,7 +64,7 @@ public class PointManager : MonoBehaviour
         }
         if (points <= 0)
         {
-            gameManager.EndGame(gameObject);
+            gameManager?.EndGame(gameObject);
         }
     }
 
