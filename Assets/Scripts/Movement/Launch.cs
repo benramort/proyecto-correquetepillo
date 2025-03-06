@@ -44,8 +44,7 @@ public class Launch : MonoBehaviour
     void Start()
     {
         cam = transform.parent.parent.Find("Camera").gameObject;
-        objectImage = transform.parent.parent.parent.GetComponentInChildren<Canvas>().gameObject;
-        Debug.Log("Foto: " + objectImage);
+        objectImage = transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").gameObject;
         launchDirection = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z - cam.transform.position.z);
         defaulHeight = launchDirection.y; //Esto no funciona cuando saltas
         //Debug.Log(Physics.gravity);
@@ -168,6 +167,7 @@ public class Launch : MonoBehaviour
             go.transform.position = launchpoint.position;
             animator.SetTrigger("throw");
             go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+            Debug.Log("Hola" + objectImage);
             objectImage.GetComponent<RawImage>().texture = noObjectTexture;
         }
     }
