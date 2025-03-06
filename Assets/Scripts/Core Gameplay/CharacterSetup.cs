@@ -18,5 +18,6 @@ public class CharacterSetup : MonoBehaviour
         input.actions.FindAction("Launch").started += player.GetComponentInChildren<Launch>().LauchGrenadeStart;
         input.actions.FindAction("Launch").canceled += player.GetComponentInChildren<Launch>().LaunchGrenadeEnd;
         input.actions.FindAction("Hability").performed += player.GetComponentInChildren<Ability>().UseAbility;
+        player.GetComponentInChildren<InputHandler>().horizontal = input.actions.FindAction("Camera");
     }
 }
