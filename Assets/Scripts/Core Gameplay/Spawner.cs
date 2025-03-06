@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
             {
                 other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
             }
-            other.transform.parent.parent.Find("Interface(Clone)/Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
+            other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
             
 
             Destroy(spawnedItemModel);
