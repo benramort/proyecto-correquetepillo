@@ -13,7 +13,6 @@ public class InputHandler : MonoBehaviour, AxisState.IInputAxisProvider
 
     public float GetAxisValue(int axis)
     {
-        Debug.Log(horizontal.ReadValue<Vector2>().x);
         switch (axis)
         {
             case 0:

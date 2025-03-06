@@ -77,7 +77,7 @@ public class Movement : MonoBehaviour
         CalculateVelocity();
         //Debug.Log("Velocity: " + velocity);
         //transform.rotation = Quaternion.identity;
-        Debug.Log("Grounded: " + grounded);
+        //Debug.Log("Grounded: " + grounded);
     }
 
     private void manageHorizontalMovement()
@@ -187,6 +187,8 @@ public class Movement : MonoBehaviour
     {
         if (context.performed && slowed == 0 && onIce == 0)
         {
+            Debug.Log("Jump1");
+            Debug.Log(jump);
             jump();
         }
     }

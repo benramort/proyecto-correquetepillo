@@ -42,6 +42,7 @@ public class CoyoteTime : MonoBehaviour
         //Debug.Log("Salto");
         //Debug.Log("Grounded: " + grounded);
         //Debug.Log("CoyoteTime: " + canCoyoteTime);
+
         if (movement.Grounded || canCoyoteTime)
         {
             physics.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
