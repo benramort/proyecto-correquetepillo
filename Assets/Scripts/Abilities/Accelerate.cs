@@ -21,7 +21,7 @@ public class Accelerate : MonoBehaviour, Ability
     void Start()
     {
         movement = GetComponent<Movement>();
-        rawimage = transform.parent.parent.Find("Interface(Clone)/Panel/Ability").GetComponent<RawImage>();
+        rawimage = transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Ability").GetComponent<RawImage>();
         rawimage.texture = texture;
         rawimage.color = readyColor;
     }
