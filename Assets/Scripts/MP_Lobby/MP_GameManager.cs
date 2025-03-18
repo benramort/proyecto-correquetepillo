@@ -14,6 +14,7 @@ public class MP_GameManager : NetworkBehaviour
     [SerializeField] GameObject PlayerSelectPanel;
 
     private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0);
+  
 
     public override void OnNetworkSpawn()
     {
@@ -34,6 +35,8 @@ public class MP_GameManager : NetworkBehaviour
                 PlayerSelectPanel.SetActive(false);
             }
         };
+
+       
 
         base.OnNetworkSpawn();
     }
