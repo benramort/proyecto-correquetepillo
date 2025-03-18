@@ -24,9 +24,9 @@ public class MyNetworkManager : MonoBehaviour
         //Start host
         NetworkManager.Singleton.StartHost();
 
-        FullGameManager.INSTANCE.gameState = FullGameManager.GAME_STATE.PlayerSelection;
-        NetworkManager.Singleton.SceneManager.LoadScene(
-            FullGameManager.INSTANCE.gameState.ToString(),LoadSceneMode.Single);
+        //FullGameManager.INSTANCE.gameState = FullGameManager.GAME_STATE.PlayerSelection;
+        //NetworkManager.Singleton.SceneManager.LoadScene(
+        //    FullGameManager.INSTANCE.gameState.ToString(),LoadSceneMode.Single);
 
 
 

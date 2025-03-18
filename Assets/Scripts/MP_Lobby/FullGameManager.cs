@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class FullGameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject[] playerPrefabs;
+    private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
@@ -95,8 +96,10 @@ public class FullGameManager : NetworkBehaviour
 
     public void GoToGame()
     {
-        ulong localclientID = NetworkManager.Singleton.LocalClientId;
-        GoToGameRpc(localclientID);
+
+            ulong localclientID = NetworkManager.Singleton.LocalClientId;
+            GoToGameRpc(localclientID);
+   
     }
 
     [Rpc(SendTo.Server)]

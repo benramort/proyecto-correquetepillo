@@ -11,7 +11,7 @@ public class CantidadDeJugadoresEnCola : MonoBehaviour
     void Update()
     {
 
-        panelCant.text =(NetworkManager.Singleton.ConnectedClients.Count.ToString()+"/4");
+        //panelCant.text =(NetworkManager.Singleton.ConnectedClients.Count.ToString()+"/4");
 
     }
 }
