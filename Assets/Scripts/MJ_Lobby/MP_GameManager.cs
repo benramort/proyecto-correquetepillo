@@ -10,6 +10,8 @@ public class MP_GameManager : NetworkBehaviour
 
     [SerializeField] TextMeshProUGUI connectionText;
     [SerializeField] TextMeshProUGUI playerInGameText;
+    [SerializeField] GameObject waitingForPlayersPanel;
+    [SerializeField] GameObject PlayerSelectPanel;
 
     private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0);
 
@@ -20,8 +22,17 @@ public class MP_GameManager : NetworkBehaviour
 
         playersInGame.OnValueChanged += (precious, next) =>
         {
-            playerInGameText.text = "Players in game: " + playersInGame.Value.ToString();
-
+            playerInGameText.text = playersInGame.Value.ToString()+ "/4";
+            if(playersInGame.Value == 4)
+            {
+                waitingForPlayersPanel.SetActive(false);
+                PlayerSelectPanel.SetActive(true);
+            }
+            else
+            {
+                waitingForPlayersPanel.SetActive(true);
+                PlayerSelectPanel.SetActive(false);
+            }
         };
 
         base.OnNetworkSpawn();
