@@ -5,7 +5,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : NetworkBehaviour
+public class MP_GameManager : NetworkBehaviour
 {
 
     [SerializeField] TextMeshProUGUI connectionText;
