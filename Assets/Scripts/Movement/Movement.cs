@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public enum FreezeType { FALLFREEZE, CATCHFREEZE };
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
     public delegate void JumpDel();
     private Animator animator;
 
-    InputActionMap inputActionMap;
+    [SerializeField]  InputActionMap inputActionMap;
     public GameObject cam;
     public float speed;
     public float rotationSpeed;
@@ -45,9 +46,8 @@ public class Movement : MonoBehaviour
     //For ice
     public int onIce { get; set; } = 0;
     //public GameObject camera;
-    void Start()
+    public override void OnNetworkSpawn()
     {
-        //canJump = true;
         cam = transform.parent.Find("Camera").gameObject;
         animator = gameObject.GetComponentInChildren<Animator>();
         if (GetComponent<DobleJump>() == null && GetComponent<CoyoteTime>() == null)
@@ -55,8 +55,11 @@ public class Movement : MonoBehaviour
             jump = BasicJump;
         }
         
+        //Esta linea falla en multi
         inputActionMap = transform.parent.parent.GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
+        Debug.Log("Spawned: " + gameObject.name + " - " + IsOwner);
+        base.OnNetworkSpawn();
     }
 
     // Update is called once per frame
@@ -82,7 +85,9 @@ public class Movement : MonoBehaviour
 
     private void manageHorizontalMovement()
     {
+        if (!IsOwner) return;
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
+        axis = new Vector2(0, 1);
         if (axis.y > 0.1 || axis.x > 0.1 || axis.x < -0.1)
         {
             animator.ResetTrigger("walkingBackwards");
@@ -123,6 +128,9 @@ public class Movement : MonoBehaviour
 
         Vector3 step = new Vector3(Time.fixedDeltaTime * temporalSpeed.x, 0.0f, Time.fixedDeltaTime * temporalSpeed.y);
         this.transform.Translate(step);
+
+        
+
         //transform.position += transform.forward;
         //Debug.Log(step);
         //physics.velocity = new Vector3(temporalSpeed.x, physics.velocity.y, temporalSpeed.y);
@@ -141,6 +149,7 @@ public class Movement : MonoBehaviour
 
     private void manageCamera()
     {
+        if (!IsOwner) return;
         //Debug.Log("asfdaf");
         Vector3 viewDirection = new Vector3(this.transform.position.x - cam.transform.position.x, 0, this.transform.position.z - cam.transform.position.z);
         viewDirection = viewDirection.normalized;

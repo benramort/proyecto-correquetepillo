@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Podium.unity
     guid: c6a580785939f6b48838f2de30e51810
   - enabled: 1
+    path: Assets/Scenes/OnlineMultiplayer.unity
+    guid: a4010aa94a035194f8e76a420212b571
+  - enabled: 1
     path: Assets/Scenes/MainMenu_Lobby.unity
     guid: 840ad343d35d9324d9d07acf594279fc
   m_configObjects: {}

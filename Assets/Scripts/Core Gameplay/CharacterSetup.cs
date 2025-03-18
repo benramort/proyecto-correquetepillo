@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
-public class CharacterSetup : MonoBehaviour
+public class CharacterSetup :  NetworkBehaviour
 {
 
     [SerializeField] private PlayerInput input;
+    [SerializeField] private List<GameObject> objectsToDestroy;
 
     // Start is called before the first frame update
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+        if (!IsOwner)
+        {
+            objectsToDestroy.ForEach(obj => Destroy(obj));
+            return;
+        }
         GameObject player = gameObject;
         input.actions.FindAction("Jump").performed += player.GetComponentInChildren<Movement>().Jump;
         input.actions.FindAction("Catch").performed += player.GetComponentInChildren<PointManager>().Catch;
