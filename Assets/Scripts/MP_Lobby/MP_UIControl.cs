@@ -26,12 +26,12 @@ public class MP_UIControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        fullGameManager = FullGameManager.INSTANCE;
         playerInput = transform.parent.GetComponent<PlayerInput>();
-        //Debug.Log("Player index: " + playerInput.playerIndex);
+        Debug.Log("Player index: " + playerInput.playerIndex);
         playerInput.SwitchCurrentActionMap("UI");
-        Debug.Log(playerInput.playerIndex);
+        playerInput.actions.Enable();
       
         //selfPanel.GetComponent<Image>().color = Color.blue;
         image = selfPanel.transform.Find("Cardholder").GetComponentInChildren<RawImage>();

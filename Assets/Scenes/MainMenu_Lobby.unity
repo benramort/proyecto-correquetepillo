@@ -296,7 +296,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ead6ef37234005b40a5f5e775cd23524, type: 3}
   - {fileID: 2800000, guid: 7fa31df2de5842643afa7c2a375889ec, type: 3}
   - {fileID: 2800000, guid: a4c30208e723d4c459bf60ffa77eeeb9, type: 3}
-  deactivatedCard: {fileID: 0}
+  deactivatedCard: {fileID: 2800000, guid: a87fe82701ab50248ab31f02c96cc413, type: 3}
 --- !u!1 &238347386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1397,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054946764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1538,6 +1538,7 @@ GameObject:
   - component: {fileID: 1073191405}
   - component: {fileID: 1073191407}
   - component: {fileID: 1073191406}
+  - component: {fileID: 1073191408}
   m_Layer: 5
   m_Name: Panel_SelecConnect
   m_TagString: Untagged
@@ -1605,6 +1606,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073191404}
   m_CullTransparentMesh: 1
+--- !u!114 &1073191408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073191404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccfc27816d03045a4970ddaf7d73c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstButton: {fileID: 1694028889}
 --- !u!1 &1077304782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,8 +1766,9 @@ GameObject:
   - component: {fileID: 1115650461}
   - component: {fileID: 1115650459}
   - component: {fileID: 1115650460}
+  - component: {fileID: 1115650462}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LobbyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1796,6 +1811,7 @@ MonoBehaviour:
   playerInGameText: {fileID: 1077304784}
   waitingForPlayersPanel: {fileID: 1884694315}
   PlayerSelectPanel: {fileID: 1723218992}
+  PlayerSelectionControls: {fileID: 4586369348387243305}
 --- !u!4 &1115650461
 Transform:
   m_ObjectHideFlags: 0
@@ -1811,6 +1827,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1115650462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115650458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcf0cc90947356498e9012ff045f23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefabs: []
+  gameState: 1
 --- !u!1 &1123485362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,7 +2066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1370853473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2069,7 +2099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370853472}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
@@ -2381,7 +2411,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621332974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2795,7 +2825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1723218993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,6 +2877,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 861134356}
+  - {fileID: 3075311601884344643}
   m_Father: {fileID: 944728982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3381,6 +3412,7 @@ GameObject:
   - component: {fileID: 1884694316}
   - component: {fileID: 1884694318}
   - component: {fileID: 1884694317}
+  - component: {fileID: 1884694319}
   m_Layer: 5
   m_Name: Panel_Espera
   m_TagString: Untagged
@@ -3449,6 +3481,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884694315}
   m_CullTransparentMesh: 1
+--- !u!114 &1884694319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884694315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ccfc27816d03045a4970ddaf7d73c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstButton: {fileID: 41730695}
 --- !u!114 &394361527586139816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3540,8 +3585,8 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+      - m_Target: {fileID: 8261143493569017780}
+        m_TargetAssemblyTypeName: MP_UIControl, Assembly-CSharp
         m_MethodName: MoveLeft
         m_Mode: 0
         m_Arguments:
@@ -3556,8 +3601,8 @@ MonoBehaviour:
     m_ActionName: UI/MoveLeft[/Keyboard/a]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+      - m_Target: {fileID: 8261143493569017780}
+        m_TargetAssemblyTypeName: MP_UIControl, Assembly-CSharp
         m_MethodName: MoveRight
         m_Mode: 0
         m_Arguments:
@@ -3572,8 +3617,8 @@ MonoBehaviour:
     m_ActionName: UI/MoveRight[/Keyboard/d,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIControl, Assembly-CSharp
+      - m_Target: {fileID: 8261143493569017780}
+        m_TargetAssemblyTypeName: MP_UIControl, Assembly-CSharp
         m_MethodName: Submit
         m_Mode: 0
         m_Arguments:
@@ -3586,7 +3631,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: af5b17fb-d8d2-4560-965d-9b9b26014f78
     m_ActionName: UI/Jdafd[/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
@@ -3599,13 +3644,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4586369348387243305}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8261143493569017779}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1723218995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4586369348387243305
 GameObject:
@@ -3649,7 +3694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4758388116046466898}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3669,7 +3714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfPanel: {fileID: 861134355}
-  fullGameManager: {fileID: 0}
+  fullGameManager: {fileID: 1115650462}
   cards:
   - {fileID: 2800000, guid: ead6ef37234005b40a5f5e775cd23524, type: 3}
   - {fileID: 2800000, guid: 7fa31df2de5842643afa7c2a375889ec, type: 3}
@@ -3689,4 +3734,3 @@ SceneRoots:
   - {fileID: 56053516}
   - {fileID: 965933237}
   - {fileID: 1115650461}
-  - {fileID: 3075311601884344643}

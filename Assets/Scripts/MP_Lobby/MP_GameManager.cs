@@ -12,6 +12,7 @@ public class MP_GameManager : NetworkBehaviour
     [SerializeField] TextMeshProUGUI playerInGameText;
     [SerializeField] GameObject waitingForPlayersPanel;
     [SerializeField] GameObject PlayerSelectPanel;
+    [SerializeField] GameObject PlayerSelectionControls;
 
     private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0);
   
@@ -28,6 +29,7 @@ public class MP_GameManager : NetworkBehaviour
             {
                 waitingForPlayersPanel.SetActive(false);
                 PlayerSelectPanel.SetActive(true);
+                PlayerSelectionControls.SetActive(true);
             }
             else
             {
