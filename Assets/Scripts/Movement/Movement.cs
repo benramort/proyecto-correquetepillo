@@ -58,7 +58,7 @@ public class Movement : NetworkBehaviour
         //Esta linea falla en multi
         inputActionMap = transform.parent.parent.GetComponent<PlayerInput>().actions.FindActionMap("Player");
         physics = GetComponent<Rigidbody>();
-        Debug.Log("Spawned: " + gameObject.name + " - " + IsOwner);
+        //Debug.Log("Spawned: " + gameObject.name + " - " + IsOwner);
         base.OnNetworkSpawn();
     }
 
