@@ -9,6 +9,7 @@ public class CharacterSetup :  NetworkBehaviour
 {
 
     [SerializeField] private PlayerInput input;
+    [SerializeField] private InputActionAsset inputActionAsset;
     [SerializeField] private List<GameObject> objectsToDestroy;
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class CharacterSetup :  NetworkBehaviour
             return;
         }
         GameObject player = gameObject;
+        input.actions = inputActionAsset;
         input.actions.FindAction("Jump").performed += player.GetComponentInChildren<Movement>().Jump;
         input.actions.FindAction("Catch").performed += player.GetComponentInChildren<PointManager>().Catch;
         input.actions.FindAction("Launch").started += player.GetComponentInChildren<Launch>().LauchGrenadeStart;

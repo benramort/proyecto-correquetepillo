@@ -1186,6 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 1786990323790049612}
+  inputActionAsset: {fileID: -944628639613478452, guid: 04c2a6fc3a2839843bcaced430a66e70, type: 3}
   objectsToDestroy:
   - {fileID: 8033300300569612740}
   - {fileID: 2584503999895900077}
@@ -1336,6 +1337,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2444787407324810920}
     m_Modifications:
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Id
+      value: 1eb23b55-4039-4924-8fc0-f63b708f5229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Bindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[0].m_Id
+      value: ff5f5724-2322-4523-b39c-8763fa3b87c5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[1].m_Id
+      value: 175a12da-cae6-4f45-bc91-cda36af035c2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Bindings.Array.data[0].m_Id
+      value: 3ff21da9-7c94-45e0-9bbc-254ad69fb803
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Bindings.Array.data[1].m_Id
+      value: d294c603-595e-4fc6-a144-5e3f5c41b80b
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[0].m_Name
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[0].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[1].m_Name
+      value: New action1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[1].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Bindings.Array.data[0].m_Action
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Bindings.Array.data[1].m_Action
+      value: New action1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[0].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676870018247788994, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
+      propertyPath: inputActionMap.m_Actions.Array.data[1].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8362510438114321699, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
       propertyPath: m_Name
       value: YellowBoxer

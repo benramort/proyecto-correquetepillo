@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456853888529769742}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015126799, y: -0.87563586, z: 0.47381964, w: -0.0923475}
+  m_LocalRotation: {x: 0.0151268, y: -0.8756359, z: 0.47381955, w: -0.09234745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -311,6 +311,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 41cf523b-a7db-4d8e-b478-a50850295a39
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4d3a575-a65e-4cd3-b205-62de17c11c56
+    m_ActionName: UI/MoveLeft[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ca5bc23a-7e33-42d8-8470-6fabca3308e9
+    m_ActionName: UI/MoveRight[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af5b17fb-d8d2-4560-965d-9b9b26014f78
+    m_ActionName: UI/NewSubmit[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -378,10 +390,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5620425846f7e94e89f0dea50bb9d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActionMap:
+    m_Name: Input
+    m_Id: e18551b3-7ba7-4655-9c3c-45bc024954b7
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
   cam: {fileID: 2104768944024665290}
   speed: 6
   rotationSpeed: 1000
   jumpForce: 1
+  lerpPercentage: 0
+  lerping: 1
 --- !u!114 &4185591989927114800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,8 +418,8 @@ MonoBehaviour:
   tickTime: 1
   catchArea: {fileID: 8706555412905558997}
   labelHolder: {fileID: 2244197947042251451}
+  animator: {fileID: 0}
   _isTarget: 0
-  points: 0
 --- !u!114 &782087945570134164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 7.5
+  movement: {fileID: 0}
 --- !u!114 &5710880313235875676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +449,10 @@ MonoBehaviour:
   multiplier: 6
   abilityTime: 2
   cooldownTime: 10
+  rawimage: {fileID: 0}
+  texture: {fileID: 0}
+  readyColor: {r: 0, g: 0, b: 0, a: 0}
+  usedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2104768944024665290
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pocket: {fileID: 0}
+  animator: {fileID: 0}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 3521631059005621946}
   cam: {fileID: 2104768944024665290}
@@ -911,6 +937,7 @@ MonoBehaviour:
   puntosObjeto: []
   lineRenderer: {fileID: 7096013621359584937}
   skew: 0.2
+  noObjectTexture: {fileID: 0}
 --- !u!120 &7096013621359584937
 LineRenderer:
   serializedVersion: 2
@@ -1167,7 +1194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4357250995353976014}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010818187, y: -0.8526666, z: 0.5140067, w: -0.092950806}
+  m_LocalRotation: {x: 0.010818188, y: -0.8526666, z: 0.5140066, w: -0.09295074}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1404,7 +1431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5674587790251765179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010818183, y: -0.8526666, z: 0.5140067, w: -0.09295077}
+  m_LocalRotation: {x: 0.010818188, y: -0.8526666, z: 0.5140066, w: -0.09295074}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

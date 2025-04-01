@@ -87,7 +87,7 @@ public class Movement : NetworkBehaviour
     {
         if (!IsOwner) return;
         Vector2 axis = inputActionMap.FindAction("HorizontalMovement").ReadValue<Vector2>();
-        axis = new Vector2(0, 1);
+        //axis = new Vector2(0, 1);
         if (axis.y > 0.1 || axis.x > 0.1 || axis.x < -0.1)
         {
             animator.ResetTrigger("walkingBackwards");
