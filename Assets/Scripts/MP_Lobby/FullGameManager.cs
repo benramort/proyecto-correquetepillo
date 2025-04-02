@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class FullGameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject[] playerPrefabs;
+    [SerializeField] private MP_GameManager MPgameManager;
     private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
@@ -105,6 +106,7 @@ public class FullGameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void GoToGameRpc(ulong clientId)
     {
+        Debug.Log("Se ha llamado al GoToGAmeRCP. Con "+MPgameManager.getPlayerAmmountToPlay()+" jugadores");
         for (int i = 0; i < playerDataList.Count; i++)
         {
             if (playerDataList[i].clientId == clientId)
@@ -120,8 +122,10 @@ public class FullGameManager : NetworkBehaviour
 
         }
 
-        if (NetworkManager.ConnectedClientsList.Count>1 && playerDataList.Count>1)
-        {
+        if (playerDataList.Count < MPgameManager.getPlayerAmmountToPlay()) return;
+
+        
+
             bool allready = true;
 
             for(int i=0; i<playerDataList.Count;i++)
@@ -131,17 +135,19 @@ public class FullGameManager : NetworkBehaviour
                     allready = false;
                     break;
                 }
+
             }
 
             if(allready)
             {
-                NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
+            Debug.Log("Se ha intentado cambiar de escena");
+               //NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
                 NetworkManager.Singleton.SceneManager.LoadScene(
-                    GAME_STATE.MainScene.ToString(),
+                    "TestScene",
                     LoadSceneMode.Single);
             }
 
-        }
+        
 
     }
 

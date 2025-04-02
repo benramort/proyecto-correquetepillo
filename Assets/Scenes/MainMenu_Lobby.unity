@@ -1807,11 +1807,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e197606974867e4590ea7048bd6155a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionText: {fileID: 0}
+  connectionText: {fileID: 1077304784}
   playerInGameText: {fileID: 1077304784}
   waitingForPlayersPanel: {fileID: 1884694315}
   PlayerSelectPanel: {fileID: 1723218992}
   PlayerSelectionControls: {fileID: 4586369348387243305}
+  playerAmmount: 2
 --- !u!4 &1115650461
 Transform:
   m_ObjectHideFlags: 0
@@ -1840,6 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabs: []
+  MPgameManager: {fileID: 1115650460}
   gameState: 1
 --- !u!1 &1123485362
 GameObject:

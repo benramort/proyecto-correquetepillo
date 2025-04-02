@@ -13,6 +13,7 @@ public class MP_GameManager : NetworkBehaviour
     [SerializeField] GameObject waitingForPlayersPanel;
     [SerializeField] GameObject PlayerSelectPanel;
     [SerializeField] GameObject PlayerSelectionControls;
+    [SerializeField] int playerAmmount = 4;
 
     private NetworkVariable<int> playersInGame = new NetworkVariable<int>(0);
   
@@ -24,8 +25,8 @@ public class MP_GameManager : NetworkBehaviour
 
         playersInGame.OnValueChanged += (precious, next) =>
         {
-            playerInGameText.text = playersInGame.Value.ToString()+ "/4";
-            if(playersInGame.Value == 4)
+            playerInGameText.text = playersInGame.Value.ToString()+ "/" +playerAmmount;
+            if(playersInGame.Value == playerAmmount)
             {
                 waitingForPlayersPanel.SetActive(false);
                 PlayerSelectPanel.SetActive(true);
@@ -49,7 +50,7 @@ public class MP_GameManager : NetworkBehaviour
         if(IsServer)
         {
             playersInGame.Value = NetworkManager.Singleton.ConnectedClients.Count;
-            updateClientIdRpc(clientID, RpcTarget.Single(clientID, RpcTargetUse.Temp));
+            //updateClientIdRpc(clientID, RpcTarget.Single(clientID, RpcTargetUse.Temp));
         }
 
 
@@ -81,5 +82,10 @@ public class MP_GameManager : NetworkBehaviour
     void Update()
     {
         
+    }
+
+    public int getPlayerAmmountToPlay()
+    {
+        return playerAmmount;
     }
 }
