@@ -141,8 +141,8 @@ public class FullGameManager : NetworkBehaviour
             if(allready)
             {
             Debug.Log("Se ha intentado cambiar de escena");
-               //NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
-                NetworkManager.Singleton.SceneManager.LoadScene(
+               NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
+               NetworkManager.Singleton.SceneManager.LoadScene(
                     "TestScene",
                     LoadSceneMode.Single);
             }
@@ -153,12 +153,19 @@ public class FullGameManager : NetworkBehaviour
 
     private void GameSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        gameState = GAME_STATE.MainScene;
-
-        foreach(PlayerData playerData in playerDataList)
+        if (IsServer)
         {
-            GameObject playerGo = Instantiate(playerPrefabs[playerData.playerType]);
-            playerGo.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerData.clientId, true);
+            gameState = GAME_STATE.MainScene;
+            Debug.Log("Cantidad de player en lista " + playerDataList.Count);
+            foreach (PlayerData playerData in playerDataList)
+            {
+                Debug.Log($"{playerData.clientId} is loaded");
+                Debug.Log("Playertypr:" + playerData.playerType);
+
+                //GameObject playerGo = Instantiate(playerPrefabs[playerData.playerType]);
+                //playerGo.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerData.clientId, true);
+            }
         }
+
     }
 }
