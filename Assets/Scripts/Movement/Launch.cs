@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class Launch : MonoBehaviour
+public class Launch : NetworkBehaviour
 {
     public GameObject pocket;
     public Animator animator;
@@ -39,6 +40,17 @@ public class Launch : MonoBehaviour
     //private GameObject puntazo;
     private bool showLine = false;
     private GameObject objectImage;
+
+    [Space(20)]
+    [SerializeField] private GameObject spawnedItemPrefab;
+    private List<NetworkObject> itemList;
+    private GameObject spawnedObject;
+
+    public override void OnNetworkSpawn()
+    {
+        itemList = new List<NetworkObject>();
+        base.OnNetworkSpawn();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -156,19 +168,39 @@ public class Launch : MonoBehaviour
 
     public void LaunchGrenadeEnd(InputAction.CallbackContext context)
     {
+        if(!IsOwner)
+        {
+            return;
+        }
         if (pocket != null)
         {
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
             showLine = false;
-            Debug.Log(launchDirection);
-            GameObject go = Instantiate(pocket);
-            pocket = null;
-            go.transform.position = launchpoint.position;
-            animator.SetTrigger("throw");
-            go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
-            Debug.Log("Hola" + objectImage);
-            objectImage.GetComponent<RawImage>().texture = noObjectTexture;
+            LaunchItemRpc();
+            //animator.ResetTrigger("aiming");
+            //lineRenderer.enabled = false;
+            //showLine = false;
+            //Debug.Log(launchDirection);
+            //GameObject go = Instantiate(pocket);
+            //pocket = null;
+            //go.transform.position = launchpoint.position;
+            //animator.SetTrigger("throw");
+            //go.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+            //Debug.Log("Hola" + objectImage);
+            //objectImage.GetComponent<RawImage>().texture = noObjectTexture;
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void LaunchItemRpc(RpcParams rpcParams = new RpcParams())
+    {
+
+        NetworkObject spawnedNetworkObject = NetworkObjectPool.Singleton.GetNetworkObject(pocket, launchpoint.position, Quaternion.identity);
+        spawnedNetworkObject.SpawnWithOwnership(rpcParams.Receive.SenderClientId);
+        spawnedNetworkObject.transform.position = launchpoint.position;
+        itemList.Add(spawnedNetworkObject);
+
+        spawnedNetworkObject.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
     }
 }
