@@ -9,7 +9,6 @@ public class FullGameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private MP_GameManager MPgameManager;
-    private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
@@ -63,6 +62,13 @@ public class FullGameManager : NetworkBehaviour
     public GAME_STATE gameState;
 
     public static FullGameManager INSTANCE { get; private set; }
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+        Debug.Log("OnNetworkSpawn");
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
+    }
 
     private void Awake()
     {
@@ -126,26 +132,24 @@ public class FullGameManager : NetworkBehaviour
 
         
 
-            bool allready = true;
+        bool allready = true;
 
-            for(int i=0; i<playerDataList.Count;i++)
+        for(int i=0; i<playerDataList.Count;i++)
+        {
+            if (!playerDataList[i].isReady)
             {
-                if (!playerDataList[i].isReady)
-                {
-                    allready = false;
-                    break;
-                }
-
+                allready = false;
+                break;
             }
 
-            if(allready)
-            {
-            Debug.Log("Se ha intentado cambiar de escena");
-               NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
-               NetworkManager.Singleton.SceneManager.LoadScene(
+        }
+
+        if(allready)
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(
                     "TestScene",
                     LoadSceneMode.Single);
-            }
+        }
 
         
 
@@ -153,19 +157,15 @@ public class FullGameManager : NetworkBehaviour
 
     private void GameSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        if (IsServer)
+        if (clientId == NetworkManager.ServerClientId)
         {
-            gameState = GAME_STATE.MainScene;
-            Debug.Log("Cantidad de player en lista " + playerDataList.Count);
-            foreach (PlayerData playerData in playerDataList)
-            {
-                Debug.Log($"{playerData.clientId} is loaded");
-                Debug.Log("Playertypr:" + playerData.playerType);
-
-                //GameObject playerGo = Instantiate(playerPrefabs[playerData.playerType]);
-                //playerGo.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerData.clientId, true);
-            }
+            SpawnCharacters();
         }
+
+    }
+
+    private void SpawnCharacters()
+    {
 
     }
 }

@@ -9,6 +9,7 @@ namespace OnlineMultiplayer
     {
         public override void OnNetworkSpawn()
         {
+            Debug.Log("Heeeeey");
             base.OnNetworkSpawn();
             if (IsOwner)
             {
@@ -19,7 +20,7 @@ namespace OnlineMultiplayer
         private void OnTriggerStay(Collider other)
         {
             if (!IsOwner) return;
-            //Debug.Log("Colision");
+            Debug.Log("Colision");
             if (other.gameObject.tag == "Player")
             {
                 Debug.Log("Catch");

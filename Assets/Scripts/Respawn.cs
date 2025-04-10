@@ -33,7 +33,6 @@ public class Respawn : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Debo respawnear");
         if(other.gameObject.tag == "DeathZone")
         {
             this.GetComponent<Movement>().lerping = false;   
