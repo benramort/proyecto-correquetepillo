@@ -9,6 +9,8 @@ public class FullGameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private MP_GameManager MPgameManager;
+    [Header("Character selection")]
+    [SerializeField] private List<GameObject> characters;
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
@@ -48,18 +50,7 @@ public class FullGameManager : NetworkBehaviour
     }
 
 
-
-    public enum GAME_STATE
-    {
-        InitialScene = 0,
-        LobbyScene = 1,
-        PlayerSelection = 2,
-        MainScene = 3,
-    }
-
-
     public NetworkList<PlayerData> playerDataList;
-    public GAME_STATE gameState;
 
     public static FullGameManager INSTANCE { get; private set; }
 
@@ -75,7 +66,6 @@ public class FullGameManager : NetworkBehaviour
         INSTANCE = this;
 
         DontDestroyOnLoad(gameObject);
-        gameState = GAME_STATE.LobbyScene;
 
         playerDataList = new NetworkList<PlayerData>();
     }
@@ -166,6 +156,9 @@ public class FullGameManager : NetworkBehaviour
 
     private void SpawnCharacters()
     {
+        foreach (PlayerData playerData in playerDataList)
+        {
 
+        }
     }
 }
