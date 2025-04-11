@@ -159,6 +159,13 @@ public class FullGameManager : NetworkBehaviour
         foreach (PlayerData playerData in playerDataList)
         {
 
+            NetworkObject characterObject = characters[playerData.playerType].GetComponent<NetworkObject>();
+            NetworkObject character = NetworkManager.SpawnManager.InstantiateAndSpawn(
+                characterObject,
+                playerData.clientId,
+                false,
+                true,
+                false);
         }
     }
 }

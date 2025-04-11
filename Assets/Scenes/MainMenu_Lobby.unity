@@ -1768,7 +1768,7 @@ GameObject:
   - component: {fileID: 1115650460}
   - component: {fileID: 1115650462}
   m_Layer: 0
-  m_Name: LobbyManager
+  m_Name: Scripter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,7 +1842,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs: []
   MPgameManager: {fileID: 1115650460}
-  gameState: 1
+  characters:
+  - {fileID: 2551092852008973038, guid: f6469d681c0945b469bae20c7cca42e9, type: 3}
+  - {fileID: 8696399386726340152, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
+  - {fileID: 3473778343394365572, guid: 6c4b248fc1e9d6b4b951fd947d018135, type: 3}
 --- !u!1 &1123485362
 GameObject:
   m_ObjectHideFlags: 0
