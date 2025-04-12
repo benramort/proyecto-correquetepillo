@@ -63,11 +63,18 @@ public class FullGameManager : NetworkBehaviour
 
     private void Awake()
     {
-        INSTANCE = this;
 
-        DontDestroyOnLoad(gameObject);
+        if (INSTANCE == null)
+        {
+            INSTANCE = this;
 
-        playerDataList = new NetworkList<PlayerData>();
+            DontDestroyOnLoad(gameObject);
+
+            playerDataList = new NetworkList<PlayerData>();
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SelectPlayer(int player)
@@ -137,7 +144,7 @@ public class FullGameManager : NetworkBehaviour
         if(allready)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(
-                    "TestScene",
+                    "OnlineMultiplayer",
                     LoadSceneMode.Single);
         }
 
@@ -172,5 +179,12 @@ public class FullGameManager : NetworkBehaviour
                 true,
                 false);
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void EndGameRpc(RpcParams rpcParams = new RpcParams())
+    {
+
+        Debug.Log("Client " + rpcParams.Receive.SenderClientId + " has won the game");
     }
 }

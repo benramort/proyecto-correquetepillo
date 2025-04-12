@@ -9,7 +9,7 @@ namespace OnlineMultiplayer
     {
         public override void OnNetworkSpawn()
         {
-            Debug.Log("Heeeeey");
+            //Debug.Log("Heeeeey");
             base.OnNetworkSpawn();
             if (IsOwner)
             {

@@ -11,7 +11,6 @@ namespace OnlineMultiplayer
 {
     public class PointManager : NetworkBehaviour
     {
-        [HideInInspector] public GameManager gameManager { get; set; }
 
         public int maxPoints = 100;
         public float tickTime; //Time to reduce 1 point in seconds
@@ -71,7 +70,7 @@ namespace OnlineMultiplayer
             }
             if (points.Value <= 0)
             {
-                gameManager?.EndGame(gameObject);
+                FullGameManager.INSTANCE.EndGameRpc();
             }
         }
 
