@@ -149,7 +149,12 @@ public class FullGameManager : NetworkBehaviour
     {
         if (clientId == NetworkManager.ServerClientId)
         {
-            SpawnCharacters();
+            if (SceneManager.GetActiveScene().name == "OnlineMultiplayer")
+            {
+                SpawnCharacters();
+            }
+
+
         }
 
     }
