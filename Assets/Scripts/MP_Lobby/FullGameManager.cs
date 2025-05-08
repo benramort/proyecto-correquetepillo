@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class FullGameManager : NetworkBehaviour
 {
     [SerializeField] private GameObject[] playerPrefabs;
-    private NetworkVariable<int> playersReady = new NetworkVariable<int>(0);
+    [SerializeField] private MP_GameManager MPgameManager;
+    [Header("Character selection")]
+    [SerializeField] private List<GameObject> characters;
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
@@ -48,29 +50,31 @@ public class FullGameManager : NetworkBehaviour
     }
 
 
-
-    public enum GAME_STATE
-    {
-        InitialScene = 0,
-        LobbyScene = 1,
-        PlayerSelection = 2,
-        MainScene = 3,
-    }
-
-
     public NetworkList<PlayerData> playerDataList;
-    public GAME_STATE gameState;
 
     public static FullGameManager INSTANCE { get; private set; }
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+        Debug.Log("OnNetworkSpawn");
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
+    }
+
     private void Awake()
     {
-        INSTANCE = this;
 
-        DontDestroyOnLoad(gameObject);
-        gameState = GAME_STATE.LobbyScene;
+        if (INSTANCE == null)
+        {
+            INSTANCE = this;
 
-        playerDataList = new NetworkList<PlayerData>();
+            DontDestroyOnLoad(gameObject);
+
+            playerDataList = new NetworkList<PlayerData>();
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SelectPlayer(int player)
@@ -105,6 +109,7 @@ public class FullGameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void GoToGameRpc(ulong clientId)
     {
+        Debug.Log("Se ha llamado al GoToGAmeRCP. Con "+MPgameManager.getPlayerAmmountToPlay()+" jugadores");
         for (int i = 0; i < playerDataList.Count; i++)
         {
             if (playerDataList[i].clientId == clientId)
@@ -120,39 +125,66 @@ public class FullGameManager : NetworkBehaviour
 
         }
 
-        if (NetworkManager.ConnectedClientsList.Count>1 && playerDataList.Count>1)
+        if (playerDataList.Count < MPgameManager.getPlayerAmmountToPlay()) return;
+
+        
+
+        bool allready = true;
+
+        for(int i=0; i<playerDataList.Count;i++)
         {
-            bool allready = true;
-
-            for(int i=0; i<playerDataList.Count;i++)
+            if (!playerDataList[i].isReady)
             {
-                if (!playerDataList[i].isReady)
-                {
-                    allready = false;
-                    break;
-                }
-            }
-
-            if(allready)
-            {
-                NetworkManager.Singleton.SceneManager.OnLoadComplete += GameSceneLoaded;
-                NetworkManager.Singleton.SceneManager.LoadScene(
-                    GAME_STATE.MainScene.ToString(),
-                    LoadSceneMode.Single);
+                allready = false;
+                break;
             }
 
         }
+
+        if(allready)
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(
+                    "OnlineMultiplayer",
+                    LoadSceneMode.Single);
+        }
+
+        
 
     }
 
     private void GameSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
-        gameState = GAME_STATE.MainScene;
-
-        foreach(PlayerData playerData in playerDataList)
+        if (clientId == NetworkManager.ServerClientId)
         {
-            GameObject playerGo = Instantiate(playerPrefabs[playerData.playerType]);
-            playerGo.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerData.clientId, true);
+            if (SceneManager.GetActiveScene().name == "OnlineMultiplayer")
+            {
+                SpawnCharacters();
+            }
+
+
         }
+
+    }
+
+    private void SpawnCharacters()
+    {
+        foreach (PlayerData playerData in playerDataList)
+        {
+
+            NetworkObject characterObject = characters[playerData.playerType].GetComponent<NetworkObject>();
+            NetworkObject character = NetworkManager.SpawnManager.InstantiateAndSpawn(
+                characterObject,
+                playerData.clientId,
+                false,
+                true,
+                false);
+        }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void EndGameRpc(RpcParams rpcParams = new RpcParams())
+    {
+
+        Debug.Log("Client " + rpcParams.Receive.SenderClientId + " has won the game");
     }
 }

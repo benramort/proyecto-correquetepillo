@@ -16,7 +16,7 @@ public class MyNetworkManager : MonoBehaviour
     private const int MAX_PLAYERAMOUNT = 2;
     public UnityEvent OnFailedToJoin = new UnityEvent(); 
 
-   public void StartHostt()
+   private void StartHostt()
    {
         //connection approval
         NetworkManager.Singleton.ConnectionApprovalCallback += ConnectionApprovalCallback;
@@ -34,11 +34,11 @@ public class MyNetworkManager : MonoBehaviour
 
     private void ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
     {
-        if (SceneManager.GetActiveScene().name == FullGameManager.GAME_STATE.MainScene.ToString()
-           || NetworkManager.Singleton.ConnectedClientsIds.Count >= MAX_PLAYERAMOUNT)
-            response.Approved = false;
-        else
-            response.Approved = true;
+        //if (SceneManager.GetActiveScene().name == FullGameManager.GAME_STATE.MainScene.ToString()
+        //   || NetworkManager.Singleton.ConnectedClientsIds.Count >= MAX_PLAYERAMOUNT)
+        //    response.Approved = false;
+        //else
+        //    response.Approved = true;
     }
 
     public void StartClient()
@@ -56,7 +56,6 @@ public class MyNetworkManager : MonoBehaviour
 
     public void GoBack()
     {
-        FullGameManager.INSTANCE.gameState = FullGameManager.GAME_STATE.InitialScene;
-        SceneManager.LoadScene(FullGameManager.INSTANCE.gameState.ToString());
+        SceneManager.LoadScene("MainMenu_Lobby");
     }
 }
