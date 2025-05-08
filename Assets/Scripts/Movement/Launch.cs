@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.Netcode;
+using Unity.VisualScripting;
 
 public class Launch : NetworkBehaviour
 {
@@ -12,6 +13,7 @@ public class Launch : NetworkBehaviour
 
     [Space(20)]
 
+    [HideInInspector]
     public Vector3 launchDirection;
     public Transform launchpoint;
     public GameObject cam;
@@ -178,6 +180,7 @@ public class Launch : NetworkBehaviour
             lineRenderer.enabled = false;
             showLine = false;
             LaunchItemRpc();
+            NetworkObjectPool.Singleton.ClearPool();
             //animator.ResetTrigger("aiming");
             //lineRenderer.enabled = false;
             //showLine = false;
@@ -195,12 +198,10 @@ public class Launch : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaunchItemRpc(RpcParams rpcParams = new RpcParams())
     {
-
-        NetworkObject spawnedNetworkObject = NetworkObjectPool.Singleton.GetNetworkObject(pocket, launchpoint.position, Quaternion.identity);
-        spawnedNetworkObject.SpawnWithOwnership(rpcParams.Receive.SenderClientId);
-        spawnedNetworkObject.transform.position = launchpoint.position;
-        itemList.Add(spawnedNetworkObject);
-
-        spawnedNetworkObject.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+        Debug.Log("Direction1: " + launchDirection);
+        GameObject launchedItem = Instantiate(pocket, launchpoint.position, launchpoint.rotation);
+        launchedItem.GetComponent<NetworkObject>().Spawn();
+        launchedItem.GetComponent<Item>().Use(launchDirection, launchForce, transform.parent.gameObject);
+        Debug.Log("Direction2: " + launchDirection);
     }
 }
