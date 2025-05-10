@@ -17,12 +17,15 @@ public class FullGameManager : NetworkBehaviour
         public ulong clientId;
         public int playerType;
         public bool isReady;
-        public PlayerData(ulong id,int type, bool ready)
+        public Vector3 playerPosition;
+        public int playerPoints;
+        public PlayerData(ulong id,int type, bool ready, Vector3 position, int points)
         {
             clientId = id;
             playerType = type;
             isReady = ready;
-            
+            playerPosition = position;
+            playerPoints = points;
         }
 
 
@@ -75,6 +78,7 @@ public class FullGameManager : NetworkBehaviour
         {
             Destroy(gameObject);
         }
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += PodiumSceneLoaded;
     }
 
     public void SelectPlayer(int player)
@@ -90,12 +94,12 @@ public class FullGameManager : NetworkBehaviour
         {
             if (playerDataList[i].clientId == clientId)
             {
-                playerDataList[i] = new PlayerData(clientId, playerType,false);
+                playerDataList[i] = new PlayerData(clientId, playerType, false, new Vector3(), 100);
                 return;
             }
             
         }
-        playerDataList.Add(new PlayerData(clientId, playerType,false));
+        playerDataList.Add(new PlayerData(clientId, playerType, false, new Vector3(), 100));
     }
 
     public void GoToGame()
@@ -117,7 +121,7 @@ public class FullGameManager : NetworkBehaviour
                 PlayerData newPlayerData = new PlayerData(
                     playerDataList[i].clientId,
                     playerDataList[i].playerType,
-                    true);
+                    true, new Vector3(), 100);
 
                 playerDataList[i] = newPlayerData;
                 break;
@@ -184,7 +188,33 @@ public class FullGameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void EndGameRpc(RpcParams rpcParams = new RpcParams())
     {
-
+        NetworkManager.Singleton.SceneManager.LoadScene(
+            "Podium",
+            LoadSceneMode.Single);
         Debug.Log("Client " + rpcParams.Receive.SenderClientId + " has won the game");
+    }
+
+    public void PodiumSceneLoaded(ulong clientId, String scene, LoadSceneMode mode)
+    {
+        if (clientId == NetworkManager.ServerClientId)
+        {
+            characters.Sort((p1, p2) => p1.GetComponentInChildren<PointManager>().points - p2.GetComponentInChildren<PointManager>().points);
+            GameObject spawners = GameObject.Find("Positions");
+            for (int i = 0; i < characters.Count; i++)
+            {
+                characters[i].GetComponentInChildren<Rigidbody>().isKinematic = true;
+                characters[i].transform.position = spawners.transform.GetChild(i).position;
+                characters[i].GetComponentInChildren<Movement>().transform.position = spawners.transform.GetChild(i).position;
+                characters[i].transform.rotation = spawners.transform.GetChild(i).rotation;
+                characters[i].GetComponentInChildren<Movement>().transform.rotation = spawners.transform.GetChild(i).rotation;
+                Animator animator = characters[i].GetComponentInChildren<Animator>();
+                animator.ResetTrigger("running");
+                animator.SetTrigger("grounded");
+                animator.ResetTrigger("aiming");
+                animator.ResetTrigger("throw");
+                animator.ResetTrigger("walkingBackwards");
+                animator.ResetTrigger("attack");
+            }
+        }
     }
 }

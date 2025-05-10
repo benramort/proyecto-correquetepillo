@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -195,7 +196,6 @@ public class GameManager : MonoBehaviour
         chrono = 0;
         Debug.Log("The game is over");
         //Poner los jugadores a 100 puntos
-        SceneManager.LoadScene("Podium");
         onGame = false;
         foreach(GameObject player in players) 
         {
