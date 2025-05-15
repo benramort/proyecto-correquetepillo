@@ -1,4 +1,4 @@
-Library: D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+Library: C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --platform=Windows
 --backend=burst-llvm-16
 --target=X64_SSE2
@@ -9,10 +9,10 @@ Library: D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\BurstOutp
 --target-framework=NetFramework
 --linker-options=PdbAltPath="CorreQueTePillo_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\Burst
---key-folder=C:/Users/Iker/Downloads/Unity/Editor/2022.3.44f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Library\Burst
---output=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Library\Burst
+--output=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
@@ -106,10 +106,10 @@ Library: D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\BurstOutp
 --target-framework=NetFramework
 --linker-options=PdbAltPath="CorreQueTePillo_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\Burst
---key-folder=C:/Users/Iker/Downloads/Unity/Editor/2022.3.44f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Library\Burst
---output=D:\git\VJ\CorreQueTePilloOnline\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.44f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Library\Burst
+--output=C:\Users\HP\Desktop\ano 3\2\Tecnologías interactivas avanzadas\proyecto-correquetepillo\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
