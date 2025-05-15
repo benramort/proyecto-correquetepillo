@@ -17,6 +17,7 @@ namespace OnlineMultiplayer
         public GameObject catchArea;
         public GameObject labelHolder;
         public Animator animator;
+        private bool gameEnded = false;
 
         public NetworkVariable<bool> isTarget = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         private NetworkVariable<int> points = new NetworkVariable<int>(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -58,6 +59,21 @@ namespace OnlineMultiplayer
                     if (points.Value >= 1)
                     {
                         points.Value--;
+                        // Actualiza los puntos en FullGameManager
+                        if (IsOwner)
+                        {
+                            for (int i = 0; i < FullGameManager.INSTANCE.playerDataList.Count; i++)
+                            {
+                                if (FullGameManager.INSTANCE.playerDataList[i].clientId == OwnerClientId)
+                                {
+                                    var pd = FullGameManager.INSTANCE.playerDataList[i];
+                                    FullGameManager.INSTANCE.playerDataList[i] = new FullGameManager.PlayerData(
+                                        pd.clientId, pd.playerType, pd.isReady, pd.playerPosition, points.Value);
+                                    break;
+                                }
+                            }
+                        }
+
                         pointsText.text = points.Value.ToString();
                     }
                 }
@@ -68,8 +84,9 @@ namespace OnlineMultiplayer
 
 
             }
-            if (points.Value <= 0)
+            if (points.Value <= 0 && !gameEnded)
             {
+                gameEnded = true;
                 FullGameManager.INSTANCE.EndGameRpc();
             }
         }

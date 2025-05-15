@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PointManager : MonoBehaviour
 {
-
     [HideInInspector] public GameManager gameManager { get; set;}
 
     public int maxPoints = 3;
@@ -53,6 +52,7 @@ public class PointManager : MonoBehaviour
                 if (points >= 1)
                 {
                     points--;
+
                 }
             }
             else
