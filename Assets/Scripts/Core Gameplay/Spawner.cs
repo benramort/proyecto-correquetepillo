@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Spawner : MonoBehaviour
+public class Spawner : NetworkBehaviour
 {
     [SerializeField] private float spawnTime;
     private GameObject spawnedItemModel;
@@ -44,7 +45,8 @@ public class Spawner : MonoBehaviour
             {
                 other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
             }
-            other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
+            if (IsServer)
+                other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
             
 
             Destroy(spawnedItemModel);
