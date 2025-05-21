@@ -24,10 +24,13 @@ public class MP_Spawner : NetworkBehaviour
 
     private void SelectRandomItem()
     {
-      
-        int randomNumber = Random.Range(0, spawnableItems.Length);
-        Debug.Log(randomNumber);
-        SpawnItemRpc(randomNumber);
+        if (IsServer)
+        {
+            int randomNumber = Random.Range(0, spawnableItems.Length);
+            Debug.Log(randomNumber);
+            SpawnItemRpc(randomNumber);
+        }
+
     }
 
     private void SpawnItem(int randomNumber)
@@ -51,13 +54,14 @@ public class MP_Spawner : NetworkBehaviour
             if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == null)
             {
                 other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
+                other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
+
             }
-            other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
+
 
             destroyBallRpc();
 
-            //SelectRandomItem();
-            if(IsServer)
+            //SelectRandoif(IsServer)
             StartCoroutine(respawCoroutine());
         }
     }
@@ -65,13 +69,14 @@ public class MP_Spawner : NetworkBehaviour
     IEnumerator respawCoroutine()
     {
         yield return new WaitForSeconds(spawnTime);
-        SelectRandomItem();
+        SelectRandomItemrRpc();
     }
 
 
     [Rpc(SendTo.ClientsAndHost)]
     public void SpawnItemRpc(int randNum)
     {
+        Debug.Log("Numero item recivido por cliente" +OwnerClientId +" = "+randNum);
         SpawnItem(randNum);
     }
 
@@ -80,5 +85,12 @@ public class MP_Spawner : NetworkBehaviour
     {
         Destroy(spawnedItemModel);
         spawnedItemModel = null;
+    }
+
+    [Rpc(SendTo.Server)]
+    public void SelectRandomItemrRpc()
+    {
+        SelectRandomItem();
+
     }
 }

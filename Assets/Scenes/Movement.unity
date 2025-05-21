@@ -437,19 +437,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.09295074
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.010818188
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.8526666
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.5140066
       objectReference: {fileID: 0}
     - target: {fileID: 6338325401194025371, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -565,11 +565,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5770127370205044251, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2121661242}
+      insertIndex: 4
+      addedObject: {fileID: 2121661243}
     - targetCorrespondingSourceObject: {fileID: 5770127370205044251, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2121661243}
+      addedObject: {fileID: 2121661242}
   m_SourcePrefab: {fileID: 100100000, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
 --- !u!1 &2121661240 stripped
 GameObject:
