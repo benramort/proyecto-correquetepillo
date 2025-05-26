@@ -437,19 +437,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.09295074
+      value: -0.09295074
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.010818187
+      value: 0.010818188
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8526667
+      value: -0.8526666
       objectReference: {fileID: 0}
     - target: {fileID: 1234082189984347732, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5140066
+      value: 0.5140066
+      objectReference: {fileID: 0}
+    - target: {fileID: 6338325401194025371, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1921253073
       objectReference: {fileID: 0}
     - target: {fileID: 7388124858161040973, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -512,6 +516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5836036114263174550, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8867703334101784361, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.174035
@@ -555,8 +563,70 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5770127370205044251, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2121661243}
+    - targetCorrespondingSourceObject: {fileID: 5770127370205044251, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2121661242}
   m_SourcePrefab: {fileID: 100100000, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+--- !u!1 &2121661240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5770127370205044251, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+  m_PrefabInstance: {fileID: 2121661239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2121661241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5543105883129522232, guid: cea10eb2493ff4c4ab9d8f7a0cf299f8, type: 3}
+  m_PrefabInstance: {fileID: 2121661239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2121661242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121661240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3167eb248c0b7b47b3693e0155d601f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTime: 5
+  spawnableItems:
+  - {fileID: 5903710437651274417, guid: ce70101fc347c7944bf54f50f4c6a263, type: 3}
+  - {fileID: 5646796320435257514, guid: ff46b10f1bcf5394c89fa618b3bc6a51, type: 3}
+  - {fileID: 5903710437651274417, guid: 04d900c1945214e41b951272ce652cb5, type: 3}
+  - {fileID: 5903710437651274417, guid: c47f5919dbf332249a2c3bc79e23374a, type: 3}
+  spawnedItem: {fileID: 0}
+  spawnPoint: {fileID: 2121661241}
+  objectRenders:
+  - {fileID: 2800000, guid: 622ec84f6b568964a8f79bb003e84234, type: 3}
+  - {fileID: 2800000, guid: 3b063dfd42f158443a40e75a0a7b8351, type: 3}
+  - {fileID: 2800000, guid: 3ead78c5ec728b244bcd84db974fae19, type: 3}
+  - {fileID: 2800000, guid: 8accfe8428ca63e439b3520ffb585377, type: 3}
+--- !u!114 &2121661243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121661240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1001317089
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
