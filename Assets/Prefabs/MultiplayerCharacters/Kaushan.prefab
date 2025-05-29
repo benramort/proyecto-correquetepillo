@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 6581759930878426828}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Player
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 5382564832452804922}
   m_Layer: 0
   m_Name: Kaushan
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
