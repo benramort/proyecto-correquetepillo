@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class Launch : NetworkBehaviour
 {
-    public int pocket;
+    public int pocket = -1;
     public Animator animator;
 
     [Space(20)]
@@ -34,13 +34,13 @@ public class Launch : NetworkBehaviour
     private bool showLine = false;
     private GameObject objectImage;
 
-    [SerializeField] private GameObject spawnedItemPrefab;
-    private List<NetworkObject> itemList;
-    private GameObject spawnedObject;
+    //[SerializeField] private GameObject spawnedItemPrefab;
+    //private List<NetworkObject> itemList;
+    //private GameObject spawnedObject;
 
     public override void OnNetworkSpawn()
     {
-        itemList = new List<NetworkObject>();
+        //itemList = new List<NetworkObject>();
         base.OnNetworkSpawn();
     }
 
@@ -111,7 +111,7 @@ public class Launch : NetworkBehaviour
             showLine = false;
 
             // Enviamos datos al servidor
-            LaunchItemRpc(launchDirection, launchForce, launchpoint.position);
+            LaunchItemRpc(pocket, launchDirection, launchForce, launchpoint.position);
 
             // Eliminamos el objeto de la mano
             pocket = -1;
@@ -121,13 +121,13 @@ public class Launch : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void LaunchItemRpc(Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
+    public void LaunchItemRpc(int itemId, Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
     {
         Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
-        GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[pocket];
+        GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[itemId];
         GameObject launchedItem = Instantiate(gameObjectPrefab, position, Quaternion.identity);
         var netObj = launchedItem.GetComponent<NetworkObject>();
-        netObj.Spawn();
+        netObj.Spawn(true);
         launchedItem.GetComponent<Item>().Use(direction, force, transform.parent.gameObject);
     }
 }

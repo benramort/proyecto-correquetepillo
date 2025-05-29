@@ -64,7 +64,7 @@ public class MP_Spawner : NetworkBehaviour
     {
         if (other.gameObject.tag == "Player" && spawnedItemModel != null)
         {
-            if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == null)
+            if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == -1)
             {
                 other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = objectNumber;
                 other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
