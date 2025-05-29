@@ -1846,6 +1846,10 @@ MonoBehaviour:
   - {fileID: 2551092852008973038, guid: f6469d681c0945b469bae20c7cca42e9, type: 3}
   - {fileID: 8696399386726340152, guid: 5b06b0dbd7e121441a47083bf306abd5, type: 3}
   - {fileID: 3473778343394365572, guid: 6c4b248fc1e9d6b4b951fd947d018135, type: 3}
+  podiumCharacters:
+  - {fileID: 2551092852008973038, guid: 561cd9bd4be1fd34ab76314094ceccb9, type: 3}
+  - {fileID: 8696399386726340152, guid: 5f345c1bd9435f04db8712511b6186ca, type: 3}
+  - {fileID: 3473778343394365572, guid: b28c48cd2494dbb4e9e78b45ca4859f5, type: 3}
 --- !u!1 &1123485362
 GameObject:
   m_ObjectHideFlags: 0

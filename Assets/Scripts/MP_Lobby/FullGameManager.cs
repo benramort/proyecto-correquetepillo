@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static FullGameManager;
 
 public class FullGameManager : NetworkBehaviour
 {
+
+
     [SerializeField] private GameObject[] playerPrefabs;
     [SerializeField] private MP_GameManager MPgameManager;
     [Header("Character selection")]
     [SerializeField] private List<GameObject> characters;
+    [SerializeField] private List<GameObject> podiumCharacters;
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
     {
@@ -19,6 +24,7 @@ public class FullGameManager : NetworkBehaviour
         public bool isReady;
         public Vector3 playerPosition;
         public int playerPoints;
+
         public PlayerData(ulong id,int type, bool ready, Vector3 position, int points)
         {
             clientId = id;
@@ -170,10 +176,25 @@ public class FullGameManager : NetworkBehaviour
                 SpawnCharacters();
             }
 
-
+            if (SceneManager.GetActiveScene().name == "Podium")
+            {
+                PlaceWinners();
+            }
         }
 
     }
+
+    //private void PodiumSceneLoaded(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+    //{
+    //    if(clientId == NetworkManager.ServerClientId)
+    //    {
+    //        if(SceneManager.GetActiveScene().name == "Podium")
+    //        {
+    //            PlaceWinners();
+    //        }
+    //    }
+
+    //}
 
     private void SpawnCharacters()
     {
@@ -190,76 +211,112 @@ public class FullGameManager : NetworkBehaviour
         }
     }
 
+
+    private void PlaceWinners()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        List<PlayerData> playerDatas = new List<PlayerData>();
+        for(int i = 0; i < players.Length; i++)
+        {
+            Destroy(players[i].gameObject);
+        }
+
+        foreach(PlayerData playerData in playerDataList)
+        {
+            playerDatas.Add(playerData);
+        }
+        playerDatas.Sort ((p1, p2) => p1.playerPoints - p2.playerPoints);
+        GameObject spawners = GameObject.Find("Positions");
+
+        for(int i = 0; i < playerDatas.Count; i++)
+        {
+            NetworkObject characterObject = podiumCharacters[playerDatas[i].playerType].GetComponent<NetworkObject>();
+            NetworkObject character = NetworkManager.SpawnManager.InstantiateAndSpawn(
+            characterObject,
+                playerDatas[i].clientId,
+                false,
+                true,
+                false,
+                spawners.transform.GetChild(i).position,
+                spawners.transform.GetChild(i).rotation);
+        }
+
+    }
+
     [Rpc(SendTo.Server)]
     public void EndGameRpc(RpcParams rpcParams = new RpcParams())
     {
+        //for (ulong i = 0; (int) i < NetworkManager.Singleton.ConnectedClients.Count; i++)
+        //{
+        //    players.Add(NetworkManager.Singleton.ConnectedClients[i].PlayerObject.gameObject);
+        //}
         NetworkManager.Singleton.SceneManager.LoadScene(
             "Podium",
             LoadSceneMode.Single);
         Debug.Log("Client " + rpcParams.Receive.SenderClientId + " has won the game");
     }
 
-    private void OnEnable()
-    {
-        if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadComplete += PodiumSceneLoaded;
-        }
-    }
+    //private void OnEnable()
+    //{
+    //    if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
+    //    {
+    //        NetworkManager.Singleton.SceneManager.OnLoadComplete += PodiumSceneLoaded;
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadComplete -= PodiumSceneLoaded;
-        }
-    }
+    //private void OnDisable()
+    //{
+    //    if (NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
+    //    {
+    //        NetworkManager.Singleton.SceneManager.OnLoadComplete -= PodiumSceneLoaded;
+    //    }
+    //}
 
-    private void PodiumSceneLoaded(ulong clientId, string scene, LoadSceneMode mode)
-    {
-        if (scene == "Podium" && clientId == NetworkManager.ServerClientId)
-        {
-            Debug.Log("Podium scene loaded");
+    //private void PodiumSceneLoaded(ulong clientId, string scene, LoadSceneMode mode)
+    //{
+    //    if (scene == "Podium" && clientId == NetworkManager.ServerClientId)
+    //    {
+    //        Debug.Log("Podium scene loaded");
 
-            // Ordenamos los datos de jugadores según los puntos de mayor a menor
-            var sortedPlayers = new List<PlayerData>((IEnumerable<PlayerData>)playerDataList);
-            sortedPlayers.Sort((a, b) => b.playerPoints.CompareTo(a.playerPoints));
+    //        // Ordenamos los datos de jugadores según los puntos de mayor a menor
+    //        var sortedPlayers = new List<PlayerData>((IEnumerable<PlayerData>)playerDataList);
+    //        sortedPlayers.Sort((a, b) => b.playerPoints.CompareTo(a.playerPoints));
 
-            // Buscamos los spawners
-            GameObject spawners = GameObject.Find("Positions");
+    //        // Buscamos los spawners
+    //        GameObject spawners = GameObject.Find("Positions");
 
-            for (int i = 0; i < sortedPlayers.Count && i < spawners.transform.childCount; i++)
-            {
-                var playerData = sortedPlayers[i];
-                var networkObject = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(playerData.clientId);
-                if (networkObject != null)
-                {
-                    var playerGO = networkObject.gameObject;
+    //        for (int i = 0; i < sortedPlayers.Count && i < spawners.transform.childCount; i++)
+    //        {
+    //            var playerData = sortedPlayers[i];
+    //            var networkObject = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(playerData.clientId);
+    //            if (networkObject != null)
+    //            {
+    //                var playerGO = networkObject.gameObject;
 
-                    // Movemos al jugador a su posición del podio
-                    playerGO.transform.position = spawners.transform.GetChild(i).position;
-                    playerGO.transform.rotation = spawners.transform.GetChild(i).rotation;
+    //                // Movemos al jugador a su posición del podio
+    //                playerGO.transform.position = spawners.transform.GetChild(i).position;
+    //                playerGO.transform.rotation = spawners.transform.GetChild(i).rotation;
 
-                    // Bloquear movimiento y ajustar animación si aplica
-                    var movement = playerGO.GetComponentInChildren<Movement>();
-                    if (movement != null)
-                    {
-                        movement.Freeze(FreezeType.CATCHFREEZE);
-                    }
+    //                // Bloquear movimiento y ajustar animación si aplica
+    //                var movement = playerGO.GetComponentInChildren<Movement>();
+    //                if (movement != null)
+    //                {
+    //                    movement.Freeze(FreezeType.CATCHFREEZE);
+    //                }
 
-                    var animator = playerGO.GetComponentInChildren<Animator>();
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("grounded");
-                        animator.ResetTrigger("running");
-                        animator.ResetTrigger("aiming");
-                        animator.ResetTrigger("throw");
-                        animator.ResetTrigger("walkingBackwards");
-                        animator.ResetTrigger("attack");
-                    }
-                }
-            }
-        }
-    }
+    //                var animator = playerGO.GetComponentInChildren<Animator>();
+    //                if (animator != null)
+    //                {
+    //                    animator.SetTrigger("grounded");
+    //                    animator.ResetTrigger("running");
+    //                    animator.ResetTrigger("aiming");
+    //                    animator.ResetTrigger("throw");
+    //                    animator.ResetTrigger("walkingBackwards");
+    //                    animator.ResetTrigger("attack");
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
 }

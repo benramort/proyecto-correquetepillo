@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 9159603926658954939}
   m_Layer: 0
   m_Name: Roboto
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0582a5e81a23748a8037a40d589a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPoints: 100
+  maxPoints: 10
   tickTime: 1
   catchArea: {fileID: 5106488492380123559}
   labelHolder: {fileID: 240804662390290192}
@@ -1417,7 +1417,7 @@ GameObject:
   - component: {fileID: 2338262178280369008}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Player
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
