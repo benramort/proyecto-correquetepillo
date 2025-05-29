@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class Launch : NetworkBehaviour
 {
-    public GameObject pocket;
+    public int pocket = -1;
     public Animator animator;
 
     [Space(20)]
@@ -34,13 +34,13 @@ public class Launch : NetworkBehaviour
     private bool showLine = false;
     private GameObject objectImage;
 
-    [SerializeField] private GameObject spawnedItemPrefab;
-    private List<NetworkObject> itemList;
-    private GameObject spawnedObject;
+    //[SerializeField] private GameObject spawnedItemPrefab;
+    //private List<NetworkObject> itemList;
+    //private GameObject spawnedObject;
 
     public override void OnNetworkSpawn()
     {
-        itemList = new List<NetworkObject>();
+        //itemList = new List<NetworkObject>();
         base.OnNetworkSpawn();
     }
 
@@ -92,7 +92,7 @@ public class Launch : NetworkBehaviour
 
     public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
-        if (pocket != null)
+        if (pocket != -1)
         {
             animator.SetTrigger("aiming");
             lineRenderer.enabled = true;
@@ -104,27 +104,30 @@ public class Launch : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (pocket != null)
+        if (pocket != -1)
         {
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
             showLine = false;
 
             // Enviamos datos al servidor
-            LaunchItemRpc(launchDirection, launchForce, launchpoint.position);
+            LaunchItemRpc(pocket, launchDirection, launchForce, launchpoint.position);
 
             // Eliminamos el objeto de la mano
-            pocket = null;
+            pocket = -1;
             objectImage.GetComponent<RawImage>().texture = noObjectTexture;
+            Debug.Log("Ha llegado");
         }
     }
 
     [Rpc(SendTo.Server)]
-    public void LaunchItemRpc(Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
+    public void LaunchItemRpc(int itemId, Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
     {
-        GameObject launchedItem = Instantiate(pocket, position, Quaternion.identity);
+        Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
+        GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[itemId];
+        GameObject launchedItem = Instantiate(gameObjectPrefab, position, Quaternion.identity);
         var netObj = launchedItem.GetComponent<NetworkObject>();
-        netObj.Spawn();
+        netObj.Spawn(true);
         launchedItem.GetComponent<Item>().Use(direction, force, transform.parent.gameObject);
     }
 }

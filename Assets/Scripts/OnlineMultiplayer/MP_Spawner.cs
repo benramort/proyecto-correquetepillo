@@ -9,12 +9,24 @@ public class MP_Spawner : NetworkBehaviour
     [SerializeField] private float spawnTime;
     private GameObject spawnedItemModel;
     
-    public GameObject[] spawnableItems;
+    [SerializeField] private GameObject[] spawnableItems;
+    public static GameObject[] SpawnableItems;
     public GameObject spawnedItem;
     public Transform spawnPoint;
 
     public Texture[] objectRenders;
     private Texture spawnedTexture;
+
+    private int objectNumber = 0;
+
+    public void Awake()
+    {
+        if(SpawnableItems == null)
+        {
+            SpawnableItems = spawnableItems;
+        }
+        
+    }
 
     public override void OnNetworkSpawn()
     {
@@ -35,6 +47,7 @@ public class MP_Spawner : NetworkBehaviour
 
     private void SpawnItem(int randomNumber)
     {
+        objectNumber = randomNumber;
         spawnedItem = spawnableItems[randomNumber];
         //spawnedItemModel = spawnableModels[randomNumber];
         spawnedItemModel = Instantiate(spawnableItems[randomNumber], spawnPoint.position, Quaternion.identity);
@@ -51,9 +64,9 @@ public class MP_Spawner : NetworkBehaviour
     {
         if (other.gameObject.tag == "Player" && spawnedItemModel != null)
         {
-            if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == null)
+            if (other.transform.Find("Launchpoint").GetComponent<Launch>().pocket == -1)
             {
-                other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = spawnedItem;
+                other.transform.Find("Launchpoint").GetComponent<Launch>().pocket = objectNumber;
                 other.transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").GetComponent<RawImage>().texture = spawnedTexture;
 
             }
