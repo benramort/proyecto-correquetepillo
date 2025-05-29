@@ -60,19 +60,19 @@ namespace OnlineMultiplayer
                     {
                         points.Value--;
                         // Actualiza los puntos en FullGameManager
-                        if (IsOwner)
-                        {
-                            for (int i = 0; i < FullGameManager.INSTANCE.playerDataList.Count; i++)
-                            {
-                                if (FullGameManager.INSTANCE.playerDataList[i].clientId == OwnerClientId)
-                                {
-                                    var pd = FullGameManager.INSTANCE.playerDataList[i];
-                                    FullGameManager.INSTANCE.playerDataList[i] = new FullGameManager.PlayerData(
-                                        pd.clientId, pd.playerType, pd.isReady, pd.playerPosition, points.Value);
-                                    break;
-                                }
-                            }
-                        }
+                        //if (IsOwner)
+                        //{
+                        //    for (int i = 0; i < FullGameManager.INSTANCE.playerDataList.Count; i++)
+                        //    {
+                        //        if (FullGameManager.INSTANCE.playerDataList[i].clientId == OwnerClientId)
+                        //        {
+                        //            var pd = FullGameManager.INSTANCE.playerDataList[i];
+                        //            FullGameManager.INSTANCE.playerDataList[i] = new FullGameManager.PlayerData(
+                        //                pd.clientId, pd.playerType, pd.isReady, pd.playerPosition, points.Value);
+                        //            break;
+                        //        }
+                        //    }
+                        //}
 
                         pointsText.text = points.Value.ToString();
                     }
