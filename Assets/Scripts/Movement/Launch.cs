@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class Launch : NetworkBehaviour
 {
-    public GameObject pocket;
+    public int pocket;
     public Animator animator;
 
     [Space(20)]
@@ -92,7 +92,7 @@ public class Launch : NetworkBehaviour
 
     public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
-        if (pocket != null)
+        if (pocket != -1)
         {
             animator.SetTrigger("aiming");
             lineRenderer.enabled = true;
@@ -104,7 +104,7 @@ public class Launch : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (pocket != null)
+        if (pocket != -1)
         {
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
@@ -114,15 +114,18 @@ public class Launch : NetworkBehaviour
             LaunchItemRpc(launchDirection, launchForce, launchpoint.position);
 
             // Eliminamos el objeto de la mano
-            pocket = null;
+            pocket = -1;
             objectImage.GetComponent<RawImage>().texture = noObjectTexture;
+            Debug.Log("Ha llegado");
         }
     }
 
     [Rpc(SendTo.Server)]
     public void LaunchItemRpc(Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
     {
-        GameObject launchedItem = Instantiate(pocket, position, Quaternion.identity);
+        Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
+        GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[pocket];
+        GameObject launchedItem = Instantiate(gameObjectPrefab, position, Quaternion.identity);
         var netObj = launchedItem.GetComponent<NetworkObject>();
         netObj.Spawn();
         launchedItem.GetComponent<Item>().Use(direction, force, transform.parent.gameObject);
