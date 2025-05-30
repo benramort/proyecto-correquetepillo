@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 0}
+  pocket: -1
   animator: {fileID: 4229503371716024096}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 2488016924183192047}
@@ -347,6 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5620425846f7e94e89f0dea50bb9d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActionMap:
+    m_Name: Input
+    m_Id: 01cc5454-634d-4b7f-bd97-bcdf2834fa68
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
   cam: {fileID: 0}
   speed: 7
   rotationSpeed: 1000
