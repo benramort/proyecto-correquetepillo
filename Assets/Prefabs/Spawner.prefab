@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 225917412108588962}
   - component: {fileID: 2672011428629385893}
   - component: {fileID: 3412468319183555372}
-  - component: {fileID: 5836036114263174550}
+  - component: {fileID: 5433448937973299855}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3905545674
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2606820150
+  InScenePlacedSourceGlobalObjectIdHash: 3995066184
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5836036114263174550
+--- !u!114 &5433448937973299855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5770127370205044251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ad3d617705afe43b448b40edebe623, type: 3}
+  m_Script: {fileID: 11500000, guid: f3167eb248c0b7b47b3693e0155d601f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTime: 5

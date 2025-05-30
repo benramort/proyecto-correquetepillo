@@ -123,11 +123,13 @@ public class Launch : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaunchItemRpc(int itemId, Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
     {
-        Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
+        //Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
         GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[itemId];
         GameObject launchedItem = Instantiate(gameObjectPrefab, position, Quaternion.identity);
         var netObj = launchedItem.GetComponent<NetworkObject>();
         netObj.Spawn(true);
-        launchedItem.GetComponent<Item>().Use(direction, force, transform.parent.gameObject);
+        Debug.Log(NetworkManager.ConnectedClients[rpcParams.Receive.SenderClientId].PlayerObject);
+        GameObject player = NetworkManager.ConnectedClients[rpcParams.Receive.SenderClientId].PlayerObject.gameObject;
+        launchedItem.GetComponent<Item>().Use(direction, force, player);
     }
 }

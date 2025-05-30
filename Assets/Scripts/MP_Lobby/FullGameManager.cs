@@ -202,12 +202,11 @@ public class FullGameManager : NetworkBehaviour
         {
 
             NetworkObject characterObject = characters[playerData.playerType].GetComponent<NetworkObject>();
-            NetworkObject character = NetworkManager.SpawnManager.InstantiateAndSpawn(
-                characterObject,
-                playerData.clientId,
-                false,
-                true,
-                false);
+            GameObject go = Instantiate(characters[playerData.playerType]);
+            NetworkObject netObj = go.GetComponent<NetworkObject>();
+            netObj.SpawnAsPlayerObject(playerData.clientId, true);
+
+            Debug.Log(NetworkManager.ConnectedClients[playerData.clientId].PlayerObject);
         }
     }
 

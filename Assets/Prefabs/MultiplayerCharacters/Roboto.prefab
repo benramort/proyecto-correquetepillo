@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 0}
+  pocket: -1
   animator: {fileID: 9210513802673398797}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 785484098090896136}
@@ -91,7 +91,6 @@ MonoBehaviour:
   lineRenderer: {fileID: 887565272550469896}
   skew: 0.2
   noObjectTexture: {fileID: 2800000, guid: 62fd0e0f54244974e8c8dc84293127c3, type: 3}
-  spawnedItemPrefab: {fileID: 0}
 --- !u!120 &887565272550469896
 LineRenderer:
   serializedVersion: 2
@@ -853,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0582a5e81a23748a8037a40d589a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPoints: 10
+  maxPoints: 100
   tickTime: 1
   catchArea: {fileID: 5106488492380123559}
   labelHolder: {fileID: 240804662390290192}

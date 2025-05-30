@@ -13,6 +13,7 @@ public class ImpulseGrenade : Item
 
     public override void OnCollisionEnter(Collision collision)
     {
+        if (!IsOwner) return;
         Debug.Log(thrower.gameObject + " " +collision.gameObject);
         sound = this.GetComponent<AudioSource>();
         if (collision.gameObject != thrower.gameObject)
