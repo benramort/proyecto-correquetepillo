@@ -226,6 +226,7 @@ public class FullGameManager : NetworkBehaviour
             playerDatas.Add(playerData);
         }
         playerDatas.Sort ((p1, p2) => p1.playerPoints - p2.playerPoints);
+        playerDatas.Reverse();
         GameObject spawners = GameObject.Find("Positions");
 
         for(int i = 0; i < playerDatas.Count; i++)
