@@ -207,7 +207,8 @@ public class FullGameManager : NetworkBehaviour
                 playerData.clientId,
                 false,
                 true,
-                false);
+                false,
+                new Vector3(0, 1, 0));
         }
     }
 
