@@ -36,7 +36,7 @@ namespace OnlineMultiplayer
             if (!IsOwner) return;
             if (IsServer) isTarget.Value = true;
             //gameManager = GameObject.Find("Scripter").GetComponent<GameManager>(); Reactivar esto
-            pointsText = transform.parent.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
+            pointsText = transform.root.Find("Interface").GetComponentInChildren<TextMeshProUGUI>();
             points.Value = maxPoints;
             animator = GetComponentInChildren<Animator>();
         }

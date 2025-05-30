@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ImpulseGrenade : Item
@@ -16,12 +17,19 @@ public class ImpulseGrenade : Item
         if (!IsOwner) return;
         Debug.Log(thrower.gameObject + " " +collision.gameObject);
         sound = this.GetComponent<AudioSource>();
-        if (collision.gameObject != thrower.gameObject)
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log("He chocado");
-            StartCoroutine(Explode());
+            ExplodeRpc();
         }
     }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    public void ExplodeRpc()
+    {
+        StartCoroutine(Explode());
+    }
+
 
     IEnumerator Explode()
     {
@@ -51,7 +59,7 @@ public class ImpulseGrenade : Item
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
 
         yield return new WaitForSeconds(1.5f);
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
 

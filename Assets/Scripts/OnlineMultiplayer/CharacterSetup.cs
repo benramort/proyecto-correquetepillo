@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class CharacterSetup :  NetworkBehaviour
 {
@@ -11,6 +10,8 @@ public class CharacterSetup :  NetworkBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private InputActionAsset inputActionAsset;
     [SerializeField] private List<GameObject> objectsToDestroy;
+
+    [SerializeField] private Canvas canvas;
 
     // Start is called before the first frame update
     public override void OnNetworkSpawn()
@@ -29,5 +30,23 @@ public class CharacterSetup :  NetworkBehaviour
         input.actions.FindAction("Launch").canceled += player.GetComponentInChildren<Launch>().LaunchGrenadeEnd;
         input.actions.FindAction("Hability").performed += player.GetComponentInChildren<Ability>().UseAbility;
         player.GetComponentInChildren<InputHandler>().horizontal = input.actions.FindAction("Camera");
+
+        InitializeCanvas();
+
+
+    }
+
+    public void InitializeCanvas()
+    {
+        for (int j = 0; j < NetworkManager.ConnectedClients.Count; j++)
+        {
+            if ((int)NetworkManager.LocalClientId == j) continue;
+            GameObject oponent = NetworkManager.ConnectedClients[(ulong)j].PlayerObject.gameObject;
+            Canvas label = Instantiate(canvas, gameObject.GetComponentInChildren<Movement>().transform.GetChild(0));
+            label.gameObject.layer = 6 + j;
+            Debug.Log(oponent.transform.Find("Character/Camera").gameObject);
+            label.GetComponent<LookAtCanvas>().player = oponent.transform.Find("Character").gameObject;
+        }
+
     }
 }

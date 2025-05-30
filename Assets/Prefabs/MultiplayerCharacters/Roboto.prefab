@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3214156488
+  GlobalObjectIdHash: 455485591
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -413,6 +413,7 @@ MonoBehaviour:
   - {fileID: 6227063711718105919}
   - {fileID: 2753421885881530164}
   - {fileID: 8394808457200789221}
+  canvas: {fileID: 5302049178228480899, guid: 2ff57eef94529524f92bf8f90c790de1, type: 3}
 --- !u!114 &9159603926658954939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +664,7 @@ GameObject:
   - component: {fileID: 8737957568324984180}
   - component: {fileID: 3289924489757331850}
   - component: {fileID: 3376284316075090408}
+  - component: {fileID: 4300985323299724171}
   m_Layer: 0
   m_Name: Roboto
   m_TagString: Player
@@ -859,6 +861,18 @@ MonoBehaviour:
   animator: {fileID: 9210513802673398797}
   isTarget:
     m_InternalValue: 0
+--- !u!114 &4300985323299724171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151337949082564676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3839271443366714804
 GameObject:
   m_ObjectHideFlags: 3

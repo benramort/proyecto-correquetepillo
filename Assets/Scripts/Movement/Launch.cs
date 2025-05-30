@@ -47,7 +47,7 @@ public class Launch : NetworkBehaviour
     void Start()
     {
         cam = transform.parent.parent.Find("Camera").gameObject;
-        objectImage = transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").gameObject;
+        objectImage = transform.root.Find("Interface/Panel/Object").gameObject;
         launchDirection = transform.position - cam.transform.position;
         defaulHeight = launchDirection.y;
     }
