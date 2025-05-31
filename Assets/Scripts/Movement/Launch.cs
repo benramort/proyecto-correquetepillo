@@ -107,6 +107,7 @@ public class Launch : NetworkBehaviour
 
         if (pocket != -1)
         {
+            animator.SetTrigger("throw");
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
             showLine = false;
