@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsAdded: 20
+  sceneName: 
 --- !u!114 &4331242480349523364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 0}
+  pocket: -1
   animator: {fileID: 4970880595358635964}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 6685907339252457843}
@@ -959,7 +960,6 @@ MonoBehaviour:
   lineRenderer: {fileID: 6837635948115560877}
   skew: 0.2
   noObjectTexture: {fileID: 2800000, guid: 62fd0e0f54244974e8c8dc84293127c3, type: 3}
-  spawnedItemPrefab: {fileID: 0}
 --- !u!120 &6837635948115560877
 LineRenderer:
   serializedVersion: 2
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3946490502
+  GlobalObjectIdHash: 3956566136
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

@@ -7,12 +7,13 @@ public class Respawn : MonoBehaviour
 {
     private GameObject respawn;
     public int pointsAdded;
+    public string sceneName;
     // Start is called before the first frame update
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         
-        Debug.Log("Respawns: " + respawn);
+        
     }
 
     // Update is called once per frame
@@ -23,10 +24,10 @@ public class Respawn : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Map")
+        if (scene.name == sceneName)
         {
-            respawn = GameObject.Find("BaseSpawn");
-
+            respawn = GameObject.Find("PlayerSpawns");
+            Debug.Log("Respawns: " + respawn);
         }
     }
 
@@ -36,7 +37,7 @@ public class Respawn : MonoBehaviour
         if(other.gameObject.tag == "DeathZone")
         {
             this.GetComponent<Movement>().lerping = false;   
-            this.transform.position = respawn.transform.position;
+            this.transform.position = respawn.transform.GetChild(0).position;
             this.GetComponent<PointManager>().points += pointsAdded;
         }
     }
