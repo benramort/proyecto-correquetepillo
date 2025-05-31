@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 192.168.1.10
+    Address: 127.0.0.1
     Port: 7777
     ServerListenAddress: 0.0.0.0
   DebugSimulator:
@@ -1338,7 +1338,7 @@ MonoBehaviour:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: bf23487314abe5c4697f3b0085c56147, type: 2}
     TickRate: 30
-    ClientConnectionBufferTimeout: 10
+    ClientConnectionBufferTimeout: 2
     ConnectionApproval: 0
     ConnectionData: 
     EnableTimeResync: 0
