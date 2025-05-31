@@ -92,6 +92,7 @@ public class Launch : NetworkBehaviour
 
     public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
+        if (!IsOwner) return;
         if (pocket != -1)
         {
             animator.SetTrigger("aiming");
