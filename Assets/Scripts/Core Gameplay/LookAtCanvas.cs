@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LookAtCanvas : MonoBehaviour
 {
-
-    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +13,7 @@ public class LookAtCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player.transform);
+        transform.LookAt(Camera.main.transform);
         transform.Rotate(0, 180, 0);
     }
 }

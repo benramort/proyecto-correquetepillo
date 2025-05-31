@@ -33,8 +33,12 @@ namespace OnlineMultiplayer
                 labelHolder.SetActive(newValue);
             };
             base.OnNetworkSpawn();
-            if (!IsOwner) return;
             if (IsServer) isTarget.Value = true;
+            if (!IsOwner)
+            {
+                labelHolder.SetActive(isTarget.Value);
+                return;
+            };
             //gameManager = GameObject.Find("Scripter").GetComponent<GameManager>(); Reactivar esto
             pointsText = transform.root.Find("Interface").GetComponentInChildren<TextMeshProUGUI>();
             points.Value = maxPoints;
