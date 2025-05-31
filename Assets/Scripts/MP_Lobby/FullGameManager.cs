@@ -18,7 +18,7 @@ public class FullGameManager : NetworkBehaviour
     [SerializeField] private List<GameObject> podiumCharacters;
 
     public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
-    {
+    { 
         public ulong clientId;
         public int playerType;
         public bool isReady;
@@ -198,6 +198,8 @@ public class FullGameManager : NetworkBehaviour
 
     private void SpawnCharacters()
     {
+        GameObject spawners = GameObject.Find("PlayerSpawns");
+        int count = 1;
         foreach (PlayerData playerData in playerDataList)
         {
 
@@ -208,7 +210,8 @@ public class FullGameManager : NetworkBehaviour
                 false,
                 true,
                 false,
-                new Vector3(0, 1, 0));
+                spawners.transform.GetChild(count).position);
+            count++;
         }
     }
 
