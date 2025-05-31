@@ -33,7 +33,7 @@ namespace OnlineMultiplayer
                 labelHolder.SetActive(newValue);
             };
             base.OnNetworkSpawn();
-            if (IsServer) isTarget.Value = true;
+            if (IsOwner && IsServer) isTarget.Value = true;
             if (!IsOwner)
             {
                 labelHolder.SetActive(isTarget.Value);
