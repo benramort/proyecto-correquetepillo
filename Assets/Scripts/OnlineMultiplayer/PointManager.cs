@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
+//using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,10 +34,14 @@ namespace OnlineMultiplayer
                 labelHolder.SetActive(newValue);
             };
             base.OnNetworkSpawn();
-            if (!IsOwner) return;
-            if (IsServer) isTarget.Value = true;
+            if (IsOwner && IsServer) isTarget.Value = true;
+            if (!IsOwner)
+            {
+                labelHolder.SetActive(isTarget.Value);
+                return;
+            };
             //gameManager = GameObject.Find("Scripter").GetComponent<GameManager>(); Reactivar esto
-            pointsText = transform.parent.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
+            pointsText = transform.root.Find("Interface").GetComponentInChildren<TextMeshProUGUI>();
             points.Value = maxPoints;
             animator = GetComponentInChildren<Animator>();
         }
@@ -75,6 +80,8 @@ namespace OnlineMultiplayer
                         //}
 
                         pointsText.text = points.Value.ToString();
+                        if (!IsServer)
+                            Debug.Log("Cliente: " + points.Value + "puntos");
                     }
                 }
                 else
@@ -84,9 +91,11 @@ namespace OnlineMultiplayer
 
 
             }
-            if (points.Value <= 0 && !gameEnded)
+            if (points.Value == 0 && !gameEnded)
             {
                 gameEnded = true;
+                Debug.Log(FullGameManager.INSTANCE.playerDataList);
+                UpdatePointsRpc();
                 FullGameManager.INSTANCE.EndGameRpc();
             }
         }
@@ -125,5 +134,23 @@ namespace OnlineMultiplayer
             labelHolder.SetActive(false);
             gameObject.GetComponent<Movement>().Freeze(FreezeType.CATCHFREEZE);
         }
+    
+        [Rpc(SendTo.Server)]
+        public void UpdatePointsRpc(RpcParams rpcParams = new RpcParams())
+        {
+            for (int i = 0; i < FullGameManager.INSTANCE.playerDataList.Count; i++)
+            {
+                if (FullGameManager.INSTANCE.playerDataList[i].clientId == OwnerClientId)
+                {
+                    FullGameManager.INSTANCE.playerDataList[i] = new FullGameManager.PlayerData(
+                        FullGameManager.INSTANCE.playerDataList[i].clientId,
+                        FullGameManager.INSTANCE.playerDataList[i].playerType,
+                        FullGameManager.INSTANCE.playerDataList[i].isReady,
+                        FullGameManager.INSTANCE.playerDataList[i].playerPosition,
+                        points.Value);
+                }
+            }
+        }
     }
+
 }

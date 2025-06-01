@@ -47,7 +47,7 @@ public class Launch : NetworkBehaviour
     void Start()
     {
         cam = transform.parent.parent.Find("Camera").gameObject;
-        objectImage = transform.root.GetComponentInChildren<Canvas>().transform.Find("Panel/Object").gameObject;
+        objectImage = transform.root.Find("Interface/Panel/Object").gameObject;
         launchDirection = transform.position - cam.transform.position;
         defaulHeight = launchDirection.y;
     }
@@ -92,6 +92,7 @@ public class Launch : NetworkBehaviour
 
     public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
+        if (!IsOwner) return;
         if (pocket != -1)
         {
             animator.SetTrigger("aiming");
@@ -106,6 +107,7 @@ public class Launch : NetworkBehaviour
 
         if (pocket != -1)
         {
+            animator.SetTrigger("throw");
             animator.ResetTrigger("aiming");
             lineRenderer.enabled = false;
             showLine = false;
@@ -123,11 +125,13 @@ public class Launch : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void LaunchItemRpc(int itemId, Vector3 direction, float force, Vector3 position, RpcParams rpcParams = default)
     {
-        Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
+        //Debug.Log("MP_Spawner.SpawnableItems: " + MP_Spawner.SpawnableItems.ToString());
         GameObject gameObjectPrefab = MP_Spawner.SpawnableItems[itemId];
         GameObject launchedItem = Instantiate(gameObjectPrefab, position, Quaternion.identity);
         var netObj = launchedItem.GetComponent<NetworkObject>();
         netObj.Spawn(true);
-        launchedItem.GetComponent<Item>().Use(direction, force, transform.parent.gameObject);
+        Debug.Log(NetworkManager.ConnectedClients[rpcParams.Receive.SenderClientId].PlayerObject);
+        GameObject player = NetworkManager.ConnectedClients[rpcParams.Receive.SenderClientId].PlayerObject.gameObject;
+        launchedItem.GetComponent<Item>().Use(direction, force, player);
     }
 }

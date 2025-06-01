@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : NetworkBehaviour
 {
     protected GameObject thrower;
     public virtual void Use(Vector3 launchDirection, float launchForce, GameObject thrower)

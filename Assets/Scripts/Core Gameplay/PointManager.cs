@@ -27,7 +27,7 @@ public class PointManager : MonoBehaviour
     {
         Debug.Log("hola");
         //gameManager = GameObject.Find("Scripter").GetComponent<GameManager>(); Reactivar esto
-        pointsText = transform.parent.parent.GetComponentInChildren<Canvas>().GetComponentInChildren<TextMeshProUGUI>();
+        pointsText = transform.root.Find("Interface").GetComponentInChildren<TextMeshProUGUI>();
         Debug.Log("pointsText: " + pointsText);
         points = maxPoints;
         animator = GetComponentInChildren<Animator>();

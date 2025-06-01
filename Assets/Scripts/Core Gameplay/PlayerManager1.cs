@@ -97,18 +97,18 @@ public class PlayerManager1 : MonoBehaviour
 
     public void initializeCamera()
     {
-        Debug.Log("Initializing camera. Player conunt" + players.Count);
-        for (int i = 0; i < players.Count; i++)
-        {
-            for (int j = 0; j < players.Count; j++)
-            {
-                if (i == j) continue;
-                GameObject player = players[i].gameObject;
-                Canvas label = Instantiate(canvas, player.GetComponentInChildren<Movement>().transform.GetChild(0));
-                label.gameObject.layer = 6 + j;
-                Debug.Log(players[j].transform.Find("Character/Camera").gameObject);
-                label.GetComponent<LookAtCanvas>().player = players[j].transform.Find("Character/Camera").gameObject;
-            }
-        }
+        //Debug.Log("Initializing camera. Player conunt" + players.Count);
+        //for (int i = 0; i < players.Count; i++)
+        //{
+        //    for (int j = 0; j < players.Count; j++)
+        //    {
+        //        if (i == j) continue;
+        //        GameObject player = players[i].gameObject;
+        //        Canvas label = Instantiate(canvas, player.GetComponentInChildren<Movement>().transform.GetChild(0));
+        //        label.gameObject.layer = 6 + j;
+        //        Debug.Log(players[j].transform.Find("Character/Camera").gameObject);
+        //        label.GetComponent<LookAtCanvas>().player = players[j].transform.Find("Character/Camera").gameObject;
+        //    }
+        //}
     }
 }

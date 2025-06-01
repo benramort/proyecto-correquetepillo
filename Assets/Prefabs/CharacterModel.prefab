@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e484a6b36a1954088c3a32da6536e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocket: {fileID: 0}
+  pocket: -1
+  animator: {fileID: 0}
   launchDirection: {x: 0, y: 0, z: 0}
   launchpoint: {fileID: 629686722593382735}
   cam: {fileID: 0}
@@ -194,6 +195,7 @@ MonoBehaviour:
   puntosObjeto: []
   lineRenderer: {fileID: 7168659373810768769}
   skew: 0.2
+  noObjectTexture: {fileID: 0}
 --- !u!120 &7168659373810768769
 LineRenderer:
   serializedVersion: 2
@@ -454,10 +456,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5620425846f7e94e89f0dea50bb9d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActionMap:
+    m_Name: Input
+    m_Id: a3425b4b-3fb3-4096-8f91-00ea546f8068
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
   cam: {fileID: 0}
   speed: 6
   rotationSpeed: 1000
   jumpForce: 6
+  lerpPercentage: 0
+  lerping: 1
 --- !u!114 &8316583112255107965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,8 +484,8 @@ MonoBehaviour:
   tickTime: 1
   catchArea: {fileID: 8957902868585513682}
   labelHolder: {fileID: 1183225903550161564}
+  animator: {fileID: 0}
   _isTarget: 0
-  points: 0
 --- !u!114 &7204659321894688545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 7.5
+  movement: {fileID: 0}
 --- !u!114 &1834636345956440513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +515,10 @@ MonoBehaviour:
   multiplier: 6
   abilityTime: 2
   cooldownTime: 10
+  rawimage: {fileID: 0}
+  texture: {fileID: 0}
+  readyColor: {r: 0, g: 0, b: 0, a: 0}
+  usedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5694125448029690483
 GameObject:
   m_ObjectHideFlags: 0
