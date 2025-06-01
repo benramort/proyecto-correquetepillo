@@ -24,7 +24,7 @@ public class CharacterSelection : MonoBehaviour
         if (allReady)
         {
             Debug.Log("Allredady");
-            GameManager.instance.ChangeToGameScene();
+            FullGameManager.INSTANCE.GoToGame();
         }
     }
 
