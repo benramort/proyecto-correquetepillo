@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
-    private GameObject respawns;
+    private GameObject respawn;
     public int pointsAdded;
+    public string sceneName;
     // Start is called before the first frame update
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         
-        Debug.Log("Respawns: " + respawns);
+        
     }
 
     // Update is called once per frame
@@ -23,10 +24,10 @@ public class Respawn : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Map")
+        if (scene.name == sceneName)
         {
-            respawns = GameObject.Find("Respawners");
-
+            respawn = GameObject.Find("PlayerSpawns");
+            Debug.Log("Respawns: " + respawn);
         }
     }
 
@@ -36,8 +37,7 @@ public class Respawn : MonoBehaviour
         if(other.gameObject.tag == "DeathZone")
         {
             this.GetComponent<Movement>().lerping = false;   
-            int randomRespawn = Random.Range(0, 3);
-            this.transform.position = respawns.transform.GetChild(randomRespawn).position;
+            this.transform.position = respawn.transform.GetChild(0).position;
             this.GetComponent<PointManager>().points += pointsAdded;
         }
     }
