@@ -203,7 +203,8 @@ public class FullGameManager : NetworkBehaviour
         {
 
             NetworkObject characterObject = characters[playerData.playerType].GetComponent<NetworkObject>();
-            GameObject go = Instantiate(characters[playerData.playerType],spawners.transform.GetChild(count).position);
+            GameObject go = Instantiate(characters[playerData.playerType],spawners.transform.GetChild(count).position,Quaternion.identity);
+            go.transform.LookAt(new Vector3(0,0,0), Vector3.up);
             NetworkObject netObj = go.GetComponent<NetworkObject>();
             netObj.SpawnAsPlayerObject(playerData.clientId, true);
 
