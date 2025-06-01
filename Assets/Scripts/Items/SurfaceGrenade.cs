@@ -14,7 +14,6 @@ public class SurfaceGrenade : Item
             ContactPoint cp = collision.GetContact(0);
             if (cp.normal.y > 0.9)
             {
-
                 NetworkManager.SpawnManager.InstantiateAndSpawn(surface, position:cp.point, rotation:Quaternion.identity);
                 GetComponent<NetworkObject>().Despawn(true);
             }

@@ -92,9 +92,9 @@ public class Launch : NetworkBehaviour
 
     public void LauchGrenadeStart(InputAction.CallbackContext context)
     {
+        if (!IsOwner) return;
         if (pocket != -1)
         {
-            Debug.Log("Aiming");
             animator.SetTrigger("aiming");
             lineRenderer.enabled = true;
             showLine = true;
@@ -118,7 +118,7 @@ public class Launch : NetworkBehaviour
             // Eliminamos el objeto de la mano
             pocket = -1;
             objectImage.GetComponent<RawImage>().texture = noObjectTexture;
-            Debug.Log("Aiming end");
+            Debug.Log("Ha llegado");
         }
     }
 
