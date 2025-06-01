@@ -158,7 +158,7 @@ public class FullGameManager : NetworkBehaviour
         if(allready)
         {
             NetworkManager.Singleton.SceneManager.LoadScene(
-                    "OnlineMultiplayer",
+                    "OnlineMultiplayer 1",
                     LoadSceneMode.Single);
         }
 
@@ -170,7 +170,7 @@ public class FullGameManager : NetworkBehaviour
     {
         if (clientId == NetworkManager.ServerClientId)
         {
-            if (SceneManager.GetActiveScene().name == "OnlineMultiplayer")
+            if (SceneManager.GetActiveScene().name == "OnlineMultiplayer 1")
             {
                 SpawnCharacters();
             }
