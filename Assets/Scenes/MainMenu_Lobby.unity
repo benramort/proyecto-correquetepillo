@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 127.0.0.1
+    Address: 10.35.3.83
     Port: 7777
     ServerListenAddress: 0.0.0.0
   DebugSimulator:
@@ -1802,7 +1802,7 @@ MonoBehaviour:
   waitingForPlayersPanel: {fileID: 1884694315}
   PlayerSelectPanel: {fileID: 1723218992}
   PlayerSelectionControls: {fileID: 4586369348387243305}
-  playerAmmount: 2
+  playerAmmount: 3
 --- !u!4 &1115650461
 Transform:
   m_ObjectHideFlags: 0
