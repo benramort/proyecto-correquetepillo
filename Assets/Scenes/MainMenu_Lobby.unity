@@ -287,16 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f450ea12eeae74f82bb5e07624d147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUIControllers: []
-  characters:
-  - {fileID: 2095306963811510114, guid: 4aa24ed3ac546b644881da3686fb5ccc, type: 3}
-  - {fileID: 8362510438114321699, guid: 5b04b38f5a507ca4ca723a3180529399, type: 3}
-  - {fileID: 5208282252394317442, guid: 91dc3971ba8dd0545adfdcf3786f52b7, type: 3}
-  cards:
-  - {fileID: 2800000, guid: ead6ef37234005b40a5f5e775cd23524, type: 3}
-  - {fileID: 2800000, guid: 7fa31df2de5842643afa7c2a375889ec, type: 3}
-  - {fileID: 2800000, guid: a4c30208e723d4c459bf60ffa77eeeb9, type: 3}
-  deactivatedCard: {fileID: 2800000, guid: a87fe82701ab50248ab31f02c96cc413, type: 3}
 --- !u!1 &238347386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,7 +1286,7 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 10.35.3.199
+    Address: 127.0.0.1
     Port: 7777
     ServerListenAddress: 0.0.0.0
   DebugSimulator:

@@ -10,6 +10,7 @@ public class MP_DeathBarrier : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            other.gameObject.GetComponent<Movement>().lerping = false;
             other.transform.position = Spawn.transform.position;
         }
     }
