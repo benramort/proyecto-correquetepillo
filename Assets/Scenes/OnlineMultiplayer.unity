@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: c441a065bbd98104aa5ef6b43c22e39e, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: c441a065bbd98104aa5ef6b43c22e39e, type: 3}
       propertyPath: m_Layer
