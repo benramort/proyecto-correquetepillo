@@ -21,7 +21,7 @@ public class IceSurface : MonoBehaviour
         {
             Movement movement = other.gameObject.GetComponent<Movement>();
             playersInside.Add(movement);
-            movement.onIce++;
+            movement.onIce = 1;
             
         }
     }
@@ -41,7 +41,7 @@ public class IceSurface : MonoBehaviour
         yield return new WaitForSeconds(timeToDissapear);
         foreach (Movement movement in playersInside)
         {
-            movement.onIce--;
+            movement.onIce = 0;
         }
         playersInside.Clear();
 

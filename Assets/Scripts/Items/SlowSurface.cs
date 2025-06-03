@@ -40,7 +40,9 @@ public class SlowSurface : MonoBehaviour
         foreach (Movement movement in playersInside)
         {
             movement.UnSlow();
+            movement.Grounded = true;
         }
+    
         playersInside.Clear();
 
         Destroy(gameObject);

@@ -214,7 +214,7 @@ public class Movement : NetworkBehaviour
 
     public void Slow()
     {
-        slowed++;
+        slowed=1;
         if (slowed == 1)
         {
             orignalSpeed = speed;
@@ -224,7 +224,7 @@ public class Movement : NetworkBehaviour
 
     public void UnSlow()
     {
-        slowed--;
+        slowed=0;
         if (slowed <= 0)
         {
             speed = orignalSpeed;
