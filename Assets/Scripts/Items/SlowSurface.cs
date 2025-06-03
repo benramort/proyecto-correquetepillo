@@ -43,7 +43,6 @@ public class SlowSurface : MonoBehaviour
         }
         playersInside.Clear();
 
-        //playersInside.Clear();
         Destroy(gameObject);
     }
 
